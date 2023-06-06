@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class PlayerScript : MonoBehaviour
 {
     [SerializeField]
     private float _speed;
@@ -17,7 +17,6 @@ public class Player : MonoBehaviour
     {
         _playerInputs = new PlayerInputs();
         _rigidbody2D = GetComponent<Rigidbody2D>();
-        if (_rigidbody2D is null) Debug.LogError("Rigidbody2D is null");
     }
 
     // Start is called before the first frame update
