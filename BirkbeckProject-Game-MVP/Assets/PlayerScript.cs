@@ -31,9 +31,6 @@ public class PlayerScript : MonoBehaviour
         if (_playerInputs.PlayerInputMap.Jump.triggered) Jump();
         _moveInput = _playerInputs.PlayerInputMap.Movement.ReadValue<Vector2>();
         _rigidbody2D.AddForce(transform.right * _moveInput *_speed);
-
-        //_moveInput = _playerInputs.PlayerInputMap.Movement.ReadValue<Vector2>();
-        //_rigidbody2D.velocity = _moveInput * _speed;
     }
 
     private void OnEnable()
