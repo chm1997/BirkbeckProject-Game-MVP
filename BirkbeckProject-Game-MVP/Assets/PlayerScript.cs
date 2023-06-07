@@ -8,6 +8,9 @@ public class PlayerScript : MonoBehaviour
     private float _speed;
     [SerializeField]
     private float _jumpForce;
+    [SerializeField]
+    private int _jumpAmmo;
+   
     private PlayerInputs _playerInputs;
     private Rigidbody2D _rigidbody2D;
     private Vector2 _moveInput;
@@ -17,6 +20,7 @@ public class PlayerScript : MonoBehaviour
     {
         _playerInputs = new PlayerInputs();
         _rigidbody2D = GetComponent<Rigidbody2D>();
+        _jumpAmmo = 3;
     }
 
     // Start is called before the first frame update
@@ -28,7 +32,11 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_playerInputs.PlayerInputMap.Jump.triggered) Jump();
+        if (_playerInputs.PlayerInputMap.Jump.triggered & _jumpAmmo > 0)
+        {
+            _jumpAmmo -= 1;
+            Jump();
+        }
         _moveInput = _playerInputs.PlayerInputMap.Movement.ReadValue<Vector2>();
         _rigidbody2D.AddForce(transform.right * _moveInput *_speed);
     }
@@ -46,5 +54,10 @@ public class PlayerScript : MonoBehaviour
     private void Jump()
     {
         _rigidbody2D.AddForce(transform.up * _jumpForce);
+    }
+
+    public int GetJumpAmmo()
+    {
+        return _jumpAmmo;
     }
 }
