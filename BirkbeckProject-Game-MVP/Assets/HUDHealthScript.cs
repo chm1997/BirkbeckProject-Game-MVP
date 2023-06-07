@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class HUDAmmoScript : MonoBehaviour
+public class HUDHealthScript : MonoBehaviour
 {
-    private int _triangleJumpAmmo;
+    private int _triangleHealth;
     public TMP_Text textObject;
     private string textString;
 
@@ -20,9 +20,9 @@ public class HUDAmmoScript : MonoBehaviour
     {
         var triangle = GameObject.Find("Triangle");
         PlayerScript ps = triangle.GetComponent<PlayerScript>();
-        _triangleJumpAmmo = ps.GetJumpAmmo();
+        _triangleHealth = ps.GetHealth();
 
-        textString = "Ammo: " + _triangleJumpAmmo.ToString();
+        textString = "Health: " + _triangleHealth.ToString();
 
         textObject.text = textString;
     }
