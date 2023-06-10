@@ -19,7 +19,7 @@ public class GroundScript : MonoBehaviour
 
     void Update()
     {
-        if (cameraTransform.position.x - transform.position.x >= textureUnitSizeX)
+        if (Mathf.Abs(cameraTransform.position.x - transform.position.x) >= textureUnitSizeX)
         {
             float offsetPositionX = (cameraTransform.position.x - transform.position.x) % textureUnitSizeX;
             transform.position = new Vector3(cameraTransform.position.x, transform.position.y);
