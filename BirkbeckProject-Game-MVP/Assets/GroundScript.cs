@@ -2,11 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ParallaxBackground : MonoBehaviour
+public class GroundScript : MonoBehaviour
 {
-    [SerializeField]
-    private Vector2 parallaxEffectMultiplier;
-   
     private Transform cameraTransform;
     private Vector3 lastCameraPosition;
     private float textureUnitSizeX;
@@ -20,12 +17,8 @@ public class ParallaxBackground : MonoBehaviour
         textureUnitSizeX = texture.width / sprite.pixelsPerUnit;
     }
 
-    void LateUpdate()
+    void Update()
     {
-        Vector3 deltaMovement = cameraTransform.position - lastCameraPosition;
-        transform.position += new Vector3(deltaMovement.x * parallaxEffectMultiplier.x, deltaMovement.y * parallaxEffectMultiplier.y);
-        lastCameraPosition = cameraTransform.position;
-
         if (cameraTransform.position.x - transform.position.x >= textureUnitSizeX)
         {
             float offsetPositionX = (cameraTransform.position.x - transform.position.x) % textureUnitSizeX;
