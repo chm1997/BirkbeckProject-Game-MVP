@@ -11,7 +11,7 @@ public class ParallaxBackground : MonoBehaviour
     private Vector3 lastCameraPosition;
     private float textureUnitSizeX;
 
-    void Start()
+    private void Start()
     {
         cameraTransform = Camera.main.transform;
         lastCameraPosition = cameraTransform.position;
@@ -20,7 +20,7 @@ public class ParallaxBackground : MonoBehaviour
         textureUnitSizeX = texture.width / sprite.pixelsPerUnit;
     }
 
-    void LateUpdate()
+    private void LateUpdate()
     {
         Vector3 deltaMovement = cameraTransform.position - lastCameraPosition;
         transform.position += new Vector3(deltaMovement.x * parallaxEffectMultiplier.x, deltaMovement.y * parallaxEffectMultiplier.y);

@@ -8,7 +8,7 @@ public class GroundScript : MonoBehaviour
     private Vector3 lastCameraPosition;
     private float textureUnitSizeX;
 
-    void Start()
+    private void Start()
     {
         cameraTransform = Camera.main.transform;
         lastCameraPosition = cameraTransform.position;
@@ -17,7 +17,7 @@ public class GroundScript : MonoBehaviour
         textureUnitSizeX = texture.width / sprite.pixelsPerUnit;
     }
 
-    void Update()
+    private void Update()
     {
         if (Mathf.Abs(cameraTransform.position.x - transform.position.x) >= textureUnitSizeX)
         {

@@ -4,16 +4,12 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
-
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         transform.Translate(3, 1, -10);
     }
 
-
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         var triangle = GameObject.Find("Triangle");
         float triangleXPos = triangle.transform.position.x;

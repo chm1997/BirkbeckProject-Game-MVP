@@ -6,17 +6,15 @@ using TMPro;
 public class HUDAmmoScript : MonoBehaviour
 {
     private int _triangleJumpAmmo;
-    public TMP_Text textObject;
+    private TMP_Text textObject;
     private string textString;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         textObject = GetComponent<TextMeshProUGUI>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         var triangle = GameObject.Find("Triangle");
         PlayerScript ps = triangle.GetComponent<PlayerScript>();

@@ -16,12 +16,10 @@ public class PlayerScript : MonoBehaviour
 
     private PlayerInputs _playerInputs;
     private Rigidbody2D _rigidbody2D;
-    [SerializeField]
     private Vector2 _moveInput;
-    [SerializeField]
     private Vector2 _jumpInput;
 
-    void Awake()
+    private void Awake()
     {
         _playerInputs = new PlayerInputs();
         _rigidbody2D = GetComponent<Rigidbody2D>();
@@ -29,7 +27,7 @@ public class PlayerScript : MonoBehaviour
         _health = 5;
     }
 
-    void Update()
+    private void Update()
     {
         if (_playerInputs.PlayerInputMap.Jump.triggered & _jumpAmmo > 0)
         {
