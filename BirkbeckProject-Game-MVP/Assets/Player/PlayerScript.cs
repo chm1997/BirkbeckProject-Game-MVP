@@ -12,10 +12,13 @@ public class PlayerScript : MonoBehaviour
     private int _jumpAmmo;
     [SerializeField]
     private int _health;
+    
 
     private PlayerInputs _playerInputs;
     private Rigidbody2D _rigidbody2D;
+    [SerializeField]
     private Vector2 _moveInput;
+    [SerializeField]
     private Vector2 _jumpInput;
 
     void Awake()
@@ -26,13 +29,6 @@ public class PlayerScript : MonoBehaviour
         _health = 5;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if (_playerInputs.PlayerInputMap.Jump.triggered & _jumpAmmo > 0)
@@ -40,13 +36,13 @@ public class PlayerScript : MonoBehaviour
             _jumpAmmo -= 1;
             Jump();
         }
-        _moveInput = _playerInputs.PlayerInputMap.Movement.ReadValue<Vector2>();
-        _rigidbody2D.AddForce(transform.right * _moveInput * _speed);
     }
 
     void FixedUpdate()
     {
-
+        _moveInput = _playerInputs.PlayerInputMap.Movement.ReadValue<Vector2>();
+        float verticalMomentum = _rigidbody2D.velocity.y;
+        _rigidbody2D.velocity = new Vector2(_moveInput.x * _speed, verticalMomentum);
     }
 
     private void OnEnable()
