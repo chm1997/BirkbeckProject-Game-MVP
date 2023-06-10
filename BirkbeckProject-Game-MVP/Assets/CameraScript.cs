@@ -17,8 +17,8 @@ public class CameraScript : MonoBehaviour
     {
         var triangle = GameObject.Find("Triangle");
         float triangleXPos = triangle.transform.position.x;
-        // transform.Translate(triangleXPos, 1, -10);
+        float triangleYPos = triangle.transform.position.y + 5;
 
-        transform.position = new Vector3(triangleXPos, 1, -10);
+        transform.position = new Vector3(triangleXPos, triangleYPos, -10);
     }
 }
