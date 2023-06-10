@@ -18,6 +18,8 @@ public class PlayerScript : MonoBehaviour
     private Rigidbody2D _rigidbody2D;
     private Vector2 _moveInput;
     private Vector2 _jumpInput;
+    [SerializeField]
+    private bool _isGrounded;
 
     private void Awake()
     {
@@ -25,14 +27,16 @@ public class PlayerScript : MonoBehaviour
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _jumpAmmo = 3;
         _health = 5;
+        _isGrounded = false;
     }
 
     private void Update()
     {
-        if (_playerInputs.PlayerInputMap.Jump.triggered & _jumpAmmo > 0)
+        if (_playerInputs.PlayerInputMap.Jump.triggered & _jumpAmmo > 0 & _isGrounded)
         {
             _jumpAmmo -= 1;
             Jump();
+            _isGrounded = false;
         }
     }
 
@@ -71,5 +75,10 @@ public class PlayerScript : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D Other)
     {
         _health -= 1;
+    }
+
+    private void OnCollisionEnter2D()
+    {
+        _isGrounded = true;
     }
 }
