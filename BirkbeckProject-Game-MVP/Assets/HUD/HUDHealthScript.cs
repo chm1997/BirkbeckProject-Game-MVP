@@ -5,7 +5,7 @@ using TMPro;
 
 public class HUDHealthScript : MonoBehaviour
 {
-    private int _triangleHealth;
+    private int playerHealth;
     private TMP_Text textObject;
     private string textString;
 
@@ -16,11 +16,11 @@ public class HUDHealthScript : MonoBehaviour
 
     private void Update()
     {
-        var triangle = GameObject.Find("Triangle");
-        PlayerScript ps = triangle.GetComponent<PlayerScript>();
-        _triangleHealth = ps.GetHealth();
+        var player = GameObject.Find("Player");
+        PlayerScript ps = player.GetComponent<PlayerScript>();
+        playerHealth = ps.GetHealth();
 
-        textString = "Health: " + _triangleHealth.ToString();
+        textString = "Health: " + playerHealth.ToString();
 
         textObject.text = textString;
     }

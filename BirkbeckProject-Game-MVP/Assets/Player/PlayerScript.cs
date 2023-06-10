@@ -5,61 +5,57 @@ using UnityEngine;
 public class PlayerScript : MonoBehaviour
 {
     [SerializeField]
-    private float _speed;
+    private float _speed; //Recommended: 10
     [SerializeField]
-    private float _jumpForce;
+    private float _jumpForce; //Recommended: 750
     [SerializeField]
-    private int _jumpAmmo;
+    private int _jumpAmmo; //Recommended: 3
     [SerializeField]
-    private int _health;
-    
+    private int _health; //Recommended: 5
 
-    private PlayerInputs _playerInputs;
-    private Rigidbody2D _rigidbody2D;
-    private Vector2 _moveInput;
-    private Vector2 _jumpInput;
-    [SerializeField]
-    private bool _isGrounded;
+    private PlayerInputs playerInputs;
+    private Rigidbody2D rb2D;
+    private Vector2 moveInput;
+    private Vector2 jumpInput;
+    private bool isGrounded;
 
     private void Awake()
     {
-        _playerInputs = new PlayerInputs();
-        _rigidbody2D = GetComponent<Rigidbody2D>();
-        _jumpAmmo = 3;
-        _health = 5;
-        _isGrounded = false;
+        playerInputs = new PlayerInputs();
+        rb2D = GetComponent<Rigidbody2D>();
+        isGrounded = false;
     }
 
     private void Update()
     {
-        if (_playerInputs.PlayerInputMap.Jump.triggered & _jumpAmmo > 0 & _isGrounded)
+        if (playerInputs.PlayerInputMap.Jump.triggered & _jumpAmmo > 0 & isGrounded)
         {
             _jumpAmmo -= 1;
             Jump();
-            _isGrounded = false;
+            isGrounded = false;
         }
     }
 
     void FixedUpdate()
     {
-        _moveInput = _playerInputs.PlayerInputMap.Movement.ReadValue<Vector2>();
-        float verticalMomentum = _rigidbody2D.velocity.y;
-        _rigidbody2D.velocity = new Vector2(_moveInput.x * _speed, verticalMomentum);
+        moveInput = playerInputs.PlayerInputMap.Movement.ReadValue<Vector2>();
+        float verticalMomentum = rb2D.velocity.y;
+        rb2D.velocity = new Vector2(moveInput.x * _speed, verticalMomentum);
     }
 
     private void OnEnable()
     {
-        _playerInputs.Enable();
+        playerInputs.Enable();
     }
 
     private void OnDisable()
     {
-        _playerInputs.Disable();
+        playerInputs.Disable();
     }
 
     private void Jump()
     {
-        _rigidbody2D.AddForce(transform.up * _jumpForce);
+        rb2D.AddForce(transform.up * _jumpForce);
     }
 
     public int GetJumpAmmo()
@@ -79,6 +75,6 @@ public class PlayerScript : MonoBehaviour
 
     private void OnCollisionEnter2D()
     {
-        _isGrounded = true;
+        isGrounded = true;
     }
 }

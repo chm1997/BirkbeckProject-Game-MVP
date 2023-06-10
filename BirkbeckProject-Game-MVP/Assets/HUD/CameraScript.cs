@@ -11,10 +11,10 @@ public class CameraScript : MonoBehaviour
 
     private void Update()
     {
-        var triangle = GameObject.Find("Triangle");
-        float triangleXPos = triangle.transform.position.x;
-        float triangleYPos = triangle.transform.position.y + 5;
+        var player = GameObject.Find("Player");
+        float playerXPos = player.transform.position.x;
+        float playerYPos = player.transform.position.y + 5;
 
-        transform.position = new Vector3(triangleXPos, triangleYPos, -10);
+        transform.position = new Vector3(playerXPos, playerYPos, -10);
     }
 }
