@@ -9,9 +9,9 @@ public class PlayerScript : MonoBehaviour
     [SerializeField]
     private float _jumpForce; //Recommended: 750
     [SerializeField]
-    private int _jumpAmmo; //Recommended: 3
+    private PlayerHealth playerHealth;
     [SerializeField]
-    public PlayerHealth playerHealth;
+    private PlayerAmmo playerAmmo;
 
     private PlayerInputs playerInputs;
     private Rigidbody2D rb2D;
@@ -25,13 +25,14 @@ public class PlayerScript : MonoBehaviour
         rb2D = GetComponent<Rigidbody2D>();
         isGrounded = false;
         playerHealth.SetPlayerHealth(5);
+        playerAmmo.SetPlayerAmmo(3);
     }
 
     private void Update()
     {
-        if (playerInputs.PlayerInputMap.Jump.triggered & _jumpAmmo > 0 & isGrounded)
+        if (playerInputs.PlayerInputMap.Jump.triggered & playerAmmo.GetPlayerAmmo() > 0 & isGrounded)
         {
-            _jumpAmmo -= 1;
+            playerAmmo.UpdatePlayerAmmo(-1);
             Jump();
             isGrounded = false;
         }
@@ -57,11 +58,6 @@ public class PlayerScript : MonoBehaviour
     private void Jump()
     {
         rb2D.AddForce(transform.up * _jumpForce);
-    }
-
-    public int GetJumpAmmo()
-    {
-        return _jumpAmmo;
     }
 
     private void OnTriggerEnter2D(Collider2D Other)

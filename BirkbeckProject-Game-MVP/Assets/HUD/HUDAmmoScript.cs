@@ -5,7 +5,7 @@ using TMPro;
 
 public class HUDAmmoScript : MonoBehaviour
 {
-    private int playerJumpAmmo;
+    public PlayerAmmo playerAmmo;
     private TMP_Text textObject;
     private string textString;
 
@@ -16,12 +16,8 @@ public class HUDAmmoScript : MonoBehaviour
 
     private void Update()
     {
-        var player = GameObject.Find("Player");
-        PlayerScript ps = player.GetComponent<PlayerScript>();
-        playerJumpAmmo = ps.GetJumpAmmo();
-
-        textString = "Ammo: " + playerJumpAmmo.ToString();
-
+        int currentAmmo = playerAmmo.GetPlayerAmmo();
+        textString = "Ammo: " + currentAmmo.ToString();
         textObject.text = textString;
     }
 }

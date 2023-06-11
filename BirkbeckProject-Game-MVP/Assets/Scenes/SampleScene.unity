@@ -1047,6 +1047,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a224f1fe27ac6d4c9eb0b396d9ec358, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerAmmo: {fileID: 11400000, guid: 80e2123d0fe3e9942aa745d34c61e1a1, type: 2}
 --- !u!1 &1100756218
 GameObject:
   m_ObjectHideFlags: 0
@@ -1521,8 +1522,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 10
   _jumpForce: 750
-  _jumpAmmo: 3
   playerHealth: {fileID: 11400000, guid: ea7e99363525f6f4bb0f5af5bbb99dca, type: 2}
+  playerAmmo: {fileID: 11400000, guid: 80e2123d0fe3e9942aa745d34c61e1a1, type: 2}
 --- !u!60 &1866048094
 PolygonCollider2D:
   m_ObjectHideFlags: 0
