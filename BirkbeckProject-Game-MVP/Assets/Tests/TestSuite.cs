@@ -22,4 +22,10 @@ public class TestSuite
         // Use yield to skip a frame.
         yield return null;
     }
+
+    [UnityTest]
+    public void TestPlayerInput()
+    {
+        GameObject playerGameObject = Resources.Load<GameObject>("Player") as GameObject;
+    }
 }
