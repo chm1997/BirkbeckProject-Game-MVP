@@ -11,7 +11,7 @@ public class PlayerScript : MonoBehaviour
     [SerializeField]
     private int _jumpAmmo; //Recommended: 3
     [SerializeField]
-    private int _health; //Recommended: 5
+    public PlayerHealth playerHealth;
 
     private PlayerInputs playerInputs;
     private Rigidbody2D rb2D;
@@ -24,6 +24,7 @@ public class PlayerScript : MonoBehaviour
         playerInputs = new PlayerInputs();
         rb2D = GetComponent<Rigidbody2D>();
         isGrounded = false;
+        playerHealth.SetPlayerHealth(5);
     }
 
     private void Update()
@@ -63,14 +64,9 @@ public class PlayerScript : MonoBehaviour
         return _jumpAmmo;
     }
 
-    public int GetHealth()
-    {
-        return _health;
-    }
-
     private void OnTriggerEnter2D(Collider2D Other)
     {
-        _health -= 1;
+        playerHealth.UpdatePlayerHealth(-1);
     }
 
     private void OnCollisionEnter2D()

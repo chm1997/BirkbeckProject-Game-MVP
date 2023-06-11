@@ -898,6 +898,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c2d32dfe281b9e48a5b16e982503b57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerHealth: {fileID: 11400000, guid: ea7e99363525f6f4bb0f5af5bbb99dca, type: 2}
 --- !u!1 &1060752590
 GameObject:
   m_ObjectHideFlags: 0
@@ -1521,7 +1522,7 @@ MonoBehaviour:
   _speed: 10
   _jumpForce: 750
   _jumpAmmo: 3
-  _health: 5
+  playerHealth: {fileID: 11400000, guid: ea7e99363525f6f4bb0f5af5bbb99dca, type: 2}
 --- !u!60 &1866048094
 PolygonCollider2D:
   m_ObjectHideFlags: 0

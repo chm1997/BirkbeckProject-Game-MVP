@@ -5,7 +5,7 @@ using TMPro;
 
 public class HUDHealthScript : MonoBehaviour
 {
-    private int playerHealth;
+    public PlayerHealth playerHealth;
     private TMP_Text textObject;
     private string textString;
 
@@ -16,12 +16,8 @@ public class HUDHealthScript : MonoBehaviour
 
     private void Update()
     {
-        var player = GameObject.Find("Player");
-        PlayerScript ps = player.GetComponent<PlayerScript>();
-        playerHealth = ps.GetHealth();
-
-        textString = "Health: " + playerHealth.ToString();
-
+        int currentHealth = playerHealth.GetPlayerHealth();
+        textString = "Health: " + currentHealth.ToString();
         textObject.text = textString;
     }
 }
