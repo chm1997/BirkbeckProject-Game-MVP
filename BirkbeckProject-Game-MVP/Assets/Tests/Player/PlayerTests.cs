@@ -11,7 +11,6 @@ public class PlayerTests
     public void PlayerTestsSimplePasses()
     {
         // Use the Assert class to test conditions
-        Assert.AreEqual("hello", "world");
     }
 
     // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
