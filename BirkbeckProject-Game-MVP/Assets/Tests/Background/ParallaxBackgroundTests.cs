@@ -4,7 +4,7 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 
-public class TestSuite
+public class ParallaxBackgroundTests
 {
     // A Test behaves as an ordinary method
     [Test]
@@ -21,11 +21,5 @@ public class TestSuite
         // Use the Assert class to test conditions.
         // Use yield to skip a frame.
         yield return null;
-    }
-
-    [UnityTest]
-    public void TestPlayerInput()
-    {
-        GameObject playerGameObject = Resources.Load<GameObject>("Player") as GameObject;
     }
 }
