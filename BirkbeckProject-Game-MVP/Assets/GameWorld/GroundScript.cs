@@ -20,10 +20,7 @@ public class GroundScript : MonoBehaviour
     {
         if (Mathf.Abs(playerTransform.position.x - transform.position.x) >= textureUnitSizeX)
         {
-            Vector2 thingy = new Vector2(playerTransform.position.x, transform.position.y);
-            transform.position = thingy;
-            Debug.Log("moved");
-            Debug.Log(thingy);
+            transform.position = new Vector2(playerTransform.position.x, transform.position.y);
         }
     }
 }

@@ -259,7 +259,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 301614344}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 6.08, y: 0.34, z: 0}
+  m_LocalPosition: {x: 5.98, y: 0.1, z: 0}
   m_LocalScale: {x: 7.4401665, y: 1.1297, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -452,7 +452,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3433098346067631814, guid: 3ea0178199bc8774aa5df4ce8a0d00a8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.92
+      value: -4.07
       objectReference: {fileID: 0}
     - target: {fileID: 3433098346067631814, guid: 3ea0178199bc8774aa5df4ce8a0d00a8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -509,11 +509,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3442280005029720857, guid: ec6f0e6a16db5704380b9f3ad64c4ca6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3442280005029720857, guid: ec6f0e6a16db5704380b9f3ad64c4ca6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3442280005029720857, guid: ec6f0e6a16db5704380b9f3ad64c4ca6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -726,8 +726,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cacti
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6154759898225875205, guid: 39e64084a23eba748a2fc34c0f58ce75, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39e64084a23eba748a2fc34c0f58ce75, type: 3}
 --- !u!1001 &7525307409195387480
 PrefabInstance:

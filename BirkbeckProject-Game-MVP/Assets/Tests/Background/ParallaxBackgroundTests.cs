@@ -6,20 +6,80 @@ using UnityEngine.TestTools;
 
 public class ParallaxBackgroundTests
 {
-    // A Test behaves as an ordinary method
-    [Test]
-    public void NewTestScriptSimplePasses()
+    /*
+    GameObject playerPrefab = Resources.Load<GameObject>("Player");
+    GameObject cameraPrefab = Resources.Load<GameObject>("Main Camera");
+    GameObject cactiPrefab = Resources.Load<GameObject>("Cacti");
+
+    GameObject player;
+    GameObject camera;
+    GameObject cacti;
+
+    [SetUp]
+    public void ParallaxBackgroundTest_Setup()
     {
-        // Use the Assert class to test conditions
+        player = GameObject.Instantiate(playerPrefab, new Vector3(0, 5, 0), Quaternion.identity);
+        camera = GameObject.Instantiate(cameraPrefab, new Vector3(0, 5, 0), Quaternion.identity);
+        cacti = GameObject.Instantiate(cactiPrefab, new Vector3(0, 0, 0), Quaternion.identity);
     }
 
-    // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
-    // `yield return null;` to skip a frame.
-    [UnityTest]
-    public IEnumerator NewTestScriptWithEnumeratorPasses()
+    [TearDown]
+    public void ParallaxBackgroundTest_TearDown()
     {
-        // Use the Assert class to test conditions.
-        // Use yield to skip a frame.
-        yield return null;
+        UnityEngine.Object.Destroy(player);
+        UnityEngine.Object.Destroy(camera);
+        UnityEngine.Object.Destroy(cacti);
     }
+
+
+    [UnityTest]
+    public IEnumerator ParallaxBackgroundTest_Stationary()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        Assert.AreEqual(0.0f, cacti.transform.position.x);
+        Assert.AreEqual(0.0f, cacti.transform.position.y);
+    }
+    */
+    /*
+    [UnityTest]
+    public IEnumerator ParallaxBackgroundTest_HorizontalMovementLeft()
+    {
+        camera.transform.position = new Vector2(-5, 0);
+
+        yield return new WaitForSeconds(1.0f);
+
+        Assert.AreEqual(-5.0f, cacti.transform.position.x);
+    }
+
+    [UnityTest]
+    public IEnumerator ParallaxBackgroundTest_HorizontalMovementRight()
+    {
+        camera.transform.position = new Vector2(5, 5);
+
+        yield return new WaitForSeconds(1.0f);
+
+        Assert.AreEqual(5.0f, cacti.transform.position.x);
+    }
+
+    [UnityTest]
+    public IEnumerator ParallaxBackgroundTest_VerticalMovementUp()
+    {
+        camera.transform.position = new Vector2(0, 5);
+
+        yield return new WaitForSeconds(0.1f);
+
+        Assert.AreEqual(0.0f, cacti.transform.position.y);
+    }
+
+    [UnityTest]
+    public IEnumerator ParallaxBackgroundTest_VerticalMovementDown()
+    {
+        camera.transform.position = new Vector2(0, -5);
+
+        yield return new WaitForSeconds(0.1f);
+
+        Assert.AreEqual(0.0f, cacti.transform.position.y);
+    }
+    */
 }

@@ -6,8 +6,8 @@ using UnityEngine.TestTools;
 
 public class GroundTests
 {
-    GameObject groundPrefab = Resources.Load<GameObject>("Ground");
     GameObject playerPrefab = Resources.Load<GameObject>("Player");
+    GameObject groundPrefab = Resources.Load<GameObject>("Ground");
 
     GameObject player;
     GameObject ground;
@@ -15,7 +15,6 @@ public class GroundTests
     [SetUp]
     public void GroundTest_Setup()
     {
-        Debug.Log("set up");
         player = GameObject.Instantiate(playerPrefab, new Vector3(0, 5, 0), Quaternion.identity);
         ground = GameObject.Instantiate(groundPrefab, new Vector3(0, 0, 0), Quaternion.identity);
     }
@@ -23,7 +22,6 @@ public class GroundTests
     [TearDown]
     public void GroundTest_TearDown()
     {
-        Debug.Log("tear down");
         UnityEngine.Object.Destroy(player);
         UnityEngine.Object.Destroy(ground);
     }
@@ -32,7 +30,7 @@ public class GroundTests
     [UnityTest]
     public IEnumerator GroundTest_Stationary()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
 
         Assert.AreEqual(0.0f, ground.transform.position.x);
         Assert.AreEqual(0.0f, ground.transform.position.y);
@@ -43,7 +41,7 @@ public class GroundTests
     {
         player.transform.position = new Vector2(-5, 0);
 
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.2f);
 
         Assert.AreEqual(-5.0f, ground.transform.position.x);
     }
@@ -53,7 +51,7 @@ public class GroundTests
     {
         player.transform.position = new Vector2(5, 5);
 
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.2f);
 
         Assert.AreEqual(5.0f, ground.transform.position.x);
     }
@@ -63,7 +61,7 @@ public class GroundTests
     {
         player.transform.position = new Vector2(0, 5);
 
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.2f);
 
         Assert.AreEqual(0.0f, ground.transform.position.y);
     }
@@ -73,7 +71,7 @@ public class GroundTests
     {
         player.transform.position = new Vector2(0, -5);
 
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.2f);
 
         Assert.AreEqual(0.0f, ground.transform.position.y);
     }
