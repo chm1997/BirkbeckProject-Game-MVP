@@ -4,25 +4,24 @@ using UnityEngine;
 
 public class GroundScript : MonoBehaviour
 {
-    private Transform cameraTransform;
-    private Vector3 lastCameraPosition;
+    private Transform playerTransform;
+    private Vector3 lastPlayerPosition;
     private float textureUnitSizeX;
 
     private void Start()
     {
-        cameraTransform = Camera.main.transform;
-        lastCameraPosition = cameraTransform.position;
+        playerTransform = GameObject.FindWithTag("Player").transform;
+        lastPlayerPosition = playerTransform.position;
+
         Sprite sprite = GetComponent<SpriteRenderer>().sprite;
         Texture2D texture = sprite.texture;
         textureUnitSizeX = texture.width / sprite.pixelsPerUnit;
     }
-
     private void Update()
     {
-        if (Mathf.Abs(cameraTransform.position.x - transform.position.x) >= textureUnitSizeX)
+        if (Mathf.Abs(playerTransform.position.x - transform.position.x) >= textureUnitSizeX)
         {
-            float offsetPositionX = (cameraTransform.position.x - transform.position.x) % textureUnitSizeX;
-            transform.position = new Vector3(cameraTransform.position.x, transform.position.y);
+            transform.position = new Vector2(playerTransform.position.x, transform.position.y);
         }
     }
 }
