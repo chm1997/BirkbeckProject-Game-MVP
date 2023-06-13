@@ -11,7 +11,6 @@ public class GroundScript : MonoBehaviour
     private void Start()
     {
         playerTransform = GameObject.FindWithTag("Player").transform;
-        lastPlayerPosition = playerTransform.position;
 
         Sprite sprite = GetComponent<SpriteRenderer>().sprite;
         Texture2D texture = sprite.texture;
@@ -21,7 +20,10 @@ public class GroundScript : MonoBehaviour
     {
         if (Mathf.Abs(playerTransform.position.x - transform.position.x) >= textureUnitSizeX)
         {
-            transform.position = new Vector2(playerTransform.position.x, transform.position.y);
+            Vector2 thingy = new Vector2(playerTransform.position.x, transform.position.y);
+            transform.position = thingy;
+            Debug.Log("moved");
+            Debug.Log(thingy);
         }
     }
 }
