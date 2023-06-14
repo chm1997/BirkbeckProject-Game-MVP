@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
-    [SerializeField]
-    private PlayerHealth playerHealth;
-    [SerializeField]
-    private PlayerAmmo playerAmmo;
+    public PlayerHealth playerHealth;
+    public PlayerAmmo playerAmmo;
 
     private Rigidbody2D rb2D;
 

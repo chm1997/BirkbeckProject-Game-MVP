@@ -6,10 +6,10 @@ using UnityEngine.TestTools;
 
 public class ParallaxBackgroundTests
 {
-    /*
     GameObject playerPrefab = Resources.Load<GameObject>("Player");
     GameObject cameraPrefab = Resources.Load<GameObject>("Main Camera");
     GameObject cactiPrefab = Resources.Load<GameObject>("Cacti");
+    //var test = new GameObject().AddComponent<MyScript>();
 
     GameObject player;
     GameObject camera;
@@ -40,8 +40,7 @@ public class ParallaxBackgroundTests
         Assert.AreEqual(0.0f, cacti.transform.position.x);
         Assert.AreEqual(0.0f, cacti.transform.position.y);
     }
-    */
-    /*
+
     [UnityTest]
     public IEnumerator ParallaxBackgroundTest_HorizontalMovementLeft()
     {
@@ -81,5 +80,4 @@ public class ParallaxBackgroundTests
 
         Assert.AreEqual(0.0f, cacti.transform.position.y);
     }
-    */
 }

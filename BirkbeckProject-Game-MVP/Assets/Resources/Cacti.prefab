@@ -97,4 +97,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a11a0277b0fb394488cde853941ba2b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textureUnitSizeX: 0
+  parallaxEffectMultiplier: {x: 0.1, y: 0.1}

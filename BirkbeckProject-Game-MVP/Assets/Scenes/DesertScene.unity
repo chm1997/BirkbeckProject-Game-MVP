@@ -772,6 +772,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5296243648297324935, guid: 1560c5c16e6454246be81c9f2a86f04a, type: 3}
+      propertyPath: parallaxEffectMultiplier.y
+      value: 0.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1560c5c16e6454246be81c9f2a86f04a, type: 3}
 --- !u!1001 &6154759899000653870
@@ -781,6 +785,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6154759898225875204, guid: 39e64084a23eba748a2fc34c0f58ce75, type: 3}
+      propertyPath: parallaxEffectMultiplier.x
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 6154759898225875204, guid: 39e64084a23eba748a2fc34c0f58ce75, type: 3}
       propertyPath: parallaxEffectMultiplier.y
       value: 0.1
