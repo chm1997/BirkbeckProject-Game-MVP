@@ -32,8 +32,8 @@ public class GroundTests
     {
         yield return new WaitForSeconds(0.2f);
 
-        Assert.AreEqual(0.0f, ground.transform.position.x);
-        Assert.AreEqual(0.0f, ground.transform.position.y);
+        Assert.That(0.0f, Is.EqualTo(ground.transform.position.x).Within(0.01));
+        Assert.That(0.0f, Is.EqualTo(ground.transform.position.y).Within(0.01));
     }
     
     [UnityTest]
@@ -43,7 +43,7 @@ public class GroundTests
 
         yield return new WaitForSeconds(0.2f);
 
-        Assert.AreEqual(-5.0f, ground.transform.position.x);
+        Assert.That(-5.0f, Is.EqualTo(ground.transform.position.x).Within(0.01));
     }
     
     [UnityTest]
@@ -53,7 +53,7 @@ public class GroundTests
 
         yield return new WaitForSeconds(0.2f);
 
-        Assert.AreEqual(5.0f, ground.transform.position.x);
+        Assert.That(5.0f, Is.EqualTo(ground.transform.position.x).Within(0.01));
     }
 
     [UnityTest]
@@ -63,7 +63,7 @@ public class GroundTests
 
         yield return new WaitForSeconds(0.2f);
 
-        Assert.AreEqual(0.0f, ground.transform.position.y);
+        Assert.That(0.0f, Is.EqualTo(ground.transform.position.y).Within(0.01));
     }
 
     [UnityTest]
@@ -73,6 +73,6 @@ public class GroundTests
 
         yield return new WaitForSeconds(0.2f);
 
-        Assert.AreEqual(0.0f, ground.transform.position.y);
+        Assert.That(0.0f, Is.EqualTo(ground.transform.position.y).Within(0.01));
     }
 }

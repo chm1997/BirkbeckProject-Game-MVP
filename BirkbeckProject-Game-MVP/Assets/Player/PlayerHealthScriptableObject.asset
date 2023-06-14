@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4e196c557bc4864282a59cc37d83c6d, type: 3}
-  m_Name: PlayerHealthScritableObject
+  m_Name: PlayerHealthScriptableObject
   m_EditorClassIdentifier: 
   playerHealth: 5

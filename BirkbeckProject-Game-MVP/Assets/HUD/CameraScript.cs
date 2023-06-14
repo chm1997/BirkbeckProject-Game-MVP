@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
-    private void Update()
+    private Transform playerTransform;
+    private void Start()
     {
-        GameObject player = GameObject.FindWithTag("Player");
-        float playerXPos = player.transform.position.x;
-        float playerYPos = player.transform.position.y + 5;
+        playerTransform = GameObject.FindWithTag("Player").transform;
+    }
+
+    private void Update()
+    {    
+        float playerXPos = playerTransform.position.x;
+        float playerYPos = playerTransform.position.y + 5;
 
         transform.position = new Vector3(playerXPos, playerYPos, -10);
     }

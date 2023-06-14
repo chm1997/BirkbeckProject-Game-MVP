@@ -6,6 +6,9 @@ using UnityEngine.TestTools;
 
 public class PlayerTests
 {
+    GameObject playerPrefab = Resources.Load<GameObject>("Player");
+    GameObject player;
+
     // A Test behaves as an ordinary method
     [Test]
     public void PlayerTestsSimplePasses()

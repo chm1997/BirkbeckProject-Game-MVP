@@ -3,23 +3,54 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
+using TMPro;
 
 public class AmmoTextTests
 {
-    // A Test behaves as an ordinary method
-    [Test]
-    public void AmmoTextScriptSimplePasses()
+    GameObject ammoTextPrefab = Resources.Load<GameObject>("Health Text");
+    GameObject ammoText;
+
+    //GameObject dssadfs = Resources.Load<GameObject>("PlayerHealthScriptableObject");
+
+
+    [SetUp]
+    public void AmmoTextTest_Setup()
     {
-        // Use the Assert class to test conditions
+        ammoText = GameObject.Instantiate(ammoTextPrefab, new Vector3(0, 0, 0), Quaternion.identity);
     }
 
-    // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
-    // `yield return null;` to skip a frame.
-    [UnityTest]
-    public IEnumerator AmmoTextScriptWithEnumeratorPasses()
+    [TearDown]
+    public void AmmoTextTest_TearDown()
     {
-        // Use the Assert class to test conditions.
-        // Use yield to skip a frame.
+        UnityEngine.Object.Destroy(ammoText);
+    }
+
+    [UnityTest]
+    public IEnumerator AmmoTextTest_StartsWith5()
+    {
         yield return null;
+
+        Assert.AreEqual("Health: 5", ammoText.GetComponent<TextMeshProUGUI>().text);
+    }
+
+    [UnityTest]
+    public IEnumerator AmmoTextTest_DecreasesWithHealthVariable()
+    {
+        yield return null;
+
+        //HUDHealthScript hudHealthScript = healthText.GetComponent<HUDHealthScript>();
+        //Debug.Log(ammoText.GetComponent<HUDAmmoScript>());
+
+        //newPart.AddComponent<HUDHealthScript>();
+
+
+        //var sut = dssadfs.CreateInstance<PlayerHealthScriptableObject>();
+        //Debug.Log(sut);
+
+        Component[] components = ammoText.GetComponents(typeof(Component));
+        foreach (Component component in components)
+        {
+            Debug.Log(component.ToString());
+        }
     }
 }

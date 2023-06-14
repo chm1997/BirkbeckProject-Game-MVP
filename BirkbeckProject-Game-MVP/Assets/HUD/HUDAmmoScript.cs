@@ -6,17 +6,13 @@ using TMPro;
 public class HUDAmmoScript : MonoBehaviour
 {
     public PlayerAmmo playerAmmo;
-    private TMP_Text textObject;
+    public TMP_Text textObject;
     private string textString;
-
-    private void Start()
-    {
-        textObject = GetComponent<TextMeshProUGUI>();
-    }
+    private int currentAmmo;
 
     private void Update()
     {
-        int currentAmmo = playerAmmo.GetPlayerAmmo();
+        currentAmmo = playerAmmo.GetPlayerAmmo();
         textString = "Ammo: " + currentAmmo.ToString();
         textObject.text = textString;
     }

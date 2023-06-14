@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -6,17 +6,13 @@ using TMPro;
 public class HUDHealthScript : MonoBehaviour
 {
     public PlayerHealth playerHealth;
-    private TMP_Text textObject;
+    public TMP_Text textObject;
     private string textString;
-
-    private void Start()
-    {
-        textObject = GetComponent<TextMeshProUGUI>();
-    }
+    public int currentHealth;
 
     private void Update()
     {
-        int currentHealth = playerHealth.GetPlayerHealth();
+        currentHealth = playerHealth.GetPlayerHealth();
         textString = "Health: " + currentHealth.ToString();
         textObject.text = textString;
     }
