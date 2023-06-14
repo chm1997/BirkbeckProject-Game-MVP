@@ -7,16 +7,14 @@ using TMPro;
 
 public class AmmoTextTests
 {
-    GameObject ammoTextPrefab = Resources.Load<GameObject>("Health Text");
+    GameObject ammoTextPrefab = Resources.Load<GameObject>("Ammo Text");
     GameObject ammoText;
 
-    //GameObject dssadfs = Resources.Load<GameObject>("PlayerHealthScriptableObject");
-
-
-    [SetUp]
-    public void AmmoTextTest_Setup()
+    [UnitySetUp]
+    public IEnumerator AmmoTextTest_Setup()
     {
         ammoText = GameObject.Instantiate(ammoTextPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        yield return null;
     }
 
     [TearDown]
@@ -26,31 +24,32 @@ public class AmmoTextTests
     }
 
     [UnityTest]
-    public IEnumerator AmmoTextTest_StartsWith5()
+    public IEnumerator AmmoTextTests_SetTo4()
     {
+        ammoText.GetComponent<HUDAmmoScript>().playerAmmo.SetPlayerAmmo(4);
+
         yield return null;
 
-        Assert.AreEqual("Health: 5", ammoText.GetComponent<TextMeshProUGUI>().text);
+        Assert.AreEqual("Ammo: 4", ammoText.GetComponent<TextMeshProUGUI>().text);
     }
 
     [UnityTest]
-    public IEnumerator AmmoTextTest_DecreasesWithHealthVariable()
+    public IEnumerator AmmoTextTests_SetTo0()
     {
+        ammoText.GetComponent<HUDAmmoScript>().playerAmmo.SetPlayerAmmo(0);
+
         yield return null;
 
-        //HUDHealthScript hudHealthScript = healthText.GetComponent<HUDHealthScript>();
-        //Debug.Log(ammoText.GetComponent<HUDAmmoScript>());
+        Assert.AreEqual("Ammo: 0", ammoText.GetComponent<TextMeshProUGUI>().text);
+    }
 
-        //newPart.AddComponent<HUDHealthScript>();
+    [UnityTest]
+    public IEnumerator AmmoTextTests_SetTo10000()
+    {
+        ammoText.GetComponent<HUDAmmoScript>().playerAmmo.SetPlayerAmmo(10000);
 
+        yield return null;
 
-        //var sut = dssadfs.CreateInstance<PlayerHealthScriptableObject>();
-        //Debug.Log(sut);
-
-        Component[] components = ammoText.GetComponents(typeof(Component));
-        foreach (Component component in components)
-        {
-            Debug.Log(component.ToString());
-        }
+        Assert.AreEqual("Ammo: 10000", ammoText.GetComponent<TextMeshProUGUI>().text);
     }
 }
