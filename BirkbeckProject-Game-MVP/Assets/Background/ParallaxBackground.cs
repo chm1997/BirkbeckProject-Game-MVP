@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class ParallaxBackground : MonoBehaviour
 {
-    [SerializeField]
-    private Vector2 parallaxEffectMultiplier;
+    public Vector2 parallaxEffectMultiplier;
 
     private Transform cameraTransform;
     private Vector3 lastCameraPosition;
@@ -40,7 +39,7 @@ public class ParallaxBackground : MonoBehaviour
         if (Mathf.Abs(cameraTransform.position.x - transform.position.x) >= textureUnitSizeX)
         {
             float offsetPositionX = (cameraTransform.position.x - transform.position.x) % textureUnitSizeX;
-            transform.position = new Vector3(cameraTransform.position.x, transform.position.y);
+            transform.position = new Vector3(cameraTransform.position.x + offsetPositionX, transform.position.y);
         }
     }
 }

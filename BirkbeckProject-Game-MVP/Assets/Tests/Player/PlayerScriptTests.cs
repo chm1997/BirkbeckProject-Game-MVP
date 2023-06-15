@@ -43,7 +43,7 @@ public class PlayerScriptTests
         collisionTestObject.isTrigger = true;
         collisionTestObject.transform.position = new Vector3(10, 10, 0);
 
-        yield return null;
+        yield return new WaitForSeconds(0.2f);
 
         Assert.AreEqual(4, player.GetComponent<PlayerScript>().playerHealth.GetPlayerHealth());
     }
