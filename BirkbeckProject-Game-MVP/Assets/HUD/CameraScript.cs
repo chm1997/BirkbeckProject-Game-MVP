@@ -1,19 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
+    /// <summary>
+    /// This class moves the object around the player object with an offset y position
+    /// </summary>
+
+    private Transform playerTransform;
     private void Start()
     {
-        transform.Translate(3, 1, -10);
+        playerTransform = GameObject.FindWithTag("Player").transform;
     }
 
     private void Update()
-    {
-        var player = GameObject.Find("Player");
-        float playerXPos = player.transform.position.x;
-        float playerYPos = player.transform.position.y + 5;
+    {    
+        float playerXPos = playerTransform.position.x;
+        float playerYPos = playerTransform.position.y + 5;
 
         transform.position = new Vector3(playerXPos, playerYPos, -10);
     }

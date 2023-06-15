@@ -1,28 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GroundScript : MonoBehaviour
 {
-    private Transform cameraTransform;
-    private Vector3 lastCameraPosition;
+    /// <summary>
+    /// This class moves a collider object around the x position of the player object, while retaining its y position
+    /// </summary>
+
+    private Transform playerTransform;
+    private Vector3 lastPlayerPosition;
     private float textureUnitSizeX;
 
     private void Start()
     {
-        cameraTransform = Camera.main.transform;
-        lastCameraPosition = cameraTransform.position;
+        playerTransform = GameObject.FindWithTag("Player").transform;
+
         Sprite sprite = GetComponent<SpriteRenderer>().sprite;
         Texture2D texture = sprite.texture;
         textureUnitSizeX = texture.width / sprite.pixelsPerUnit;
     }
-
     private void Update()
     {
-        if (Mathf.Abs(cameraTransform.position.x - transform.position.x) >= textureUnitSizeX)
+        if (Mathf.Abs(playerTransform.position.x - transform.position.x) >= textureUnitSizeX)
         {
-            float offsetPositionX = (cameraTransform.position.x - transform.position.x) % textureUnitSizeX;
-            transform.position = new Vector3(cameraTransform.position.x, transform.position.y);
+            transform.position = new Vector2(playerTransform.position.x, transform.position.y);
         }
     }
 }
