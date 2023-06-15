@@ -1,9 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
+    /// <summary>
+    /// This class represents the player objects general states and behaviours
+    /// Required Fields:
+    /// PlayerHealth playerHealth: a Scriptable Object containing an int variable representing player health
+    /// PlayerAmmo playerAmmo: a Scriptable Object containing an int variable representing player ammo
+    /// </summary>
+
     public PlayerHealth playerHealth;
     public PlayerAmmo playerAmmo;
 

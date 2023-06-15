@@ -1,9 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
+    /// <summary>
+    /// This class moves the object around the player object with an offset y position
+    /// </summary>
+
     private Transform playerTransform;
     private void Start()
     {

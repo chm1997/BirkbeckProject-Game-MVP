@@ -1,9 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GroundScript : MonoBehaviour
 {
+    /// <summary>
+    /// This class moves a collider object around the x position of the player object, while retaining its y position
+    /// </summary>
+
     private Transform playerTransform;
     private Vector3 lastPlayerPosition;
     private float textureUnitSizeX;
