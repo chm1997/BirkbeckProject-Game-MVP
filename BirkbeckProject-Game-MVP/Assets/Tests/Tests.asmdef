@@ -9,7 +9,8 @@
         "Unity.TextMeshPro",
         "HUDScripts",
         "PlayerScripts",
-        "ParallaxBackground"
+        "ParallaxBackground",
+        "Unity.InputSystem.IntegrationTests"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -13,11 +13,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private PlayerAmmo playerAmmo;
 
-    private bool isGrounded;
-    private Vector2 moveInput;
-    private Vector2 jumpInput;
+    public bool isGrounded;
+    public Vector2 moveInput;
     private Rigidbody2D rb2D;
-    private PlayerInputs playerInputs;
+    public PlayerInputs playerInputs;
 
     private void Awake()
     {
