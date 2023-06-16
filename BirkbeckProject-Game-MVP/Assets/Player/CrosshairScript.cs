@@ -2,9 +2,14 @@ using UnityEngine;
 
 public class CrosshairScript : MonoBehaviour
 {
-    public PlayerInputs playerInputs;
-    public Vector2 worldPosition;
-    public Vector2 mousePosition;
+    /// <summary>
+    /// This class moves the crosshair object to the position of the mouse pointer relative to the camera
+    /// 
+    /// </summary>
+    
+    private PlayerInputs playerInputs;
+    private Vector2 worldPosition;
+    private Vector2 mousePosition;
 
     void Start()
     {
