@@ -40,7 +40,6 @@ public class PlayerMovementTests : InputTestFixture
     public IEnumerator PlayerMovementTest_HorizontalLeftArrow()
     {
         Press(keyboard.leftArrowKey);
-
         yield return new WaitForSeconds(0.2f);
         Release(keyboard.leftArrowKey);
 

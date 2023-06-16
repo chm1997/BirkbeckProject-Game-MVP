@@ -60,7 +60,6 @@ public class PlayerMovement : MonoBehaviour
         float verticalMomentum = rb2D.velocity.y;
         rb2D.velocity = new Vector2(moveInput.x * _speed, verticalMomentum);
     }
-
     private void OnCollisionEnter2D()
     {
         isGrounded = true;
