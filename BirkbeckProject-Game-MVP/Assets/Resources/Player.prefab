@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8991533934368094131}
   - component: {fileID: 8991533934368094134}
   - component: {fileID: 8991533934368094132}
+  - component: {fileID: 466964283608211733}
   - component: {fileID: 8991533934368094133}
   - component: {fileID: 4056218658850535318}
   m_Layer: 0
@@ -142,6 +143,23 @@ MonoBehaviour:
   playerAmmo: {fileID: 11400000, guid: 80e2123d0fe3e9942aa745d34c61e1a1, type: 2}
   isGrounded: 0
   moveInput: {x: 0, y: 0}
+--- !u!114 &466964283608211733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8991533934368094140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 276565b9f265b5c46b3e475071959185, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGrounded: 0
+  isWalking: 0
+  isJumping: 0
+  moveInput: {x: 0, y: 0}
+  playerAmmo: {fileID: 11400000, guid: 80e2123d0fe3e9942aa745d34c61e1a1, type: 2}
 --- !u!60 &8991533934368094133
 PolygonCollider2D:
   m_ObjectHideFlags: 0

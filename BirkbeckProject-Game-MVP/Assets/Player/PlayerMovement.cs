@@ -26,8 +26,6 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb2D;
     public PlayerInputs playerInputs;
 
-    bool walkBool;
-
     private void Awake()
     {
         playerInputs = new PlayerInputs();
@@ -66,7 +64,6 @@ public class PlayerMovement : MonoBehaviour
     private void OnCollisionEnter2D()
     {
         isGrounded = true;
-        GetComponent<Animator>().runtimeAnimatorController = Resources.Load<UnityEditor.Animations.AnimatorController>("penguin_idle_01");
     }
 
     private void OnEnable()
