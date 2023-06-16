@@ -1,3 +1,4 @@
+using UnityEditorInternal;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -24,6 +25,8 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 moveInput;
     private Rigidbody2D rb2D;
     public PlayerInputs playerInputs;
+
+    bool walkBool;
 
     private void Awake()
     {
@@ -60,10 +63,10 @@ public class PlayerMovement : MonoBehaviour
         float verticalMomentum = rb2D.velocity.y;
         rb2D.velocity = new Vector2(moveInput.x * _speed, verticalMomentum);
     }
-
     private void OnCollisionEnter2D()
     {
         isGrounded = true;
+        GetComponent<Animator>().runtimeAnimatorController = Resources.Load<UnityEditor.Animations.AnimatorController>("penguin_idle_01");
     }
 
     private void OnEnable()
