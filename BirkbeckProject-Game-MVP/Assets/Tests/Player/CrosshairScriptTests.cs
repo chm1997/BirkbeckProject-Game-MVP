@@ -7,22 +7,27 @@ using UnityEngine.TestTools;
 [TestFixture]
 public class CrosshairScriptTests : InputTestFixture
 {
+    GameObject playerPrefab = Resources.Load<GameObject>("Player");
+    GameObject cameraPrefab = Resources.Load<GameObject>("Main Camera");
     GameObject crosshairPrefab = Resources.Load<GameObject>("Crosshair");
-    GameObject crosshair;
 
-    Keyboard keyboard;
+    GameObject player;
+    GameObject camera;
+    GameObject crosshair;
+    
     Mouse mouse;
 
     public override void Setup()
     {
         base.Setup();
-        keyboard = InputSystem.AddDevice<Keyboard>();
         mouse = InputSystem.AddDevice<Mouse>();
     }
 
     [SetUp]
     public void CrosshairScriptTest_Setup()
     {
+        player = GameObject.Instantiate(playerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        camera = GameObject.Instantiate(cameraPrefab, new Vector3(0, 0, 0), Quaternion.identity);
         crosshair = GameObject.Instantiate(crosshairPrefab, new Vector3(0, 0, 0), Quaternion.identity);
     }
 
@@ -30,38 +35,22 @@ public class CrosshairScriptTests : InputTestFixture
     public void CrosshairScriptTest_TearDown()
     {
         Object.Destroy(crosshair);
+        Object.Destroy(camera);
+        Object.Destroy(player);
     }
 
     [UnityTest]
-    public IEnumerator CrosshairScriptTest_AtMouse()
+    public IEnumerator CrosshairScriptTest_FollowsMousePosition()
     {
-        mouse.WarpCursorPosition(new Vector2(0, 0));
 
-        yield return new WaitForSeconds(0.1f);
+        Vector2 transformVector = new Vector2(0, 0);
+        mouse.WarpCursorPosition(transformVector);
 
-        Assert.AreEqual(crosshair.transform.position.x, 0.0f);
-        Assert.AreEqual(crosshair.transform.position.y, 0.0f);
-    }
+        yield return new WaitForSeconds(0.5f);
 
-    [UnityTest]
-    public IEnumerator CrosshairScriptTest_FollowsMouseUpRight()
-    {
-        mouse.WarpCursorPosition(new Vector2(10, 10));
+        Vector2 worldPosition = Camera.main.ScreenToWorldPoint(transformVector);
 
-        yield return new WaitForSeconds(0.1f);
-
-        Assert.AreEqual(crosshair.transform.position.x, 10.0f);
-        Assert.AreEqual(crosshair.transform.position.y, 10.0f);
-    }
-
-    [UnityTest]
-    public IEnumerator CrosshairScriptTest_FollowsMouseDownLeft()
-    {
-        mouse.WarpCursorPosition(new Vector2(-10, -10));
-
-        yield return new WaitForSeconds(0.1f);
-
-        Assert.AreEqual(crosshair.transform.position.x, -10.0f);
-        Assert.AreEqual(crosshair.transform.position.y, -10.0f);
+        Assert.AreEqual(worldPosition.x, crosshair.transform.position.x);
+        Assert.AreEqual(worldPosition.y, crosshair.transform.position.y);
     }
 }

@@ -1,20 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CrosshairScript : MonoBehaviour
 {
     public PlayerInputs playerInputs;
+    public Vector2 worldPosition;
+    public Vector2 mousePosition;
 
-    // Start is called before the first frame update
     void Start()
     {
-        playerInputs = GameObject.FindWithTag("Player").GetComponentInParent<PlayerMovement>().playerInputs;
+        playerInputs = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>().playerInputs;
+        Cursor.visible = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        mousePosition = playerInputs.PlayerInputMap.MousePosition.ReadValue<Vector2>();
+        worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+        Vector3 transformPosition = new Vector3(worldPosition.x, worldPosition.y, -8);
+        transform.position = transformPosition;
     }
 }
