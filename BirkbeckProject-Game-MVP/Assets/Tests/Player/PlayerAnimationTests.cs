@@ -30,8 +30,6 @@ public class PlayerAnimationTests : InputTestFixture
         playerAnimation = player.GetComponent<PlayerAnimation>();
         playerSprite = player.GetComponent<SpriteRenderer>();
         playerAnimator = player.GetComponent<Animator>();
-
-
     }
 
     [TearDown]

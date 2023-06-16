@@ -21,8 +21,6 @@ public class PlayerAnimation : MonoBehaviour
 
     private Rigidbody2D rb2D;
 
-
-    // Start is called before the first frame update
     void Start()
     {
         playerInputs = GetComponent<PlayerMovement>().playerInputs;
@@ -36,7 +34,6 @@ public class PlayerAnimation : MonoBehaviour
 
     }
 
-    // Update is called once per frame
     void Update()
     {
         SidewaysAnimation();
