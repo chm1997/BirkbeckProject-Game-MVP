@@ -8,9 +8,9 @@ public class PlayerMovement : MonoBehaviour
     /// float _speed: a variavle representing the speed of horizontal movement
     /// float _jumpForce: a variable representing the height of jumps
     /// PlayerHealth playerHealth: a Scriptable Object containing an int variable representing player health
-    /// PlayerAmmo playerAmmo: a Scriptable Object containing an int variable representing player ammo
+    /// PlayerEnergy playerEnergy: a Scriptable Object containing an int variable representing player energy
     /// </summary>
-    
+
     [SerializeField]
     private float _speed; //Recommended: 10
     [SerializeField]
@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private PlayerHealth playerHealth;
     [SerializeField]
-    private PlayerAmmo playerAmmo;
+    private PlayerEnergy playerEnergy;
 
     public bool isGrounded;
     public Vector2 moveInput;
@@ -45,9 +45,8 @@ public class PlayerMovement : MonoBehaviour
     private void Jump()
     {
         // This method calculates whether a jump has been triggered and if the player character should be able to jump in this sitation. It applies this force if these are true
-        if (playerInputs.PlayerInputMap.Jump.triggered & playerAmmo.GetPlayerAmmo() > 0 & isGrounded)
+        if (playerInputs.PlayerInputMap.Jump.triggered & isGrounded)
         {
-            playerAmmo.UpdatePlayerAmmo(-1);
             rb2D.AddForce(transform.up * _jumpForce);
             isGrounded = false;
         }

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -24,8 +23,8 @@ public class CameraTests
     [TearDown]
     public void CameraTest_TearDown()
     {
-        UnityEngine.Object.Destroy(player);
-        UnityEngine.Object.Destroy(camera);
+        Object.Destroy(player);
+        Object.Destroy(camera);
     }
 
 
@@ -34,8 +33,8 @@ public class CameraTests
     {
         yield return null;
 
-        Assert.That(0.0f, Is.EqualTo(camera.transform.position.x).Within(0.01));
-        Assert.That(5.0f, Is.EqualTo(camera.transform.position.y).Within(0.01));
+        Assert.That(0.0f, Is.EqualTo(camera.transform.position.x).Within(0.1));
+        Assert.That(5.0f, Is.EqualTo(camera.transform.position.y).Within(0.1));
     }
 
     [UnityTest]

@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 63eb0879fdb76974eac27f55e98f5a3e, type: 3}
-  m_Name: PlayerAmmoScriptableObject
+  m_Name: PlayerEnergyScriptableObject
   m_EditorClassIdentifier: 
-  playerAmmo: 0
+  playerEnergy: 100

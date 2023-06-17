@@ -7,7 +7,6 @@ public class GroundScript : MonoBehaviour
     /// </summary>
 
     private Transform playerTransform;
-    private Vector3 lastPlayerPosition;
     private float textureUnitSizeX;
 
     private void Start()

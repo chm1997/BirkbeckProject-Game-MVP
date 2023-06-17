@@ -18,13 +18,13 @@ public class PlayerScriptTests
     [TearDown]
     public void PlayerScriptTest_TearDown()
     {
-        UnityEngine.Object.Destroy(player);
+        Object.Destroy(player);
     }
 
     [UnityTest]
-    public IEnumerator PlayerScriptTest_Ammo3AtStart()
+    public IEnumerator PlayerScriptTest_Energy100AtStart()
     {
-        Assert.AreEqual(3, player.GetComponent<PlayerScript>().playerAmmo.GetPlayerAmmo());
+        Assert.AreEqual(100, player.GetComponent<PlayerScript>().playerEnergy.GetPlayerEnergy());
         yield return null;
     }
 

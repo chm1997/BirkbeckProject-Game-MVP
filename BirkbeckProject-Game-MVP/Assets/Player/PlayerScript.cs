@@ -6,16 +6,16 @@ public class PlayerScript : MonoBehaviour
     /// This class represents the player objects general states and behaviours
     /// Required Fields:
     /// PlayerHealth playerHealth: a Scriptable Object containing an int variable representing player health
-    /// PlayerAmmo playerAmmo: a Scriptable Object containing an int variable representing player ammo
+    /// PlayerEnergy playerEnergy: a Scriptable Object containing an int variable representing player energy
     /// </summary>
 
     public PlayerHealth playerHealth;
-    public PlayerAmmo playerAmmo;
+    public PlayerEnergy playerEnergy;
 
     private void Awake()
     {
         playerHealth.SetPlayerHealth(5);
-        playerAmmo.SetPlayerAmmo(3);
+        playerEnergy.SetPlayerEnergy(100);
     }
 
     private void OnTriggerEnter2D(Collider2D Other)

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -20,7 +19,7 @@ public class HealthTextTests
     [TearDown]
     public void HealthTextTest_TearDown()
     {
-        UnityEngine.Object.Destroy(healthText);
+        Object.Destroy(healthText);
     }
 
     [UnityTest]
