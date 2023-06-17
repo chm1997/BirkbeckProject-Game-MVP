@@ -15,11 +15,13 @@ public class PlayerAnimationTests : InputTestFixture
     Animator playerAnimator;
 
     Keyboard keyboard;
+    Mouse mouse;
 
     public override void Setup()
     {
         base.Setup();
         keyboard = InputSystem.AddDevice<Keyboard>();
+        mouse = InputSystem.AddDevice<Mouse>();
     }
 
     [SetUp]
@@ -202,5 +204,31 @@ public class PlayerAnimationTests : InputTestFixture
         Assert.IsTrue(playerSprite.flipX);
 
         Release(keyboard.leftArrowKey);
+    }
+
+    [UnityTest]
+    public IEnumerator PlayerAnimationTest_Attack()
+    {
+        playerAnimation.isGrounded = true;
+        PressAndRelease(mouse.leftButton);
+
+        yield return new WaitForSeconds(0.1f);
+
+        Assert.IsTrue(playerAnimator.runtimeAnimatorController.ToString() == "penguin_attack_01 (UnityEngine.AnimatorController)");
+
+        yield return new WaitForSeconds(1);
+
+        Assert.IsTrue(playerAnimator.runtimeAnimatorController.ToString() == "penguin_idle_01 (UnityEngine.AnimatorController)");
+    }
+
+    [UnityTest]
+    public IEnumerator PlayerAnimationTest_NoAttackWhenJumping()
+    {
+        playerAnimation.isGrounded = false;
+        PressAndRelease(mouse.leftButton);
+
+        yield return new WaitForSeconds(0.1f);
+
+        Assert.IsTrue(playerAnimator.runtimeAnimatorController.ToString() == "penguin_jump_01 (UnityEngine.AnimatorController)");
     }
 }
