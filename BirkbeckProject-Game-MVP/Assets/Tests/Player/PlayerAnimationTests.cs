@@ -249,6 +249,31 @@ public class PlayerAnimationTests : InputTestFixture
     }
 
     [UnityTest]
+    public IEnumerator PlayerAnimationTest_NoAttackWhenNoEnergy()
+    {
+        playerAnimation.playerEnergy.SetPlayerEnergy(0);
+        playerAnimation.isGrounded = true;
+        PressAndRelease(mouse.leftButton);
+
+        yield return new WaitForSeconds(0.1f);
+        Assert.IsFalse(playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("penguin_attack"));
+    }
+
+    [UnityTest]
+    public IEnumerator PlayerAnimationTest_AttackUsesEnergy()
+    {
+        playerAnimation.playerEnergy.SetPlayerEnergy(100);
+        playerAnimation.isGrounded = true;
+        PressAndRelease(mouse.leftButton);
+
+        yield return new WaitForSeconds(0.1f);
+        Assert.IsTrue(playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("penguin_attack"));
+        Debug.Log(playerAnimation.playerEnergy.GetPlayerEnergy());
+        Assert.Less(playerAnimation.playerEnergy.GetPlayerEnergy(), 100);
+    }
+
+
+    [UnityTest]
     public IEnumerator PlayerAnimationTest_SpeedUpWalkOnShiftKey()
     {
         playerAnimation.isGrounded = true;
@@ -261,6 +286,27 @@ public class PlayerAnimationTests : InputTestFixture
 
         Assert.IsTrue(playerAnimator.runtimeAnimatorController.ToString() == "penguin_walk_01 (UnityEngine.AnimatorController)");
         Assert.IsTrue(playerAnimator.speed > 1);
+
+        Release(keyboard.leftShiftKey);
+        Release(keyboard.rightArrowKey);
+    }
+
+    [UnityTest]
+    public IEnumerator PlayerAnimationTest_NoSpeedWalkWhenNoEnergy()
+    {
+        playerAnimation.playerEnergy.SetPlayerEnergy(0);
+        playerAnimation.isGrounded = true;
+
+        Press(keyboard.rightArrowKey);
+
+        yield return new WaitForSeconds(0.1f);
+
+        Press(keyboard.leftShiftKey);
+
+        yield return new WaitForSeconds(0.1f);
+
+        Assert.IsTrue(playerAnimator.runtimeAnimatorController.ToString() == "penguin_walk_01 (UnityEngine.AnimatorController)");
+        Assert.IsTrue(playerAnimator.speed == 1);
 
         Release(keyboard.leftShiftKey);
         Release(keyboard.rightArrowKey);

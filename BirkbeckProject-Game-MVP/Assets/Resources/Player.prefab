@@ -157,7 +157,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isGrounded: 0
   isWalking: 0
+  speedWalking: 0
   moveInput: {x: 0, y: 0}
+  playerMovement: {fileID: 0}
+  playerEnergy: {fileID: 11400000, guid: 80e2123d0fe3e9942aa745d34c61e1a1, type: 2}
 --- !u!60 &8991533934368094133
 PolygonCollider2D:
   m_ObjectHideFlags: 0

@@ -12,6 +12,9 @@ public class PlayerAnimation : MonoBehaviour
     public bool speedWalking;
     public Vector2 moveInput;
     public PlayerInputs playerInputs;
+    public PlayerMovement playerMovement;
+
+    public PlayerEnergy playerEnergy;
 
     Animator animator;
     SpriteRenderer spriteRenderer;
@@ -19,6 +22,7 @@ public class PlayerAnimation : MonoBehaviour
     void Start()
     {
         playerInputs = GetComponent<PlayerMovement>().playerInputs;
+        playerMovement = GetComponent<PlayerMovement>();
         isGrounded = false;
         isWalking = false;
         speedWalking = false;
@@ -65,7 +69,7 @@ public class PlayerAnimation : MonoBehaviour
             if (isWalking)
             {
                 animator.runtimeAnimatorController = Resources.Load<UnityEditor.Animations.AnimatorController>("penguin_walk_01");
-                if (speedWalking) animator.speed = 2;
+                if (speedWalking & playerEnergy.GetPlayerEnergy() > 0) animator.speed = 2;
                 else animator.speed = 1;
             }
             else animator.runtimeAnimatorController = Resources.Load<UnityEditor.Animations.AnimatorController>("penguin_idle_01");
@@ -87,9 +91,10 @@ public class PlayerAnimation : MonoBehaviour
     private void AttackAnimation()
     {
         // This method activates the attack animation when conditions are correct
-        if (playerInputs.PlayerInputMap.MouseButtonLeft.triggered & isGrounded & !isWalking)
+        if (playerInputs.PlayerInputMap.MouseButtonLeft.triggered & isGrounded & !isWalking & playerEnergy.GetPlayerEnergy() >= 20)
         {
             animator.Play("penguin_attack", 0);
+            playerEnergy.UpdatePlayerEnergy(-20);
         }
     }
 

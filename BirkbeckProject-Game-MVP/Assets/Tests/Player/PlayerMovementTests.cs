@@ -234,41 +234,4 @@ public class PlayerMovementTests : InputTestFixture
         Release(keyboard.rightArrowKey);
         Release(keyboard.leftShiftKey);
     }
-
-    [UnityTest]
-    public IEnumerator PlayerMovementTest_Attack()
-    {
-        PressAndRelease(mouse.leftButton);
-
-        yield return null;
-
-        Assert.IsTrue(playerMovement.isAttacking);
-
-        yield return new WaitForSeconds(0.3f);
-
-        Assert.IsFalse(playerMovement.isAttacking);
-    }
-
-    [UnityTest]
-    public IEnumerator PlayerMovementTest_AttackUsesEnergy()
-    {
-        playerMovement.playerEnergy.SetPlayerEnergy(100);
-        PressAndRelease(mouse.leftButton);
-
-        yield return null;
-
-        Assert.IsTrue(playerMovement.isAttacking);
-        Assert.Less(playerMovement.playerEnergy.GetPlayerEnergy(), 100);
-    }
-
-    [UnityTest]
-    public IEnumerator PlayerMovementTest_NoAttackWhenNoEnergy()
-    {
-        playerMovement.playerEnergy.SetPlayerEnergy(0);
-        PressAndRelease(mouse.leftButton);
-
-        yield return null;
-
-        Assert.IsFalse(playerMovement.isAttacking);
-    }
 }

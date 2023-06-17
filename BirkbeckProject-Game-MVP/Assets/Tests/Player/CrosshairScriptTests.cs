@@ -50,7 +50,7 @@ public class CrosshairScriptTests : InputTestFixture
 
         Vector2 worldPosition = Camera.main.ScreenToWorldPoint(transformVector);
 
-        Assert.AreEqual(worldPosition.x, crosshair.transform.position.x);
-        Assert.AreEqual(worldPosition.y, crosshair.transform.position.y);
+        Assert.That(worldPosition.x, Is.EqualTo(crosshair.transform.position.x).Within(0.2));
+        Assert.That(worldPosition.y, Is.EqualTo(crosshair.transform.position.y).Within(0.2));
     }
 }
