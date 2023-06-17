@@ -220,7 +220,7 @@ public class PlayerAnimationTests : InputTestFixture
     }
 
     [UnityTest]
-    public IEnumerator PlayerAnimationTest_AttackFromWalk()
+    public IEnumerator PlayerAnimationTest_NoAttackWhenWalking()
     {
         playerAnimation.isGrounded = true;
         Press(keyboard.rightArrowKey);
@@ -232,7 +232,7 @@ public class PlayerAnimationTests : InputTestFixture
         yield return new WaitForSeconds(0.1f);
 
         Assert.IsTrue(playerAnimator.runtimeAnimatorController.ToString() == "penguin_walk_01 (UnityEngine.AnimatorController)");
-        Assert.IsTrue(playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("penguin_attack"));
+        Assert.IsFalse(playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("penguin_attack"));
 
         Release(keyboard.rightArrowKey);
     }
@@ -262,31 +262,6 @@ public class PlayerAnimationTests : InputTestFixture
         Debug.Log(playerAnimator.runtimeAnimatorController.ToString());
         Assert.IsTrue(playerAnimator.runtimeAnimatorController.ToString() == "penguin_walk_01 (UnityEngine.AnimatorController)");
         Assert.IsTrue(playerAnimator.speed > 1);
-
-        Release(keyboard.leftShiftKey);
-        Release(keyboard.rightArrowKey);
-    }
-
-    [UnityTest]
-    public IEnumerator PlayerAnimationTest_WalkAttackNotSpedUp()
-    {
-        playerAnimation.isGrounded = true;
-
-        Press(keyboard.rightArrowKey);
-
-        yield return new WaitForSeconds(0.1f);
-
-        Press(keyboard.leftShiftKey);
-
-        yield return new WaitForSeconds(0.1f);
-
-        PressAndRelease(mouse.leftButton);
-
-        yield return new WaitForSeconds(0.1f);
-
-        Assert.IsTrue(playerAnimator.runtimeAnimatorController.ToString() == "penguin_walk_01 (UnityEngine.AnimatorController)");
-        Assert.IsTrue(playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("penguin_attack"));
-        Assert.IsTrue(playerAnimator.speed == 1);
 
         Release(keyboard.leftShiftKey);
         Release(keyboard.rightArrowKey);

@@ -53,23 +53,25 @@ public class PlayerAnimation : MonoBehaviour
     {
         // This method manages which ground level animation is running based on the player movement variables
         moveInput = playerInputs.PlayerInputMap.Movement.ReadValue<Vector2>();
+
         if (playerInputs.PlayerInputMap.LeftShift.IsPressed()) speedWalking = true;
         else speedWalking = false;
-
 
         if (moveInput.x == 0) isWalking = false;
         else isWalking = true;
 
-        if (isGrounded == true & isWalking == true)
+        if (isGrounded)
         {
-            animator.runtimeAnimatorController = Resources.Load<UnityEditor.Animations.AnimatorController>("penguin_walk_01");
-            if (speedWalking & !animator.GetCurrentAnimatorStateInfo(0).IsName("penguin_attack")) animator.speed = 2;
-            else animator.speed = 1;
+            if (isWalking)
+            {
+                animator.runtimeAnimatorController = Resources.Load<UnityEditor.Animations.AnimatorController>("penguin_walk_01");
+                if (speedWalking) animator.speed = 2;
+                else animator.speed = 1;
+            }
+            else animator.runtimeAnimatorController = Resources.Load<UnityEditor.Animations.AnimatorController>("penguin_idle_01");
         }
-        if (isGrounded == true & isWalking == false)
-        {
-            animator.runtimeAnimatorController = Resources.Load<UnityEditor.Animations.AnimatorController>("penguin_idle_01");
-        }
+
+
     }
     private void JumpAnimation()
     {
@@ -84,7 +86,7 @@ public class PlayerAnimation : MonoBehaviour
     private void AttackAnimation()
     {
         // This method activates the attack animation when conditions are correct
-        if (playerInputs.PlayerInputMap.MouseButtonLeft.triggered & isGrounded)
+        if (playerInputs.PlayerInputMap.MouseButtonLeft.triggered & isGrounded & !isWalking)
         {
             animator.Play("penguin_attack", 0);
         }
