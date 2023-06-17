@@ -155,4 +155,40 @@ public class PlayerMovementTests : InputTestFixture
         Assert.AreEqual(0, player.transform.position.x);
         Assert.AreEqual(0, player.transform.position.y);
     }
+
+    [UnityTest]
+    public IEnumerator PlayerMovementTest_WalkSpedUp()
+    {
+        Press(keyboard.rightArrowKey);
+        Press(keyboard.rightShiftKey);
+
+        yield return new WaitForSeconds(0.2f);
+
+        Assert.GreaterOrEqual(player.transform.position.x, 1);
+        Assert.AreEqual(0, player.transform.position.y);
+        Assert.GreaterOrEqual(playerMovement._speed, 750);
+
+        Release(keyboard.rightArrowKey);
+        Release(keyboard.rightShiftKey);
+    }
+
+    [UnityTest]
+    public IEnumerator PlayerMovementTest_SlowDownOnShiftRelease()
+    {
+        Press(keyboard.rightArrowKey);
+        Press(keyboard.rightShiftKey);
+
+        yield return new WaitForSeconds(0.2f);
+
+        Assert.GreaterOrEqual(player.transform.position.x, 1);
+        Assert.AreEqual(0, player.transform.position.y);
+        Assert.GreaterOrEqual(playerMovement._speed, 750);
+
+        Release(keyboard.rightArrowKey);
+        Release(keyboard.rightShiftKey);
+
+        yield return new WaitForSeconds(0.2f);
+
+        Assert.AreEqual(playerMovement._speed, 750);
+    }
 }

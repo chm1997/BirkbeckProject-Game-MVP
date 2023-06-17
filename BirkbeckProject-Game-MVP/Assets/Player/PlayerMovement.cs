@@ -11,8 +11,7 @@ public class PlayerMovement : MonoBehaviour
     /// PlayerEnergy playerEnergy: a Scriptable Object containing an int variable representing player energy
     /// </summary>
 
-    [SerializeField]
-    private float _speed; //Recommended: 10
+    public float _speed; //Recommended: 10
     [SerializeField]
     private float _jumpForce; //Recommended: 750
     [SerializeField]
