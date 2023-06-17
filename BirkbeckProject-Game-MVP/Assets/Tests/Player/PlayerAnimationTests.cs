@@ -248,4 +248,17 @@ public class PlayerAnimationTests : InputTestFixture
 
         Assert.IsFalse(playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("penguin_attack"));
     }
+
+    [UnityTest]
+    public IEnumerator PlayerAnimationTest_SpeedUpWalkOnShiftKey()
+    {
+        playerAnimation.isGrounded = true;
+        Press(keyboard.leftShiftKey);
+        Press(keyboard.rightArrowKey);
+
+        yield return new WaitForSeconds(0.1f);
+
+        Assert.IsTrue(playerAnimator.runtimeAnimatorController.ToString() == "penguin_walk_01 (UnityEngine.AnimatorController)");
+        Assert.IsTrue(playerAnimator.GetCurrentAnimatorStateInfo(0).speed > 1);
+    }
 }
