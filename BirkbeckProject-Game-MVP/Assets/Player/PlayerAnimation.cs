@@ -9,6 +9,7 @@ public class PlayerAnimation : MonoBehaviour
 
     public bool isGrounded;
     public bool isWalking;
+    public bool isAttacking;
     public Vector2 moveInput;
     public PlayerInputs playerInputs;
 
@@ -27,6 +28,7 @@ public class PlayerAnimation : MonoBehaviour
 
     void Update()
     {
+        AttackAnimation();
         JumpAnimation();
         SidewaysAnimation();
         FlipSprite();
@@ -72,6 +74,16 @@ public class PlayerAnimation : MonoBehaviour
             animator.runtimeAnimatorController = Resources.Load<UnityEditor.Animations.AnimatorController>("penguin_jump_01");
         }
     }
+
+    private void AttackAnimation()
+    {
+        if (playerInputs.PlayerInputMap.MouseButtonLeft.triggered & isGrounded)
+        {
+            animator.Play("penguin_attack", 0);
+            Debug.Log("attacked");
+        }
+    }
+
     private void OnCollisionEnter2D()
     {
         isGrounded = true;

@@ -2,6 +2,7 @@ using System.Collections;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Interactions;
 using UnityEngine.TestTools;
 
 [TestFixture]
@@ -207,18 +208,34 @@ public class PlayerAnimationTests : InputTestFixture
     }
 
     [UnityTest]
-    public IEnumerator PlayerAnimationTest_Attack()
+    public IEnumerator PlayerAnimationTest_AttackFromIdle()
     {
         playerAnimation.isGrounded = true;
         PressAndRelease(mouse.leftButton);
 
         yield return new WaitForSeconds(0.1f);
 
-        Assert.IsTrue(playerAnimator.runtimeAnimatorController.ToString() == "penguin_attack_01 (UnityEngine.AnimatorController)");
-
-        yield return new WaitForSeconds(1);
-
         Assert.IsTrue(playerAnimator.runtimeAnimatorController.ToString() == "penguin_idle_01 (UnityEngine.AnimatorController)");
+        Assert.IsTrue(playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("penguin_attack"));
+    }
+
+    [UnityTest]
+    public IEnumerator PlayerAnimationTest_AttackFromWalk()
+    {
+        playerAnimation.isGrounded = true;
+        Press(keyboard.rightArrowKey);
+
+        yield return new WaitForSeconds(0.1f);
+
+        PressAndRelease(mouse.leftButton);
+
+        yield return new WaitForSeconds(0.1f);
+
+        Assert.IsTrue(playerAnimator.runtimeAnimatorController.ToString() == "penguin_walk_01 (UnityEngine.AnimatorController)");
+        Debug.Log(playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("penguin_walk"));
+        Assert.IsTrue(playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("penguin_attack"));
+
+        Release(keyboard.rightArrowKey);
     }
 
     [UnityTest]
@@ -229,6 +246,6 @@ public class PlayerAnimationTests : InputTestFixture
 
         yield return new WaitForSeconds(0.1f);
 
-        Assert.IsTrue(playerAnimator.runtimeAnimatorController.ToString() == "penguin_jump_01 (UnityEngine.AnimatorController)");
+        Assert.IsFalse(playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("penguin_attack"));
     }
 }
