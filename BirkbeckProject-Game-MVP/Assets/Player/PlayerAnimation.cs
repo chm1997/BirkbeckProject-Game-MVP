@@ -1,19 +1,19 @@
 using UnityEngine;
-using UnityEditor;
 
 public class PlayerAnimation : MonoBehaviour
 {
     /// <summary>
     /// This class controls the animations of the player object in response to inputs handled by the input system
-    /// Required Fields:
     /// </summary>
 
     public bool isGrounded;
     public bool isWalking;
     public bool speedWalking;
+    public bool isAttacking;
     public Vector2 moveInput;
     public PlayerInputs playerInputs;
     public PlayerMovement playerMovement;
+    public int currentEnergy;
 
     public PlayerEnergy playerEnergy;
 
@@ -27,6 +27,7 @@ public class PlayerAnimation : MonoBehaviour
         isGrounded = false;
         isWalking = false;
         speedWalking = false;
+        isAttacking = false;
 
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -34,9 +35,10 @@ public class PlayerAnimation : MonoBehaviour
 
     void Update()
     {
-        AttackAnimation();
-        JumpAnimation();
+        currentEnergy = playerEnergy.GetPlayerEnergy();
         SidewaysAnimation();
+        JumpAnimation();
+        AttackAnimation();
         FlipSprite();
     }
 
@@ -65,15 +67,17 @@ public class PlayerAnimation : MonoBehaviour
         if (moveInput.x == 0) isWalking = false;
         else isWalking = true;
 
-        if (isGrounded)
+        isAttacking = animator.GetCurrentAnimatorStateInfo(0).IsName("penguin_attack");
+
+        if (isGrounded & !isAttacking)
         {
             if (isWalking)
             {
-                animator.runtimeAnimatorController = Resources.Load<UnityEditor.Animations.AnimatorController>("penguin_walk_01");
-                if (speedWalking & playerEnergy.GetPlayerEnergy() > 0) animator.speed = 2;
+                animator.Play("penguin_walk");
+                if (speedWalking & currentEnergy > 0) animator.speed = 2;
                 else animator.speed = 1;
             }
-            else animator.runtimeAnimatorController = Resources.Load<UnityEditor.Animations.AnimatorController>("penguin_idle_01");
+            else animator.Play("penguin_idle");
         }
 
 
@@ -84,7 +88,7 @@ public class PlayerAnimation : MonoBehaviour
         if (playerInputs.PlayerInputMap.Jump.triggered & isGrounded)
         {
             isGrounded = false;
-            animator.runtimeAnimatorController = Resources.Load<UnityEditor.Animations.AnimatorController>("penguin_jump_01");
+            animator.Play("penguin_jump");
             animator.speed = 1;
         }
     }
@@ -92,9 +96,9 @@ public class PlayerAnimation : MonoBehaviour
     private void AttackAnimation()
     {
         // This method activates the attack animation when conditions are correct
-        if (playerInputs.PlayerInputMap.MouseButtonLeft.triggered & isGrounded & !isWalking & playerEnergy.GetPlayerEnergy() >= 20)
-        {
-            animator.Play("penguin_attack", 0);
+        if (playerInputs.PlayerInputMap.MouseButtonLeft.triggered & isGrounded & !isWalking & currentEnergy >= 20) {
+            animator.Play("penguin_attack");
+            Debug.Log("attack triggered");
             playerEnergy.UpdatePlayerEnergy(-20);
         }
     }
@@ -102,6 +106,6 @@ public class PlayerAnimation : MonoBehaviour
     private void OnCollisionEnter2D()
     {
         isGrounded = true;
-        animator.runtimeAnimatorController = Resources.Load<UnityEditor.Animations.AnimatorController>("penguin_idle_01");
+        animator.Play("penguin_idle");
     }
 }

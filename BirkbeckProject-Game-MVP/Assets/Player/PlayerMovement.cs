@@ -61,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void ModifySpeed()
     {
-        if (playerInputs.PlayerInputMap.LeftShift.IsPressed() & isGrounded & playerEnergy.GetPlayerEnergy() > 0)
+        if (playerInputs.PlayerInputMap.LeftShift.IsPressed() & isGrounded & playerEnergy.GetPlayerEnergy() > 0 & moveInput != new Vector2(0, 0))
         {
             _speed = 20;
             playerEnergy.UpdatePlayerEnergy(-1);

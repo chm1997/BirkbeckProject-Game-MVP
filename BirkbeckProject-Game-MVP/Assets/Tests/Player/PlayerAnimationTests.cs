@@ -103,8 +103,8 @@ public class PlayerAnimationTests : InputTestFixture
     [UnityTest]
     public IEnumerator PlayerAnimationTest_IdleOnStart()
     {
-        Assert.IsTrue(playerAnimator.runtimeAnimatorController.ToString() == "penguin_idle_01 (UnityEngine.AnimatorController)");
-        
+        Assert.IsTrue(playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("penguin_idle"));
+
         yield return null;
     }
 
@@ -116,7 +116,7 @@ public class PlayerAnimationTests : InputTestFixture
 
         yield return new WaitForSeconds(0.2f);
 
-        Assert.IsTrue(playerAnimator.runtimeAnimatorController.ToString() == "penguin_walk_01 (UnityEngine.AnimatorController)");
+        Assert.IsTrue(playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("penguin_walk"));
 
         Release(keyboard.rightArrowKey);
     }
@@ -129,14 +129,14 @@ public class PlayerAnimationTests : InputTestFixture
 
         yield return new WaitForSeconds(0.2f);
 
-        Assert.IsTrue(playerAnimator.runtimeAnimatorController.ToString() == "penguin_walk_01 (UnityEngine.AnimatorController)");
+        Assert.IsTrue(playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("penguin_walk"));
 
 
         Release(keyboard.rightArrowKey);
 
         yield return new WaitForSeconds(0.2f);
 
-        Assert.IsTrue(playerAnimator.runtimeAnimatorController.ToString() == "penguin_idle_01 (UnityEngine.AnimatorController)");
+        Assert.IsTrue(playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("penguin_idle"));
     }
 
     [UnityTest]
@@ -147,7 +147,7 @@ public class PlayerAnimationTests : InputTestFixture
 
         yield return new WaitForSeconds(0.2f);
 
-        Assert.IsTrue(playerAnimator.runtimeAnimatorController.ToString() == "penguin_jump_01 (UnityEngine.AnimatorController)");
+        Assert.IsTrue(playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("penguin_jump"));
     }
 
     [UnityTest]
@@ -158,13 +158,13 @@ public class PlayerAnimationTests : InputTestFixture
 
         yield return new WaitForSeconds(0.2f);
 
-        Assert.IsTrue(playerAnimator.runtimeAnimatorController.ToString() == "penguin_jump_01 (UnityEngine.AnimatorController)");
+        Assert.IsTrue(playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("penguin_jump"));
 
         playerAnimation.isGrounded = true;
 
         yield return new WaitForSeconds(0.2f);
 
-        Assert.IsTrue(playerAnimator.runtimeAnimatorController.ToString() == "penguin_idle_01 (UnityEngine.AnimatorController)");
+        Assert.IsTrue(playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("penguin_idle"));
     }
 
     [UnityTest]
@@ -175,13 +175,13 @@ public class PlayerAnimationTests : InputTestFixture
 
         yield return new WaitForSeconds(0.2f);
 
-        Assert.IsTrue(playerAnimator.runtimeAnimatorController.ToString() == "penguin_walk_01 (UnityEngine.AnimatorController)");
+        Assert.IsTrue(playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("penguin_walk"));
 
         PressAndRelease(keyboard.spaceKey);
 
         yield return new WaitForSeconds(0.2f);
 
-        Assert.IsTrue(playerAnimator.runtimeAnimatorController.ToString() == "penguin_jump_01 (UnityEngine.AnimatorController)");
+        Assert.IsTrue(playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("penguin_jump"));
 
         Release(keyboard.rightArrowKey);
     }
@@ -194,14 +194,14 @@ public class PlayerAnimationTests : InputTestFixture
 
         yield return new WaitForSeconds(0.2f);
 
-        Assert.IsTrue(playerAnimator.runtimeAnimatorController.ToString() == "penguin_walk_01 (UnityEngine.AnimatorController)");
+        Assert.IsTrue(playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("penguin_walk"));
         Assert.IsTrue(playerSprite.flipX);
 
         PressAndRelease(keyboard.spaceKey);
 
         yield return new WaitForSeconds(0.2f);
 
-        Assert.IsTrue(playerAnimator.runtimeAnimatorController.ToString() == "penguin_jump_01 (UnityEngine.AnimatorController)");
+        Assert.IsTrue(playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("penguin_jump"));
         Assert.IsTrue(playerSprite.flipX);
 
         Release(keyboard.leftArrowKey);
@@ -211,11 +211,13 @@ public class PlayerAnimationTests : InputTestFixture
     public IEnumerator PlayerAnimationTest_AttackFromIdle()
     {
         playerAnimation.isGrounded = true;
+
+        Assert.IsTrue(playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("penguin_idle"));
+
         PressAndRelease(mouse.leftButton);
 
         yield return new WaitForSeconds(0.1f);
 
-        Assert.IsTrue(playerAnimator.runtimeAnimatorController.ToString() == "penguin_idle_01 (UnityEngine.AnimatorController)");
         Assert.IsTrue(playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("penguin_attack"));
     }
 
@@ -231,7 +233,7 @@ public class PlayerAnimationTests : InputTestFixture
 
         yield return new WaitForSeconds(0.1f);
 
-        Assert.IsTrue(playerAnimator.runtimeAnimatorController.ToString() == "penguin_walk_01 (UnityEngine.AnimatorController)");
+        Assert.IsTrue(playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("penguin_walk"));
         Assert.IsFalse(playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("penguin_attack"));
 
         Release(keyboard.rightArrowKey);
@@ -284,7 +286,7 @@ public class PlayerAnimationTests : InputTestFixture
         Press(keyboard.leftShiftKey);
         yield return new WaitForSeconds(0.1f);
 
-        Assert.IsTrue(playerAnimator.runtimeAnimatorController.ToString() == "penguin_walk_01 (UnityEngine.AnimatorController)");
+        Assert.IsTrue(playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("penguin_walk"));
         Assert.IsTrue(playerAnimator.speed > 1);
 
         Release(keyboard.leftShiftKey);
@@ -305,7 +307,7 @@ public class PlayerAnimationTests : InputTestFixture
 
         yield return new WaitForSeconds(0.1f);
 
-        Assert.IsTrue(playerAnimator.runtimeAnimatorController.ToString() == "penguin_walk_01 (UnityEngine.AnimatorController)");
+        Assert.IsTrue(playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("penguin_walk"));
         Assert.IsTrue(playerAnimator.speed == 1);
 
         Release(keyboard.leftShiftKey);

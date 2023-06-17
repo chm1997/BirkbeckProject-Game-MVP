@@ -158,8 +158,10 @@ MonoBehaviour:
   isGrounded: 0
   isWalking: 0
   speedWalking: 0
+  isAttacking: 0
   moveInput: {x: 0, y: 0}
   playerMovement: {fileID: 0}
+  currentEnergy: 0
   playerEnergy: {fileID: 11400000, guid: 80e2123d0fe3e9942aa745d34c61e1a1, type: 2}
 --- !u!60 &8991533934368094133
 PolygonCollider2D:
@@ -199,7 +201,7 @@ Animator:
   m_GameObject: {fileID: 8991533934368094140}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ba9e8b2f4d5d07f4e84e9f05710f122c, type: 2}
+  m_Controller: {fileID: 9100000, guid: 0d8b98f57158a4f488a0d6b7efe2f1d2, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
