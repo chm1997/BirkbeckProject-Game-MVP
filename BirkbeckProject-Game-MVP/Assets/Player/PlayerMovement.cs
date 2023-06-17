@@ -38,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        ModifySpeed();
         SidewaysMovement();
     }
 
@@ -58,6 +59,13 @@ public class PlayerMovement : MonoBehaviour
         float verticalMomentum = rb2D.velocity.y;
         rb2D.velocity = new Vector2(moveInput.x * _speed, verticalMomentum);
     }
+
+    private void ModifySpeed()
+    {
+        if (playerInputs.PlayerInputMap.LeftShift.IsPressed()) _speed = 20;
+        else _speed = 10;
+    }
+
     private void OnCollisionEnter2D()
     {
         isGrounded = true;
