@@ -16,19 +16,22 @@ public class PlayerMovement : MonoBehaviour
     private float _jumpForce; //Recommended: 750
     [SerializeField]
     private PlayerHealth playerHealth;
-    [SerializeField]
-    private PlayerEnergy playerEnergy;
+    public PlayerEnergy playerEnergy;
 
     public bool isGrounded;
+    public bool isAttacking;
     public Vector2 moveInput;
     private Rigidbody2D rb2D;
     public PlayerInputs playerInputs;
+
+   
 
     private void Awake()
     {
         playerInputs = new PlayerInputs();
         rb2D = GetComponent<Rigidbody2D>();
         isGrounded = false;
+        isAttacking = false;
     }
 
     private void Update()
@@ -62,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void ModifySpeed()
     {
-        if (playerInputs.PlayerInputMap.LeftShift.IsPressed()) _speed = 20;
+        if (playerInputs.PlayerInputMap.LeftShift.IsPressed() & isGrounded) _speed = 20;
         else _speed = 10;
     }
 

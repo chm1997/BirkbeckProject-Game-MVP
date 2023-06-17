@@ -259,7 +259,6 @@ public class PlayerAnimationTests : InputTestFixture
         Press(keyboard.leftShiftKey);
         yield return new WaitForSeconds(0.1f);
 
-        Debug.Log(playerAnimator.runtimeAnimatorController.ToString());
         Assert.IsTrue(playerAnimator.runtimeAnimatorController.ToString() == "penguin_walk_01 (UnityEngine.AnimatorController)");
         Assert.IsTrue(playerAnimator.speed > 1);
 

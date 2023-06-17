@@ -80,6 +80,7 @@ public class PlayerAnimation : MonoBehaviour
         {
             isGrounded = false;
             animator.runtimeAnimatorController = Resources.Load<UnityEditor.Animations.AnimatorController>("penguin_jump_01");
+            animator.speed = 1;
         }
     }
 

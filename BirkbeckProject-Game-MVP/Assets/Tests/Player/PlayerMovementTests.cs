@@ -13,11 +13,13 @@ public class PlayerMovementTests : InputTestFixture
     PlayerMovement playerMovement;
 
     Keyboard keyboard;
+    Mouse mouse;
 
     public override void Setup()
     {
         base.Setup();
         keyboard = InputSystem.AddDevice<Keyboard>();
+        mouse = InputSystem.AddDevice<Mouse>();
     }
 
     [SetUp]
@@ -159,6 +161,8 @@ public class PlayerMovementTests : InputTestFixture
     [UnityTest]
     public IEnumerator PlayerMovementTest_WalkSpedUp()
     {
+        playerMovement.isGrounded = true;
+
         Press(keyboard.rightArrowKey);
         Press(keyboard.leftShiftKey);
 
@@ -175,6 +179,8 @@ public class PlayerMovementTests : InputTestFixture
     [UnityTest]
     public IEnumerator PlayerMovementTest_SlowDownOnShiftRelease()
     {
+        playerMovement.isGrounded = true;
+
         Press(keyboard.rightArrowKey);
         Press(keyboard.leftShiftKey);
 
@@ -190,5 +196,79 @@ public class PlayerMovementTests : InputTestFixture
         yield return new WaitForSeconds(0.2f);
 
         Assert.AreEqual(playerMovement._speed, 10);
+    }
+
+    [UnityTest]
+    public IEnumerator PlayerMovementTest_SpeedWalkUsesEnergy()
+    {
+        playerMovement.isGrounded = true;
+
+        playerMovement.playerEnergy.SetPlayerEnergy(100);
+        Press(keyboard.rightArrowKey);
+        Press(keyboard.leftShiftKey);
+
+        yield return new WaitForSeconds(0.2f);
+
+        Assert.GreaterOrEqual(player.transform.position.x, 1);
+        Assert.AreEqual(0, player.transform.position.y);
+        Assert.Greater(playerMovement._speed, 10);
+        Assert.Less(playerMovement.playerEnergy.GetPlayerEnergy(), 100);
+
+        Release(keyboard.rightArrowKey);
+        Release(keyboard.leftShiftKey);
+    }
+
+    [UnityTest]
+    public IEnumerator PlayerMovementTest_NoSpeedWalkWhenNoEnergy()
+    {
+        playerMovement.isGrounded = true;
+
+        playerMovement.playerEnergy.SetPlayerEnergy(0);
+        Press(keyboard.rightArrowKey);
+        Press(keyboard.leftShiftKey);
+
+        yield return new WaitForSeconds(0.2f);
+
+        Assert.AreEqual(playerMovement._speed, 10);
+
+        Release(keyboard.rightArrowKey);
+        Release(keyboard.leftShiftKey);
+    }
+
+    [UnityTest]
+    public IEnumerator PlayerMovementTest_Attack()
+    {
+        PressAndRelease(mouse.leftButton);
+
+        yield return null;
+
+        Assert.IsTrue(playerMovement.isAttacking);
+
+        yield return new WaitForSeconds(0.3f);
+
+        Assert.IsFalse(playerMovement.isAttacking);
+    }
+
+    [UnityTest]
+    public IEnumerator PlayerMovementTest_AttackUsesEnergy()
+    {
+        playerMovement.playerEnergy.SetPlayerEnergy(100);
+        PressAndRelease(mouse.leftButton);
+
+        yield return null;
+
+        Assert.IsTrue(playerMovement.isAttacking);
+        Assert.Less(playerMovement.playerEnergy.GetPlayerEnergy(), 100);
+    }
+
+    [UnityTest]
+    public IEnumerator PlayerMovementTest_NoAttackWhenNoEnergy()
+    {
+        playerMovement.playerEnergy.SetPlayerEnergy(0);
+        PressAndRelease(mouse.leftButton);
+
+        yield return null;
+
+        Assert.IsFalse(playerMovement.isAttacking);
     }
 }
