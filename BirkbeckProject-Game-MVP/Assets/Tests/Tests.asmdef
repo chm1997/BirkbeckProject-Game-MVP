@@ -10,7 +10,9 @@
         "HUDScripts",
         "PlayerScripts",
         "ParallaxBackground",
-        "Unity.InputSystem.IntegrationTests"
+        "Unity.InputSystem.IntegrationTests",
+        "ScriptableObjects",
+        "InteractableObjects"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
