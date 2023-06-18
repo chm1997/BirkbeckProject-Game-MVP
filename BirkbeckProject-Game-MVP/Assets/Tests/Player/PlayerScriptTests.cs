@@ -20,12 +20,13 @@ public class PlayerScriptTests
         Object.Destroy(player);
     }
 
-
     [UnityTest]
     public IEnumerator PlayerScriptTest_HealthDecreases()
     {
-        var collisionTestObject = new GameObject().AddComponent<BoxCollider2D>();
-        collisionTestObject.isTrigger = true;
+        var collisionTestObject = new GameObject();
+        collisionTestObject.AddComponent<BoxCollider2D>();
+        collisionTestObject.AddComponent<Capsule>();
+        collisionTestObject.GetComponent<BoxCollider2D>().isTrigger = true;
         collisionTestObject.transform.position = new Vector3(10, 10, 0);
 
         yield return new WaitForSeconds(0.2f);

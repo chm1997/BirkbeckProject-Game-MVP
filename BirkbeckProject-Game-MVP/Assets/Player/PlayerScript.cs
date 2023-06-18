@@ -30,6 +30,12 @@ public class PlayerScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D Other)
     {
-        playerHealth.UpdatePlayerHealth(-1);
+        if (Other.GetComponent<IDamagingObject>() != null)
+        {
+            if (Other.GetComponent<IDamagingObject>().isDamaging)
+            {
+                playerHealth.UpdatePlayerHealth(Other.GetComponent<IDamagingObject>().damageValue * -1) ;
+            }
+        }
     }
 }

@@ -16,11 +16,13 @@ public class CrosshairScriptTests : InputTestFixture
     GameObject crosshair;
     
     Mouse mouse;
+    Keyboard keyboard;
 
     public override void Setup()
     {
         base.Setup();
         mouse = InputSystem.AddDevice<Mouse>();
+        keyboard = InputSystem.AddDevice<Keyboard>();
     }
 
     [SetUp]
@@ -40,17 +42,55 @@ public class CrosshairScriptTests : InputTestFixture
     }
 
     [UnityTest]
-    public IEnumerator CrosshairScriptTest_FollowsMousePosition()
+    public IEnumerator CrosshairScriptTest_FollowsMousePositionStationary()
     {
 
-        Vector2 transformVector = new Vector2(0, 0);
+        Vector2 transformVector = new Vector2(10, 10);
         mouse.WarpCursorPosition(transformVector);
 
         yield return new WaitForSeconds(0.5f);
 
         Vector2 worldPosition = Camera.main.ScreenToWorldPoint(transformVector);
+        Assert.That(worldPosition.x, Is.EqualTo(crosshair.transform.position.x).Within(0.5));
+        Assert.That(worldPosition.y, Is.EqualTo(crosshair.transform.position.y).Within(0.5));
+    }
 
-        Assert.That(worldPosition.x, Is.EqualTo(crosshair.transform.position.x).Within(0.2));
-        Assert.That(worldPosition.y, Is.EqualTo(crosshair.transform.position.y).Within(0.2));
+    [UnityTest]
+    public IEnumerator CrosshairScriptTest_FollowsMousePositionUpRight()
+    {
+
+        Vector2 transformVector = new Vector2(10, 10);
+        mouse.WarpCursorPosition(transformVector);
+
+        yield return new WaitForSeconds(0.5f);
+
+        Vector2 worldPosition = Camera.main.ScreenToWorldPoint(transformVector);
+        Assert.That(worldPosition.x, Is.EqualTo(crosshair.transform.position.x).Within(0.5));
+        Assert.That(worldPosition.y, Is.EqualTo(crosshair.transform.position.y).Within(0.5));
+    }
+
+    [UnityTest]
+    public IEnumerator CrosshairScriptTest_FollowsMousePositionDownLeft()
+    {
+
+        Vector2 transformVector = new Vector2(-10, -10);
+        mouse.WarpCursorPosition(transformVector);
+
+        yield return new WaitForSeconds(0.5f);
+
+        Vector2 worldPosition = Camera.main.ScreenToWorldPoint(transformVector);
+        Assert.That(worldPosition.x, Is.EqualTo(crosshair.transform.position.x).Within(0.5));
+        Assert.That(worldPosition.y, Is.EqualTo(crosshair.transform.position.y).Within(0.5));
+    }
+
+    [UnityTest]
+    public IEnumerator CrosshairScriptTest_SendsSignal()
+    {
+        GameObject healthpack = GameObject.Instantiate(Resources.Load<GameObject>("HealthPack"), crosshair.transform.position, Quaternion.identity);
+        Press(keyboard.eKey);
+
+        yield return new WaitForSeconds(0.5f);
+
+        Assert.AreEqual(healthpack.ToString(), "null");
     }
 }
