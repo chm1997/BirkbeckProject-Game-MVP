@@ -6,19 +6,18 @@ using UnityEngine.TestTools;
 public class PlayerScriptTests
 {
     GameObject playerPrefab = Resources.Load<GameObject>("Player");
-    PlayerScript playerScript;
+    PlayerScript player;
 
     [SetUp]
     public void PlayerScriptTest_Setup()
     {
-        playerScript = GameObject.Instantiate(playerPrefab, new Vector3(10, 10, 0), Quaternion.identity).GetComponent<PlayerScript>();
-       
+        player = GameObject.Instantiate(playerPrefab, new Vector3(10, 10, 0), Quaternion.identity).GetComponent<PlayerScript>();
     }
 
     [TearDown]
     public void PlayerScriptTest_TearDown()
     {
-        Object.Destroy(playerScript);
+        Object.Destroy(player);
     }
 
 
@@ -31,27 +30,28 @@ public class PlayerScriptTests
 
         yield return new WaitForSeconds(0.2f);
 
-        Assert.AreEqual(4, playerScript.playerHealth.GetPlayerHealth());
+        Assert.AreEqual(4, player.playerHealth.GetPlayerHealth());
     }
 
     [UnityTest]
     public IEnumerator PlayerScriptTest_EnergyIncreasesOverTime()
     {
-        playerScript.playerEnergy.SetPlayerEnergy(50);
+        player.playerEnergy.SetMaxEnergy(100);
+        player.playerEnergy.SetPlayerEnergy(50);
 
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(1f);
 
-        Assert.Greater(playerScript.playerEnergy.GetPlayerEnergy(), 50);
+        Assert.Greater(player.playerEnergy.GetPlayerEnergy(), 50);
     }
 
     [UnityTest]
     public IEnumerator PlayerScriptTest_EnergyIncreasesOverTimeStopsAtMax()
     {
-        playerScript.playerEnergy.SetMaxEnergy(100);
-        playerScript.playerEnergy.SetPlayerEnergy(100);
+        player.playerEnergy.SetMaxEnergy(100);
+        player.playerEnergy.SetPlayerEnergy(100);
 
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(1f);
 
-        Assert.AreEqual(playerScript.playerEnergy.GetPlayerEnergy(), 100);
+        Assert.AreEqual(player.playerEnergy.GetPlayerEnergy(), 100);
     }
 }

@@ -296,6 +296,7 @@ public class PlayerAnimationTests : InputTestFixture
     [UnityTest]
     public IEnumerator PlayerAnimationTest_NoSpeedWalkWhenNoEnergy()
     {
+        playerAnimation.playerEnergy.SetMaxEnergy(0);
         playerAnimation.playerEnergy.SetPlayerEnergy(0);
         playerAnimation.isGrounded = true;
 

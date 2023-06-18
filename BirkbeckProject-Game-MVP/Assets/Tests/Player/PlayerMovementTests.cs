@@ -222,7 +222,7 @@ public class PlayerMovementTests : InputTestFixture
     public IEnumerator PlayerMovementTest_NoSpeedWalkWhenNoEnergy()
     {
         playerMovement.isGrounded = true;
-
+        playerMovement.playerEnergy.SetMaxEnergy(0);
         playerMovement.playerEnergy.SetPlayerEnergy(0);
         Press(keyboard.rightArrowKey);
         Press(keyboard.leftShiftKey);
