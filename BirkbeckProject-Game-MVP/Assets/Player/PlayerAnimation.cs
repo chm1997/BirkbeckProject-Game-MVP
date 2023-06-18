@@ -13,7 +13,7 @@ public class PlayerAnimation : MonoBehaviour
     public Vector2 moveInput;
     public PlayerInputs playerInputs;
     public PlayerMovement playerMovement;
-    public int currentEnergy;
+    public float currentEnergy;
 
     public PlayerEnergy playerEnergy;
 
@@ -98,7 +98,6 @@ public class PlayerAnimation : MonoBehaviour
         // This method activates the attack animation when conditions are correct
         if (playerInputs.PlayerInputMap.MouseButtonLeft.triggered & isGrounded & !isWalking & currentEnergy >= 20) {
             animator.Play("penguin_attack");
-            Debug.Log("attack triggered");
             playerEnergy.UpdatePlayerEnergy(-20);
         }
     }

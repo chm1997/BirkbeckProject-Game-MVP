@@ -4,19 +4,19 @@ using UnityEngine;
 public class PlayerEnergy : ScriptableObject
 {
     [SerializeField]
-    private int playerEnergy;
+    private float playerEnergy;
     [SerializeField]
     private int maxEnergy = 100;
 
-    public int GetPlayerEnergy()
+    public float GetPlayerEnergy()
     {
         return playerEnergy;
     }
-    public void SetPlayerEnergy(int incomingEnergy)
+    public void SetPlayerEnergy(float incomingEnergy)
     {
         playerEnergy = incomingEnergy;
     }
-    public void UpdatePlayerEnergy(int incomingChange)
+    public void UpdatePlayerEnergy(float incomingChange)
     {
         playerEnergy += incomingChange;
     }

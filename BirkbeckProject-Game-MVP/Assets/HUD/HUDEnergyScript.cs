@@ -1,5 +1,7 @@
 using UnityEngine;
 using TMPro;
+using Codice.CM.Common.Merge;
+using System;
 
 public class HUDEnergyScript : MonoBehaviour
 {
@@ -13,12 +15,12 @@ public class HUDEnergyScript : MonoBehaviour
     public PlayerEnergy playerEnergy;
     public TMP_Text textObject;
     private string textString;
-    private int currentEnergy;
+    private float currentEnergy;
 
     private void Update()
     {
         currentEnergy = playerEnergy.GetPlayerEnergy();
-        textString = "Energy: " + currentEnergy.ToString();
+        textString = "Energy: " + ((int)(currentEnergy)).ToString();
         textObject.text = textString;
     }
 }
