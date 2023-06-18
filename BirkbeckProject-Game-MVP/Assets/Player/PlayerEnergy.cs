@@ -5,6 +5,8 @@ public class PlayerEnergy : ScriptableObject
 {
     [SerializeField]
     private int playerEnergy;
+    [SerializeField]
+    private int maxEnergy = 100;
 
     public int GetPlayerEnergy()
     {
@@ -17,5 +19,15 @@ public class PlayerEnergy : ScriptableObject
     public void UpdatePlayerEnergy(int incomingChange)
     {
         playerEnergy += incomingChange;
+    }
+
+    public int GetMaxEnergy()
+    {
+        return maxEnergy;
+    }
+
+    public void SetMaxEnergy(int incomingMax)
+    {
+        maxEnergy = incomingMax;
     }
 }

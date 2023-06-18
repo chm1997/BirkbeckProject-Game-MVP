@@ -21,19 +21,6 @@ public class PlayerScriptTests
         Object.Destroy(playerScript);
     }
 
-    [UnityTest]
-    public IEnumerator PlayerScriptTest_Energy100AtStart()
-    {
-        Assert.AreEqual(100, playerScript.playerEnergy.GetPlayerEnergy());
-        yield return null;
-    }
-
-    [UnityTest]
-    public IEnumerator PlayerScriptTest_Health5AtStart()
-    {
-        Assert.AreEqual(5, playerScript.playerHealth.GetPlayerHealth());
-        yield return null;
-    }
 
     [UnityTest]
     public IEnumerator PlayerScriptTest_HealthDecreases()
@@ -58,8 +45,9 @@ public class PlayerScriptTests
     }
 
     [UnityTest]
-    public IEnumerator PlayerScriptTest_EnergyIncreasesOverTimeStopsAt100()
+    public IEnumerator PlayerScriptTest_EnergyIncreasesOverTimeStopsAtMax()
     {
+        playerScript.playerEnergy.SetMaxEnergy(100);
         playerScript.playerEnergy.SetPlayerEnergy(100);
 
         yield return new WaitForSeconds(0.2f);

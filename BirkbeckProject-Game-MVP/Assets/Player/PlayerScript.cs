@@ -19,7 +19,7 @@ public class PlayerScript : MonoBehaviour
     }
     private void LateUpdate()
     {
-        if (playerEnergy.GetPlayerEnergy() < 100) playerEnergy.UpdatePlayerEnergy(1);
+        if (playerEnergy.GetPlayerEnergy() < playerEnergy.GetMaxEnergy()) playerEnergy.UpdatePlayerEnergy(1);
     }
 
     private void OnTriggerEnter2D(Collider2D Other)
