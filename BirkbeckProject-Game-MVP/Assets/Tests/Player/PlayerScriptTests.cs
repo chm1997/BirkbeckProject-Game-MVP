@@ -54,7 +54,7 @@ public class PlayerScriptTests
 
         yield return new WaitForSeconds(0.2f);
 
-        Assert.Greater(playerScript.playerHealth.GetPlayerHealth(), 50);
+        Assert.Greater(playerScript.playerEnergy.GetPlayerEnergy(), 50);
     }
 
     [UnityTest]
@@ -64,6 +64,6 @@ public class PlayerScriptTests
 
         yield return new WaitForSeconds(0.2f);
 
-        Assert.AreEqual(playerScript.playerHealth.GetPlayerHealth(), 100);
+        Assert.AreEqual(playerScript.playerEnergy.GetPlayerEnergy(), 100);
     }
 }

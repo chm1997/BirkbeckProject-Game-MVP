@@ -17,6 +17,10 @@ public class PlayerScript : MonoBehaviour
         playerHealth.SetPlayerHealth(5);
         playerEnergy.SetPlayerEnergy(100);
     }
+    private void LateUpdate()
+    {
+        if (playerEnergy.GetPlayerEnergy() < 100) playerEnergy.UpdatePlayerEnergy(1);
+    }
 
     private void OnTriggerEnter2D(Collider2D Other)
     {
