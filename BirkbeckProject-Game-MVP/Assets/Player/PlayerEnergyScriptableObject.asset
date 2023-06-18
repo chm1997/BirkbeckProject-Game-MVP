@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: PlayerEnergyScriptableObject
   m_EditorClassIdentifier: 
   playerEnergy: 100
+  maxEnergy: 100

@@ -1,7 +1,5 @@
 using UnityEngine;
 using TMPro;
-using Codice.CM.Common.Merge;
-using System;
 
 public class HUDEnergyScript : MonoBehaviour
 {

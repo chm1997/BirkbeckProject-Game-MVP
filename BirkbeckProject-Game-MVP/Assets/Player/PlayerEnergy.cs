@@ -30,4 +30,5 @@ public class PlayerEnergy : ScriptableObject
     {
         maxEnergy = incomingMax;
     }
+
 }

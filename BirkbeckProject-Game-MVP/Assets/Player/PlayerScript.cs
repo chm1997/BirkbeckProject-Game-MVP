@@ -19,6 +19,7 @@ public class PlayerScript : MonoBehaviour
         playerEnergy.SetPlayerEnergy(100);
         energyRegenVariable = 5f;
     }
+
     private void LateUpdate()
     {
         if (playerEnergy.GetPlayerEnergy() < playerEnergy.GetMaxEnergy())

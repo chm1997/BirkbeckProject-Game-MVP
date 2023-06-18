@@ -80,6 +80,15 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""InteractButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""38f1da2b-dcc9-428d-8f0f-ab1ee94a176f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -247,6 +256,17 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                     ""action"": ""LeftShift"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8fb8c311-7a48-4a87-aa10-f8b0122d1ed3"",
+                    ""path"": ""<Keyboard>/#(E)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""InteractButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -261,6 +281,7 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
         m_PlayerInputMap_MouseButtonLeft = m_PlayerInputMap.FindAction("MouseButtonLeft", throwIfNotFound: true);
         m_PlayerInputMap_MouseButtonRight = m_PlayerInputMap.FindAction("MouseButtonRight", throwIfNotFound: true);
         m_PlayerInputMap_LeftShift = m_PlayerInputMap.FindAction("LeftShift", throwIfNotFound: true);
+        m_PlayerInputMap_InteractButton = m_PlayerInputMap.FindAction("InteractButton", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -326,6 +347,7 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerInputMap_MouseButtonLeft;
     private readonly InputAction m_PlayerInputMap_MouseButtonRight;
     private readonly InputAction m_PlayerInputMap_LeftShift;
+    private readonly InputAction m_PlayerInputMap_InteractButton;
     public struct PlayerInputMapActions
     {
         private @PlayerInputs m_Wrapper;
@@ -336,6 +358,7 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
         public InputAction @MouseButtonLeft => m_Wrapper.m_PlayerInputMap_MouseButtonLeft;
         public InputAction @MouseButtonRight => m_Wrapper.m_PlayerInputMap_MouseButtonRight;
         public InputAction @LeftShift => m_Wrapper.m_PlayerInputMap_LeftShift;
+        public InputAction @InteractButton => m_Wrapper.m_PlayerInputMap_InteractButton;
         public InputActionMap Get() { return m_Wrapper.m_PlayerInputMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -363,6 +386,9 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                 @LeftShift.started -= m_Wrapper.m_PlayerInputMapActionsCallbackInterface.OnLeftShift;
                 @LeftShift.performed -= m_Wrapper.m_PlayerInputMapActionsCallbackInterface.OnLeftShift;
                 @LeftShift.canceled -= m_Wrapper.m_PlayerInputMapActionsCallbackInterface.OnLeftShift;
+                @InteractButton.started -= m_Wrapper.m_PlayerInputMapActionsCallbackInterface.OnInteractButton;
+                @InteractButton.performed -= m_Wrapper.m_PlayerInputMapActionsCallbackInterface.OnInteractButton;
+                @InteractButton.canceled -= m_Wrapper.m_PlayerInputMapActionsCallbackInterface.OnInteractButton;
             }
             m_Wrapper.m_PlayerInputMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -385,6 +411,9 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                 @LeftShift.started += instance.OnLeftShift;
                 @LeftShift.performed += instance.OnLeftShift;
                 @LeftShift.canceled += instance.OnLeftShift;
+                @InteractButton.started += instance.OnInteractButton;
+                @InteractButton.performed += instance.OnInteractButton;
+                @InteractButton.canceled += instance.OnInteractButton;
             }
         }
     }
@@ -397,5 +426,6 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
         void OnMouseButtonLeft(InputAction.CallbackContext context);
         void OnMouseButtonRight(InputAction.CallbackContext context);
         void OnLeftShift(InputAction.CallbackContext context);
+        void OnInteractButton(InputAction.CallbackContext context);
     }
 }
