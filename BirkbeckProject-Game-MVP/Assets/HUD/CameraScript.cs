@@ -17,6 +17,6 @@ public class CameraScript : MonoBehaviour
         float playerXPos = playerTransform.position.x;
         float playerYPos = playerTransform.position.y + 5;
 
-        transform.position = new Vector3(playerXPos, playerYPos, -10);
+        transform.position = new Vector3(playerXPos, 4.5f, -10);
     }
 }

@@ -234,4 +234,69 @@ public class PlayerMovementTests : InputTestFixture
         Release(keyboard.rightArrowKey);
         Release(keyboard.leftShiftKey);
     }
+
+    [UnityTest]
+    public IEnumerator PlayerMovementTest_JumpColliderOnAfterJump()
+    {
+        playerMovement.isGrounded = true;
+        Press(keyboard.spaceKey);
+
+        yield return null;
+
+        Assert.IsFalse(playerMovement.groundCollider.enabled);
+        Assert.IsTrue(playerMovement.jumpCollider.enabled);
+            
+        /*
+        playerMovement.isGrounded = true;
+        playerMovement.playerEnergy.SetMaxEnergy(0);
+        playerMovement.playerEnergy.SetPlayerEnergy(0);
+        Press(keyboard.rightArrowKey);
+        Press(keyboard.leftShiftKey);
+
+        yield return new WaitForSeconds(0.2f);
+
+        Assert.AreEqual(playerMovement._speed, 10);
+
+        Release(keyboard.rightArrowKey);
+        Release(keyboard.leftShiftKey);
+        */
+    }
+
+    [UnityTest]
+    public IEnumerator PlayerMovementTest_GroundColliderOnAfterJumpAndLand()
+    {
+        playerMovement.isGrounded = true;
+        Press(keyboard.spaceKey);
+
+        yield return null;
+
+        var collisionTestObject = new GameObject();
+        collisionTestObject.AddComponent<BoxCollider2D>();
+        collisionTestObject.AddComponent<Rigidbody2D>();
+        collisionTestObject.transform.position = new Vector3(10, 10, 0);
+        player.transform.position = new Vector3(10, 10, 0);
+
+        yield return new WaitForSeconds(0.2f);
+
+        Assert.IsTrue(playerMovement.groundCollider.enabled);
+        Assert.IsFalse(playerMovement.jumpCollider.enabled);
+
+
+
+
+        /*
+        playerMovement.isGrounded = true;
+        playerMovement.playerEnergy.SetMaxEnergy(0);
+        playerMovement.playerEnergy.SetPlayerEnergy(0);
+        Press(keyboard.rightArrowKey);
+        Press(keyboard.leftShiftKey);
+
+        yield return new WaitForSeconds(0.2f);
+
+        Assert.AreEqual(playerMovement._speed, 10);
+
+        Release(keyboard.rightArrowKey);
+        Release(keyboard.leftShiftKey);
+        */
+    }
 }

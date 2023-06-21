@@ -1,4 +1,8 @@
+using log4net.Util;
+using System.Collections;
+using System.Runtime.CompilerServices;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -23,11 +27,27 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb2D;
     public PlayerInputs playerInputs;
 
+    public PolygonCollider2D jumpCollider;
+    public PolygonCollider2D groundCollider;
+
+    private bool shortGroundHop;
+
     private void Awake()
     {
         playerInputs = new PlayerInputs();
         rb2D = GetComponent<Rigidbody2D>();
         isGrounded = false;
+
+        groundCollider = GetComponent<PolygonCollider2D>();
+
+        foreach (PolygonCollider2D pc2d in GetComponentsInChildren<PolygonCollider2D>())
+        {
+            if (pc2d.transform.parent != this.transform) continue;
+            jumpCollider = pc2d;
+        }
+        jumpCollider.enabled = false;
+        groundCollider.enabled = true;
+        shortGroundHop = false;
     }
 
     private void Update()
@@ -48,6 +68,7 @@ public class PlayerMovement : MonoBehaviour
         {
             rb2D.AddForce(transform.up * _jumpForce);
             isGrounded = false;
+            HandleCollidersOnJump();
         }
     }
 
@@ -61,6 +82,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void ModifySpeed()
     {
+        // This method increases the speed of sideways movement when triggered by player input
         if (playerInputs.PlayerInputMap.LeftShift.IsPressed() & isGrounded & playerEnergy.GetPlayerEnergy() > 0 & moveInput != new Vector2(0, 0))
         {
             _speed = 20;
@@ -69,9 +91,39 @@ public class PlayerMovement : MonoBehaviour
         else _speed = 10;
     }
 
-    private void OnCollisionEnter2D()
+    private void HandleCollidersOnJump()
+    {
+        // This method switches colliders to one more closely matching the midair sprite
+        jumpCollider.enabled = true;
+        groundCollider.enabled = false;
+        shortGroundHop = false;
+        StartCoroutine(BringBackSpriteClassic());
+    }
+
+    private void HandleCollidersOnLand(Collision2D other)
+    {
+        // This method switches colliders back to ground on a surprise land (includes handling the state transition)
+        if (!shortGroundHop)
+        {
+            groundCollider.enabled = true;
+            jumpCollider.enabled = false;
+            shortGroundHop = true;
+            transform.position = new Vector2(transform.position.x, other.collider.bounds.max.y + 3);
+        }
+    }
+
+    private IEnumerator BringBackSpriteClassic()
+    {
+        // This method waits approximately 2/3rds the length of a jump before switching back colliders
+        yield return new WaitForSeconds(1.25f);
+        groundCollider.enabled = true;
+        jumpCollider.enabled = false;
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
     {
         isGrounded = true;
+        HandleCollidersOnLand(other);
     }
 
     private void OnEnable()
