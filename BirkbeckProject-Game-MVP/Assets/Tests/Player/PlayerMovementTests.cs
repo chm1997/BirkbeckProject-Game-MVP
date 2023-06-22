@@ -245,21 +245,6 @@ public class PlayerMovementTests : InputTestFixture
 
         Assert.IsFalse(playerMovement.groundCollider.enabled);
         Assert.IsTrue(playerMovement.jumpCollider.enabled);
-            
-        /*
-        playerMovement.isGrounded = true;
-        playerMovement.playerEnergy.SetMaxEnergy(0);
-        playerMovement.playerEnergy.SetPlayerEnergy(0);
-        Press(keyboard.rightArrowKey);
-        Press(keyboard.leftShiftKey);
-
-        yield return new WaitForSeconds(0.2f);
-
-        Assert.AreEqual(playerMovement._speed, 10);
-
-        Release(keyboard.rightArrowKey);
-        Release(keyboard.leftShiftKey);
-        */
     }
 
     [UnityTest]
@@ -280,23 +265,5 @@ public class PlayerMovementTests : InputTestFixture
 
         Assert.IsTrue(playerMovement.groundCollider.enabled);
         Assert.IsFalse(playerMovement.jumpCollider.enabled);
-
-
-
-
-        /*
-        playerMovement.isGrounded = true;
-        playerMovement.playerEnergy.SetMaxEnergy(0);
-        playerMovement.playerEnergy.SetPlayerEnergy(0);
-        Press(keyboard.rightArrowKey);
-        Press(keyboard.leftShiftKey);
-
-        yield return new WaitForSeconds(0.2f);
-
-        Assert.AreEqual(playerMovement._speed, 10);
-
-        Release(keyboard.rightArrowKey);
-        Release(keyboard.leftShiftKey);
-        */
     }
 }
