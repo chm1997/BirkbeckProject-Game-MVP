@@ -270,7 +270,6 @@ public class PlayerAnimationTests : InputTestFixture
 
         yield return new WaitForSeconds(0.1f);
         Assert.IsTrue(playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("penguin_attack"));
-        Debug.Log(playerAnimation.playerEnergy.GetPlayerEnergy());
         Assert.Less(playerAnimation.playerEnergy.GetPlayerEnergy(), 100);
     }
 

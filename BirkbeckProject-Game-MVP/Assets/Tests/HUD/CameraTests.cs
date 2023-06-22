@@ -34,7 +34,7 @@ public class CameraTests
         yield return null;
 
         Assert.That(0.0f, Is.EqualTo(camera.transform.position.x).Within(0.1));
-        Assert.That(5.0f, Is.EqualTo(camera.transform.position.y).Within(0.1));
+        Assert.That(4.5f, Is.EqualTo(camera.transform.position.y).Within(0.1));
     }
 
     [UnityTest]
@@ -58,22 +58,22 @@ public class CameraTests
     }
 
     [UnityTest]
-    public IEnumerator CameraTest_VerticalMovementUp()
+    public IEnumerator CameraTest_NoVerticalMovementUp()
     {
         player.transform.position = new Vector2(0, 5);
 
         yield return null;
 
-        Assert.That(10.0f, Is.EqualTo(camera.transform.position.y).Within(0.01));
+        Assert.That(4.5f, Is.EqualTo(camera.transform.position.y).Within(0.01));
     }
 
     [UnityTest]
-    public IEnumerator CameraTest_VerticalMovementDown()
+    public IEnumerator CameraTest_NoVerticalMovementDown()
     {
         player.transform.position = new Vector2(0, -5);
 
         yield return null;
 
-        Assert.That(0.0f, Is.EqualTo(camera.transform.position.y).Within(0.01));
+        Assert.That(4.5f, Is.EqualTo(camera.transform.position.y).Within(0.01));
     }
 }

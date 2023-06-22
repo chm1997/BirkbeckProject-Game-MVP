@@ -76,7 +76,7 @@ public class ParallaxBackgroundTests
     }
 
     [UnityTest]
-    public IEnumerator ParallaxBackgroundTest_VerticalMovementUpWithMultiplierOfZeroOne()
+    public IEnumerator ParallaxBackgroundTest_NoVerticalMovementUpWithMultiplierOfZeroOne()
     {
         testObject.GetComponent<ParallaxBackground>().parallaxEffectMultiplier = new Vector2(0, 1);
         player.transform.position = new Vector2(0, 10);
@@ -84,11 +84,11 @@ public class ParallaxBackgroundTests
         yield return new WaitForSeconds(0.2f);
 
         Assert.That(0.0f, Is.EqualTo(testObject.transform.position.x).Within(0.001));
-        Assert.That(10.0f, Is.EqualTo(testObject.transform.position.y).Within(0.5));
+        Assert.That(0.0f, Is.EqualTo(testObject.transform.position.y).Within(0.5));
     }
 
     [UnityTest]
-    public IEnumerator ParallaxBackgroundTest_VerticalMovementDownWithMultiplierOfZeroOne()
+    public IEnumerator ParallaxBackgroundTest_NoVerticalMovementDownWithMultiplierOfZeroOne()
     {
         testObject.GetComponent<ParallaxBackground>().parallaxEffectMultiplier = new Vector2(0, 1);
         player.transform.position = new Vector2(0, -10);
@@ -96,7 +96,7 @@ public class ParallaxBackgroundTests
         yield return new WaitForSeconds(0.2f);
 
         Assert.That(0.0f, Is.EqualTo(testObject.transform.position.x).Within(0.001));
-        Assert.That(-10.0f, Is.EqualTo(testObject.transform.position.y).Within(0.5));
+        Assert.That(0.0f, Is.EqualTo(testObject.transform.position.y).Within(0.5));
     }
 
     [UnityTest]
@@ -121,101 +121,5 @@ public class ParallaxBackgroundTests
 
         Assert.That(5.5f, Is.EqualTo(testObject.transform.position.x).Within(0.001));
         Assert.That(0.0f, Is.EqualTo(testObject.transform.position.y).Within(0.001));
-    }
-
-    [UnityTest]
-    public IEnumerator ParallaxBackgroundTest_VerticalMovementUpWithMultiplierOfZeroHalf()
-    {
-        testObject.GetComponent<ParallaxBackground>().parallaxEffectMultiplier = new Vector2(0, 0.5f);
-        player.transform.position = new Vector2(0, 10);
-
-        yield return new WaitForSeconds(0.2f);
-
-        Assert.That(0.0f, Is.EqualTo(testObject.transform.position.x).Within(0.001));
-        Assert.That(5.0f, Is.EqualTo(testObject.transform.position.y).Within(0.5));
-    }
-
-    [UnityTest]
-    public IEnumerator ParallaxBackgroundTest_VerticalMovementDownWithMultiplierOfZeroHalf()
-    {
-        testObject.GetComponent<ParallaxBackground>().parallaxEffectMultiplier = new Vector2(0, 0.5f);
-        player.transform.position = new Vector2(0, -10);
-
-        yield return new WaitForSeconds(0.2f);
-
-        Assert.That(0.0f, Is.EqualTo(testObject.transform.position.x).Within(0.001));
-        Assert.That(-5.0f, Is.EqualTo(testObject.transform.position.y).Within(0.5));
-    }
-
-    [UnityTest]
-    public IEnumerator ParallaxBackgroundTest_DiagonalMovementPositiveWithMultiplierOfOne()
-    {
-        testObject.GetComponent<ParallaxBackground>().parallaxEffectMultiplier = new Vector2(1, 1f);
-        player.transform.position = new Vector2(10, 10);
-
-        yield return new WaitForSeconds(0.2f);
-
-        Assert.That(10.0f, Is.EqualTo(testObject.transform.position.x).Within(0.001));
-        Assert.That(10.0f, Is.EqualTo(testObject.transform.position.y).Within(0.5));
-    }
-
-    [UnityTest]
-    public IEnumerator ParallaxBackgroundTest_DiagonalMovementPositiveWithMultiplierOfHalf()
-    {
-        testObject.GetComponent<ParallaxBackground>().parallaxEffectMultiplier = new Vector2(0.5f, 0.5f);
-        player.transform.position = new Vector2(10, 10);
-
-        yield return new WaitForSeconds(0.2f);
-
-        Assert.That(10.0f, Is.EqualTo(testObject.transform.position.x).Within(0.001));
-        Assert.That(5.0f, Is.EqualTo(testObject.transform.position.y).Within(0.5));
-    }
-
-    [UnityTest]
-    public IEnumerator ParallaxBackgroundTest_DiagonalMovementPositiveWithMultiplierOfQuarter()
-    {
-        testObject.GetComponent<ParallaxBackground>().parallaxEffectMultiplier = new Vector2(0.25f, 0.25f);
-        player.transform.position = new Vector2(10, 10);
-
-        yield return new WaitForSeconds(0.2f);
-
-        Assert.That(10.5f, Is.EqualTo(testObject.transform.position.x).Within(0.001));
-        Assert.That(2.5f, Is.EqualTo(testObject.transform.position.y).Within(0.5));
-    }
-
-    [UnityTest]
-    public IEnumerator ParallaxBackgroundTest_DiagonalMovementNegativeWithMultiplierOfOne()
-    {
-        testObject.GetComponent<ParallaxBackground>().parallaxEffectMultiplier = new Vector2(1, 1f);
-        player.transform.position = new Vector2(-10, -10);
-
-        yield return new WaitForSeconds(0.2f);
-
-        Assert.That(-10.0f, Is.EqualTo(testObject.transform.position.x).Within(0.001));
-        Assert.That(-10.0f, Is.EqualTo(testObject.transform.position.y).Within(0.5));
-    }
-
-    [UnityTest]
-    public IEnumerator ParallaxBackgroundTest_DiagonalMovementNegativeWithMultiplierOfHalf()
-    {
-        testObject.GetComponent<ParallaxBackground>().parallaxEffectMultiplier = new Vector2(0.5f, 0.5f);
-        player.transform.position = new Vector2(-10, -10);
-
-        yield return new WaitForSeconds(0.2f);
-
-        Assert.That(-10.0f, Is.EqualTo(testObject.transform.position.x).Within(0.001));
-        Assert.That(-5.0f, Is.EqualTo(testObject.transform.position.y).Within(0.5));
-    }
-
-    [UnityTest]
-    public IEnumerator ParallaxBackgroundTest_DiagonalMovementNegativeWithMultiplierOfQuarter()
-    {
-        testObject.GetComponent<ParallaxBackground>().parallaxEffectMultiplier = new Vector2(0.25f, 0.25f);
-        player.transform.position = new Vector2(-10, -10);
-
-        yield return new WaitForSeconds(0.2f);
-
-        Assert.That(-10.5f, Is.EqualTo(testObject.transform.position.x).Within(0.001));
-        Assert.That(-2.5f, Is.EqualTo(testObject.transform.position.y).Within(0.5));
     }
 }
