@@ -12,7 +12,8 @@
         "ParallaxBackground",
         "Unity.InputSystem.IntegrationTests",
         "ScriptableObjects",
-        "InteractableObjects"
+        "InteractableObjects",
+        "Train"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
