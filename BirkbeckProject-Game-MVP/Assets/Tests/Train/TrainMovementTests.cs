@@ -12,6 +12,7 @@ public class TrainMovementTests
     GameObject train;
 
     TrainMovementScript trainMovementScript;
+    Rigidbody2D rb2D;
 
 
     [UnitySetUp]
@@ -27,7 +28,8 @@ public class TrainMovementTests
 
         player = GameObject.Instantiate(playerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
         train = GameObject.Instantiate(trainPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-        train.GetComponent<Rigidbody2D>().gravityScale = 0;
+        rb2D = train.GetComponent<Rigidbody2D>();
+        rb2D.gravityScale = 0;
         trainMovementScript = train.GetComponent<TrainMovementScript>();
         trainMovementScript.trainData.SetTrainSpeed(0);
     }
@@ -51,10 +53,10 @@ public class TrainMovementTests
     [UnityTest]
     public IEnumerator TrainMovementTest_TrainAcceleratesToSetSpeed()
     {
-        trainMovementScript.trainData.SetTrainSpeed(100);
+        trainMovementScript.trainData.SetTrainSpeed(30);
         yield return new WaitForSeconds(0.2f);
-        Assert.Less(trainMovementScript.trainData.GetTrainSpeed(), 100);
+        Assert.Less(rb2D.velocity.x, 5);
         yield return new WaitForSeconds(3f);
-        Assert.AreEqual(trainMovementScript.trainData.GetTrainSpeed(), 100);
+        Assert.That(rb2D.velocity.x, Is.EqualTo(30).Within(1));
     }
 }

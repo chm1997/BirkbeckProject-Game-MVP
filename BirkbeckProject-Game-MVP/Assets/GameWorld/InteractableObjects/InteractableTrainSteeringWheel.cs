@@ -14,7 +14,7 @@ public class InteractableTrainSteeringWheel : MonoBehaviour, IInteractableObject
         }
         else
         {
-            trainData.SetTrainSpeed(50);
+            trainData.SetTrainSpeed(30);
             isOn = true;
         }
     }
