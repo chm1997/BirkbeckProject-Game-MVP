@@ -24,7 +24,6 @@ public class HealthPackTests
         Object.Destroy(packScript);
     }
 
-
     [UnityTest]
     public IEnumerator HealthPackTest_UpdatesHealthOnMessage()
     {
