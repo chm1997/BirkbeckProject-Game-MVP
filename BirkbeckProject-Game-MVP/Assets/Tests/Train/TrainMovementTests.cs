@@ -47,4 +47,14 @@ public class TrainMovementTests
         yield return new WaitForSeconds(0.5f);
         Assert.Greater(train.transform.position.x, 0);
     }
+
+    [UnityTest]
+    public IEnumerator TrainMovementTest_TrainAcceleratesToSetSpeed()
+    {
+        trainMovementScript.trainData.SetTrainSpeed(100);
+        yield return new WaitForSeconds(0.2f);
+        Assert.Less(trainMovementScript.trainData.GetTrainSpeed(), 100);
+        yield return new WaitForSeconds(3f);
+        Assert.AreEqual(trainMovementScript.trainData.GetTrainSpeed(), 100);
+    }
 }
