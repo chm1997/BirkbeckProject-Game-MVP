@@ -8,9 +8,9 @@ using UnityEngine.TestTools;
 public class PlayerMovementTests : InputTestFixture
 {
     GameObject playerPrefab = Resources.Load<GameObject>("Player");
-
     GameObject player;
     PlayerMovement playerMovement;
+    Rigidbody2D playerRB2D;
 
     Keyboard keyboard;
 
@@ -24,7 +24,8 @@ public class PlayerMovementTests : InputTestFixture
     public void PlayerMovementTest_Setup()
     {
         player = GameObject.Instantiate(playerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-        player.GetComponent<Rigidbody2D>().gravityScale = 0;
+        playerRB2D = player.GetComponent<Rigidbody2D>();
+        playerRB2D.gravityScale = 0;
         playerMovement = player.GetComponent<PlayerMovement>();
     }
 
@@ -263,5 +264,56 @@ public class PlayerMovementTests : InputTestFixture
 
         Assert.IsTrue(playerMovement.groundCollider.enabled);
         Assert.IsFalse(playerMovement.jumpCollider.enabled);
+    }
+
+    [UnityTest]
+    public IEnumerator PlayerMovementTest_PlayerTracksTrainMovementWhenOn()
+    {
+        GameObject trainPrefab = Resources.Load<GameObject>("Main Train Object");
+        GameObject train = GameObject.Instantiate(playerPrefab, new Vector3(100, 100, 100), Quaternion.identity);
+
+        player.transform.position = new Vector3(100, 100, 100);
+
+        Rigidbody2D trainRB2D = train.GetComponent<Rigidbody2D>();
+        trainRB2D.gravityScale = 0;
+        trainRB2D.velocity = Vector2.right * 10;
+
+        yield return new WaitForSeconds(0.5f);
+
+        Assert.AreEqual(playerRB2D.velocity, Vector2.right * 10);
+    }
+
+    [UnityTest]
+    public IEnumerator PlayerMovementTest_PlayerTracksTrainMovementWhenAbove()
+    {
+        GameObject trainPrefab = Resources.Load<GameObject>("Main Train Object");
+        GameObject train = GameObject.Instantiate(playerPrefab, new Vector3(100, 100, 100), Quaternion.identity);
+
+        player.transform.position = new Vector3(100, 130, 100);
+
+        Rigidbody2D trainRB2D = train.GetComponent<Rigidbody2D>();
+        trainRB2D.gravityScale = 0;
+        trainRB2D.velocity = Vector2.right * 10;
+
+        yield return new WaitForSeconds(0.5f);
+
+        Assert.AreEqual(playerRB2D.velocity, Vector2.right * 10);
+    }
+
+    [UnityTest]
+    public IEnumerator PlayerMovementTest_PlayerDoesNotTrackTrainMovementWhenNotOn()
+    {
+        GameObject trainPrefab = Resources.Load<GameObject>("Main Train Object");
+        GameObject train = GameObject.Instantiate(playerPrefab, new Vector3(100, 100, 100), Quaternion.identity);
+
+        player.transform.position = new Vector3(0, 0, 0);
+
+        Rigidbody2D trainRB2D = train.GetComponent<Rigidbody2D>();
+        trainRB2D.gravityScale = 0;
+        trainRB2D.velocity = Vector2.right * 10;
+
+        yield return new WaitForSeconds(0.5f);
+
+        Assert.AreEqual(playerRB2D.velocity, Vector2.zero);
     }
 }
