@@ -298,6 +298,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3958872740007505673, guid: b7effd18d10bc4147bfac03a2698b31a, type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3958872740007505675, guid: b7effd18d10bc4147bfac03a2698b31a, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -370,6 +374,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trainData: {fileID: 0}
+  trainSpeed: 0
 --- !u!850595691 &857453821
 LightingSettings:
   m_ObjectHideFlags: 0

@@ -1,8 +1,6 @@
 using NUnit.Framework;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.TestTools;
 
 public class TrainMovementTests
@@ -29,7 +27,9 @@ public class TrainMovementTests
 
         player = GameObject.Instantiate(playerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
         train = GameObject.Instantiate(trainPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        train.GetComponent<Rigidbody2D>().gravityScale = 0;
         trainMovementScript = train.GetComponent<TrainMovementScript>();
+        trainMovementScript.trainData.SetTrainSpeed(0);
     }
 
     [UnityTest]

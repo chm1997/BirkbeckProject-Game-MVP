@@ -1141,7 +1141,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 1000
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -1149,7 +1149,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 7
+  m_Constraints: 4
 --- !u!114 &4644887921422766462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1163,6 +1163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trainData: {fileID: 11400000, guid: 4833de12f16e5a74db67ecde3ed066c3, type: 2}
+  trainSpeed: 0
 --- !u!1 &3958872740765659540
 GameObject:
   m_ObjectHideFlags: 0
@@ -2518,6 +2519,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7424930826109340880, guid: 5ed2adb959afedb41b78e5eee57ef1ae, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7751335348045757142, guid: 5ed2adb959afedb41b78e5eee57ef1ae, type: 3}
       propertyPath: m_Name
       value: EngineThingy
@@ -2592,6 +2597,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7424930826109340880, guid: 5ed2adb959afedb41b78e5eee57ef1ae, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7751335348045757142, guid: 5ed2adb959afedb41b78e5eee57ef1ae, type: 3}
       propertyPath: m_Name
       value: EngineThingy (2)
@@ -2661,6 +2670,10 @@ PrefabInstance:
     - target: {fileID: 984532624063563464, guid: 5ed2adb959afedb41b78e5eee57ef1ae, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7424930826109340880, guid: 5ed2adb959afedb41b78e5eee57ef1ae, type: 3}
+      propertyPath: m_Constraints
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7751335348045757142, guid: 5ed2adb959afedb41b78e5eee57ef1ae, type: 3}
       propertyPath: m_Name

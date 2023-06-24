@@ -3,90 +3,78 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New TrainData", menuName = "Train Data", order = 102)]
 public class TrainDataScriptableObject : ScriptableObject
 {
-    public int trainSpeed;
-    private int maxTrainSpeed;
+    private float trainSpeed = 0;
+    private float maxTrainSpeed;
 
-    private int trainFuel;
-    private int maxTrainFuel;
+    private float trainFuel;
+    private float maxTrainFuel;
 
-    private int trainHealth;
-    private int maxTrainHealth;
+    private float trainHealth;
+    private float maxTrainHealth;
 
-    public int GetTrainSpeed()
+    public float GetTrainSpeed()
     {
         return trainSpeed;
     }
-    public void SetTrainSpeed(int incomingHealth)
+    public void SetTrainSpeed(float incomingHealth)
     {
         trainSpeed = incomingHealth;
     }
-    public void UpdateTrainSpeed(int incomingChange)
+    public void UpdateTrainSpeed(float incomingChange)
     {
         trainSpeed += incomingChange;
     }
 
-    public int GetMaxTrainSpeed()
+    public float GetMaxTrainSpeed()
     {
         return maxTrainSpeed;
     }
-    public void SetMaxTrainSpeed(int incomingHealth)
+    public void SetMaxTrainSpeed(float incomingHealth)
     {
         maxTrainSpeed = incomingHealth;
     }
-    public void UpdateMaxTrainSpeed(int incomingChange)
-    {
-        maxTrainSpeed += incomingChange;
-    }
 
-    public int GetTrainFuel()
+    public float GetTrainFuel()
     {
         return trainFuel;
     }
-    public void SetTrainFuel(int incomingHealth)
+    public void SetTrainFuel(float incomingHealth)
     {
         trainFuel = incomingHealth;
     }
-    public void UpdateTrainFuel(int incomingChange)
+    public void UpdateTrainFuel(float incomingChange)
     {
         trainFuel += incomingChange;
     }
 
-    public int GetMaxTrainFuel()
+    public float GetMaxTrainFuel()
     {
         return maxTrainFuel;
     }
-    public void SetMaxTrainFuel(int incomingHealth)
+    public void SetMaxTrainFuel(float incomingHealth)
     {
         maxTrainFuel = incomingHealth;
     }
-    public void UpdateMaxTrainFuel(int incomingChange)
-    {
-        maxTrainFuel += incomingChange;
-    }
 
-    public int GetTrainHealth()
+    public float GetTrainHealth()
     {
         return trainHealth;
     }
-    public void SetTrainHealth(int incomingHealth)
+    public void SetTrainHealth(float incomingHealth)
     {
         trainHealth = incomingHealth;
     }
-    public void UpdateTrainHealth(int incomingChange)
+    public void UpdateTrainHealth(float incomingChange)
     {
         trainHealth += incomingChange;
     }
 
-    public int GetMaxTrainHealth()
+    public float GetMaxTrainHealth()
     {
         return maxTrainHealth;
     }
-    public void SetMaxTrainHealth(int incomingHealth)
+    public void SetMaxTrainHealth(float incomingHealth)
     {
         maxTrainHealth = incomingHealth;
-    }
-    public void UpdateMaxTrainHealth(int incomingChange)
-    {
-        maxTrainHealth += incomingChange;
     }
 }
