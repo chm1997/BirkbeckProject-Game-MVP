@@ -13,13 +13,11 @@ public class PlayerMovementTests : InputTestFixture
     PlayerMovement playerMovement;
 
     Keyboard keyboard;
-    Mouse mouse;
 
     public override void Setup()
     {
         base.Setup();
         keyboard = InputSystem.AddDevice<Keyboard>();
-        mouse = InputSystem.AddDevice<Mouse>();
     }
 
     [SetUp]
