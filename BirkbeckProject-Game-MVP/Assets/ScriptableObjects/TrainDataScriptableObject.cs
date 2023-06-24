@@ -3,7 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New TrainData", menuName = "Train Data", order = 102)]
 public class TrainDataScriptableObject : ScriptableObject
 {
-    private int trainSpeed;
+    public int trainSpeed;
     private int maxTrainSpeed;
 
     private int trainFuel;

@@ -7,6 +7,15 @@ public class InteractableTrainSteeringWheel : MonoBehaviour, IInteractableObject
 
     public void RecieveMessage(string message)
     {
-
+        if (isOn)
+        {
+            trainData.SetTrainSpeed(0); 
+            isOn = false;
+        }
+        else
+        {
+            trainData.SetTrainSpeed(100);
+            isOn = true;
+        }
     }
 }
