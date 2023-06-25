@@ -14,7 +14,7 @@ public class Capsule : MonoBehaviour, IDamagingObject
 
     private void Start()
     {
-        // Set up required variables
+        // Set up variables required for class functionality
         isDamaging = true;
         damageValue = 1;
     }

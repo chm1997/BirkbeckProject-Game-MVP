@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerScript : MonoBehaviour
 {
     /// <summary>
-    /// This class represents the player objects general states and behaviours
+    /// This class represents the player objects' general states and behaviours
     /// Required Fields:
     /// PlayerHealth playerHealth: a Scriptable Object containing an int variable representing player health
     /// PlayerEnergy playerEnergy: a Scriptable Object containing an int variable representing player energy
@@ -18,7 +18,7 @@ public class PlayerScript : MonoBehaviour
 
     private void Awake()
     {
-        // Set up required variables
+        // Set up variables required for class functionality
         playerHealth.SetPlayerHealth(5);
         playerEnergy.SetPlayerEnergy(100);
         energyRegenVariable = 5f;

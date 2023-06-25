@@ -11,7 +11,7 @@ public class GroundScript : MonoBehaviour
 
     private void Start()
     {
-        // Set up required variables
+        // Set up variables required for class functionality
         playerTransform = GameObject.FindWithTag("Player").transform;
 
         CalculateTextureSize();

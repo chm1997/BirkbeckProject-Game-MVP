@@ -12,7 +12,7 @@ public class CrosshairScript : MonoBehaviour
 
     private void Start()
     {
-        // Set up required variables
+        // Set up variables required for class functionality
         playerInput = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>().playerInputs;
         Cursor.visible = false;
     }

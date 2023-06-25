@@ -26,7 +26,7 @@ public class PlayerAnimation : MonoBehaviour
 
     void Start()
     {
-        // Set up required variables
+        // Set up variables required for class functionality
         playerInputs = GetComponent<PlayerMovement>().playerInputs;
         isGrounded = false;
         isWalking = false;

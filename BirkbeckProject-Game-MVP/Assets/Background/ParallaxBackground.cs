@@ -17,7 +17,7 @@ public class ParallaxBackground : MonoBehaviour
 
     private void Start()
     {
-        // Set up required variables
+        // Set up variables required for class functionality
         cameraTransform = Camera.main.transform;
         lastCameraPosition = cameraTransform.position;
 
