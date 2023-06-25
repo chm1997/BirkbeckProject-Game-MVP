@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -22,8 +21,8 @@ public class GroundTests
     [TearDown]
     public void GroundTest_TearDown()
     {
-        UnityEngine.Object.Destroy(player);
-        UnityEngine.Object.Destroy(ground);
+        Object.Destroy(player);
+        Object.Destroy(ground);
     }
 
 
