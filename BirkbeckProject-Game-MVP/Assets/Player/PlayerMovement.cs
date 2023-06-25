@@ -1,8 +1,5 @@
-using log4net.Util;
 using System.Collections;
-using System.Runtime.CompilerServices;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -32,6 +29,11 @@ public class PlayerMovement : MonoBehaviour
 
     private bool shortGroundHop;
 
+    public GameObject train;
+    public Rigidbody2D trainRB2D;
+
+    public TrainDataScriptableObject trainData;
+
     private void Awake()
     {
         playerInputs = new PlayerInputs();
@@ -45,9 +47,16 @@ public class PlayerMovement : MonoBehaviour
             if (pc2d.transform.parent != this.transform) continue;
             jumpCollider = pc2d;
         }
+
         jumpCollider.enabled = false;
         groundCollider.enabled = true;
         shortGroundHop = false;
+    }
+
+    private void Start()
+    {
+        train = GameObject.FindWithTag("Train");
+        if (train != null) trainRB2D = train.GetComponent<Rigidbody2D>();
     }
 
     private void Update()
@@ -77,7 +86,9 @@ public class PlayerMovement : MonoBehaviour
         // This method calculates whether sideways movement is being input and moves the player object in response to it
         moveInput = playerInputs.PlayerInputMap.Movement.ReadValue<Vector2>();
         float verticalMomentum = rb2D.velocity.y;
-        rb2D.velocity = new Vector2(moveInput.x * _speed, verticalMomentum);
+        Vector2 inputVelocity = new Vector2(moveInput.x * _speed, verticalMomentum);
+        Vector2 trainVelocity = TrackTrainMovement();
+        rb2D.velocity = inputVelocity + trainVelocity; ;
     }
 
     private void ModifySpeed()
@@ -89,6 +100,18 @@ public class PlayerMovement : MonoBehaviour
             playerEnergy.UpdatePlayerEnergy(-20 * Time.deltaTime);
         }
         else _speed = 10;
+    }
+
+    private Vector2 TrackTrainMovement()
+    {
+        // This method returns a vector of the movement of the train if the player is in or above the train
+        Vector2 returnVector;
+        if (trainRB2D != null & trainData.GetPlayerAboveTrain())
+        {
+            returnVector = trainRB2D.velocity;
+        }
+        else returnVector = Vector2.zero;
+        return returnVector;
     }
 
     private void HandleCollidersOnJump()

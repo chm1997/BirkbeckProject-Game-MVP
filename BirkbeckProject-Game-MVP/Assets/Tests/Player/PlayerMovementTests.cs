@@ -7,26 +7,26 @@ using UnityEngine.TestTools;
 [TestFixture]
 public class PlayerMovementTests : InputTestFixture
 {
+    
     GameObject playerPrefab = Resources.Load<GameObject>("Player");
-
     GameObject player;
     PlayerMovement playerMovement;
+    Rigidbody2D playerRB2D;
 
     Keyboard keyboard;
-    Mouse mouse;
 
     public override void Setup()
     {
         base.Setup();
         keyboard = InputSystem.AddDevice<Keyboard>();
-        mouse = InputSystem.AddDevice<Mouse>();
     }
 
     [SetUp]
     public void PlayerMovementTest_Setup()
     {
         player = GameObject.Instantiate(playerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-        player.GetComponent<Rigidbody2D>().gravityScale = 0;
+        playerRB2D = player.GetComponent<Rigidbody2D>();
+        playerRB2D.gravityScale = 0;
         playerMovement = player.GetComponent<PlayerMovement>();
     }
 
@@ -34,6 +34,7 @@ public class PlayerMovementTests : InputTestFixture
     public void PlayerMovementTest_TearDown()
     {
         Object.Destroy(player);
+        Object.Destroy(playerRB2D);
         Object.Destroy(playerMovement);
     }
 
