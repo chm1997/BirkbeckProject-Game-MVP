@@ -12,6 +12,9 @@ public class TrainDataScriptableObject : ScriptableObject
     private float trainHealth;
     private float maxTrainHealth;
 
+    private bool playerInTrain;
+    private bool playerAboveTrain;
+
     public float GetTrainSpeed()
     {
         return trainSpeed;
@@ -76,5 +79,25 @@ public class TrainDataScriptableObject : ScriptableObject
     public void SetMaxTrainHealth(float incomingHealth)
     {
         maxTrainHealth = incomingHealth;
+    }
+
+    public bool GetPlayerInTrain()
+    {
+        return playerInTrain;
+    }
+
+    public void SetPlayerInTrain(bool incomingBool)
+    {
+        playerInTrain = incomingBool;
+    }
+
+    public bool GetPlayerAboveTrain()
+    {
+        return playerAboveTrain;
+    }
+
+    public void SetPlayerAboveTrain(bool incomingBool)
+    {
+        playerAboveTrain = incomingBool;
     }
 }

@@ -525,8 +525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3b1ea1ae1d2bf74d9ff2ddb8c43ba01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpriteRenderer: {fileID: 0}
-  playerPosForContains: {x: 0, y: 0, z: 0}
+  trainData: {fileID: 11400000, guid: 4833de12f16e5a74db67ecde3ed066c3, type: 2}
 --- !u!1 &2094492498812474977
 GameObject:
   m_ObjectHideFlags: 0
@@ -1181,6 +1180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trainData: {fileID: 11400000, guid: 4833de12f16e5a74db67ecde3ed066c3, type: 2}
+  player: {fileID: 6427193437502892599, guid: feaff5f5078d74440bedeaa29b1d2ef2, type: 3}
 --- !u!1 &3958872740765659540
 GameObject:
   m_ObjectHideFlags: 0

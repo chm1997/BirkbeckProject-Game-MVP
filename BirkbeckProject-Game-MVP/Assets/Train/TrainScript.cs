@@ -6,9 +6,37 @@ public class TrainScript : MonoBehaviour
 {
     public TrainDataScriptableObject trainData;
 
-    void Awake()
+    SpriteRenderer trainFrontSpriteRenderer;
+    private SpriteRenderer playerSpriteRenderer;
+    private Vector3 playerPosForContains;
+    private Vector3 playerPosForAbove;
+
+    private void Awake()
     {
         TrainDataSetUp();   
+    }
+
+    private void Start()
+    {
+        trainFrontSpriteRenderer = this.gameObject.transform.Find("TrainMainSpriteObject").transform.Find("TrainFrontSprite").GetComponent<SpriteRenderer>();
+        playerSpriteRenderer = GameObject.FindWithTag("Player").GetComponent<SpriteRenderer>();
+    }
+
+    private void Update()
+    {
+        TrackPlayerPositionInRelationToTrain();
+    }
+
+    private void TrackPlayerPositionInRelationToTrain()
+    {
+        if (playerSpriteRenderer != null & trainFrontSpriteRenderer != null)
+        {
+            playerPosForContains = new Vector3(playerSpriteRenderer.bounds.center.x, playerSpriteRenderer.bounds.center.y, -2);
+            playerPosForAbove = new Vector3(playerSpriteRenderer.bounds.center.x, trainFrontSpriteRenderer.bounds.center.y, -2);
+
+            trainData.SetPlayerInTrain(trainFrontSpriteRenderer.bounds.Contains(playerPosForContains));
+            trainData.SetPlayerAboveTrain(trainFrontSpriteRenderer.bounds.Contains(playerPosForAbove));
+        }
     }
 
     private void TrainDataSetUp()
@@ -21,5 +49,8 @@ public class TrainScript : MonoBehaviour
 
         trainData.SetMaxTrainSpeed(100);
         trainData.SetTrainSpeed(0);
+
+        trainData.SetPlayerInTrain(false);
+        trainData.SetPlayerAboveTrain(false);
     }
 }

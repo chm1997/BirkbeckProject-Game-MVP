@@ -319,6 +319,7 @@ MonoBehaviour:
   groundCollider: {fileID: 0}
   train: {fileID: 0}
   trainRB2D: {fileID: 0}
+  trainData: {fileID: 11400000, guid: 4833de12f16e5a74db67ecde3ed066c3, type: 2}
 --- !u!114 &7267728745596200687
 MonoBehaviour:
   m_ObjectHideFlags: 0

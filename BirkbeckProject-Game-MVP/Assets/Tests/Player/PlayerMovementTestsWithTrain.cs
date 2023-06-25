@@ -23,7 +23,7 @@ public class PlayerMovementTestsWithTrain
 
         yield return null;
 
-        train = GameObject.Instantiate(trainPrefab, new Vector3(100, 100, 100), Quaternion.identity);
+        train = GameObject.Instantiate(trainPrefab, new Vector3(100, 100, 0), Quaternion.identity);
         train.GetComponent<Rigidbody2D>().gravityScale = 0;
 
         player = GameObject.Instantiate(playerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
@@ -34,12 +34,10 @@ public class PlayerMovementTestsWithTrain
     [UnityTest]
     public IEnumerator PlayerMovementTest_PlayerTracksTrainMovementWhenOn()
     {
-        player.transform.position = new Vector3(100, 100, 100);
+        player.transform.position = new Vector3(100, 100, 0);
         train.GetComponent<TrainScript>().trainData.SetTrainSpeed(50);
 
-        yield return new WaitForSeconds(0.5f);
-
-        Debug.Log(train.GetComponent<Rigidbody2D>().velocity);
+        yield return new WaitForSeconds(1f);
 
         Assert.Greater(playerRB2D.velocity.x, 5);
     }
@@ -47,10 +45,11 @@ public class PlayerMovementTestsWithTrain
     [UnityTest]
     public IEnumerator PlayerMovementTest_PlayerTracksTrainMovementWhenAbove()
     {
-        player.transform.position = new Vector3(200, 130, 100);
+        player.transform.position = new Vector3(100, 130, 0);
         train.GetComponent<TrainScript>().trainData.SetTrainSpeed(50);
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
+
         Assert.Greater(playerRB2D.velocity.x, 5);
     }
 
@@ -60,7 +59,7 @@ public class PlayerMovementTestsWithTrain
         player.transform.position = new Vector3(0, 0, 0);
         train.GetComponent<TrainScript>().trainData.SetTrainSpeed(50);
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         Assert.AreEqual(playerRB2D.velocity, Vector2.zero);
     }
 }

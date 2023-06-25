@@ -1,8 +1,5 @@
-using log4net.Util;
 using System.Collections;
-using System.Runtime.CompilerServices;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -34,6 +31,8 @@ public class PlayerMovement : MonoBehaviour
 
     public GameObject train;
     public Rigidbody2D trainRB2D;
+
+    public TrainDataScriptableObject trainData;
 
     private void Awake()
     {
@@ -88,10 +87,8 @@ public class PlayerMovement : MonoBehaviour
         moveInput = playerInputs.PlayerInputMap.Movement.ReadValue<Vector2>();
         float verticalMomentum = rb2D.velocity.y;
         Vector2 inputVelocity = new Vector2(moveInput.x * _speed, verticalMomentum);
-        Vector2 trainVelocity;
-        if (trainRB2D != null) trainVelocity = trainRB2D.velocity;
-        else trainVelocity = Vector2.zero;
-        rb2D.velocity = inputVelocity + trainVelocity;
+        Vector2 trainVelocity = TrackTrainMovement();
+        rb2D.velocity = inputVelocity + trainVelocity; ;
     }
 
     private void ModifySpeed()
@@ -103,6 +100,18 @@ public class PlayerMovement : MonoBehaviour
             playerEnergy.UpdatePlayerEnergy(-20 * Time.deltaTime);
         }
         else _speed = 10;
+    }
+
+    private Vector2 TrackTrainMovement()
+    {
+        // This method returns a vector of the movement of the train if the player is in or above the train
+        Vector2 returnVector;
+        if (trainRB2D != null & trainData.GetPlayerAboveTrain())
+        {
+            returnVector = trainRB2D.velocity;
+        }
+        else returnVector = Vector2.zero;
+        return returnVector;
     }
 
     private void HandleCollidersOnJump()
