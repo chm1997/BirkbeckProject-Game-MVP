@@ -9,13 +9,22 @@ public class HUDFuelScript : MonoBehaviour
     /// TMP_Text textObject: A text object used to display words on screen
     /// </summary>
 
-    public TrainDataScriptableObject trainData;
-    public TMP_Text textObject;
+    [SerializeField]
+    internal TrainDataScriptableObject trainData;
+    [SerializeField]
+    internal TMP_Text textObject;
+
     private string textString;
-    public int currentFuel;
+    private int currentFuel;
 
     private void Update()
     {
+        UpdateFuelText();
+    }
+
+    private void UpdateFuelText()
+    {
+        // This method updates the text object to match the trainData object
         currentFuel = (int)trainData.GetTrainFuel();
         textString = "Fuel: " + currentFuel.ToString();
         textObject.text = textString;

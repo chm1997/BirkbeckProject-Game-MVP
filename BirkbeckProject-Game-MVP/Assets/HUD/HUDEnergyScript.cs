@@ -10,13 +10,22 @@ public class HUDEnergyScript : MonoBehaviour
     /// TMP_Text textObject: A text object used to display words on screen
     /// </summary>
 
-    public PlayerEnergy playerEnergy;
-    public TMP_Text textObject;
+    [SerializeField]
+    internal PlayerEnergy playerEnergy;
+    [SerializeField]
+    internal TMP_Text textObject;
+
     private string textString;
     private float currentEnergy;
 
     private void Update()
     {
+        UpdateEnergyText();
+    }
+
+    private void UpdateEnergyText()
+    {
+        // This method updates the text object to match the playerEnergy object
         currentEnergy = playerEnergy.GetPlayerEnergy();
         textString = "Energy: " + ((int)(currentEnergy)).ToString();
         textObject.text = textString;

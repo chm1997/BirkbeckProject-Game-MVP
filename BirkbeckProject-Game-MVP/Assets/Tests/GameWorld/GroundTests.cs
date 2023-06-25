@@ -25,7 +25,6 @@ public class GroundTests
         Object.Destroy(ground);
     }
 
-
     [UnityTest]
     public IEnumerator GroundTest_Stationary()
     {

@@ -34,7 +34,6 @@ public class GroundScript : MonoBehaviour
         // This method transforms the assigned objects' towards the player on the x axis, offset by texture width to prevent visible stuttering
         if (Mathf.Abs(playerTransform.position.x - transform.position.x) >= textureUnitSizeX)
         {
-            Debug.Log(new Vector2(playerTransform.position.x, transform.position.y));
             transform.position = new Vector2(playerTransform.position.x, transform.position.y);
         }
     }
