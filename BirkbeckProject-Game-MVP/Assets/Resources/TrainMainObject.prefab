@@ -1105,6 +1105,7 @@ GameObject:
   - component: {fileID: 3958872740007505675}
   - component: {fileID: 3958872740007505673}
   - component: {fileID: 4644887921422766462}
+  - component: {fileID: 142947621405370248}
   m_Layer: 0
   m_Name: TrainMainObject
   m_TagString: Train
@@ -1164,6 +1165,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trainData: {fileID: 11400000, guid: 4833de12f16e5a74db67ecde3ed066c3, type: 2}
   trainSpeed: 0
+  targetVelocity: {x: 0, y: 0}
+  acceleration: {x: 0, y: 0}
+  trainSpeedActual: {x: 0, y: 0}
+--- !u!114 &142947621405370248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3958872740007505679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 708218e1221b59b44a081c2aa021d4f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trainData: {fileID: 11400000, guid: 4833de12f16e5a74db67ecde3ed066c3, type: 2}
 --- !u!1 &3958872740765659540
 GameObject:
   m_ObjectHideFlags: 0

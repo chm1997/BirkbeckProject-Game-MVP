@@ -359,24 +359,6 @@ PrefabInstance:
     - {fileID: 720299348696010294, guid: b7effd18d10bc4147bfac03a2698b31a, type: 3}
     - {fileID: 6959826563125031727, guid: b7effd18d10bc4147bfac03a2698b31a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b7effd18d10bc4147bfac03a2698b31a, type: 3}
---- !u!1 &441977029 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3958872740007505679, guid: b7effd18d10bc4147bfac03a2698b31a, type: 3}
-  m_PrefabInstance: {fileID: 441977028}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &441977034
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 441977029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 708218e1221b59b44a081c2aa021d4f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  trainData: {fileID: 11400000, guid: 4833de12f16e5a74db67ecde3ed066c3, type: 2}
 --- !u!850595691 &857453821
 LightingSettings:
   m_ObjectHideFlags: 0

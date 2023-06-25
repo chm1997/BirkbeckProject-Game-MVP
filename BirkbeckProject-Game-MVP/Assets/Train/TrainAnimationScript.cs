@@ -16,7 +16,10 @@ public class TrainAnimationScript : MonoBehaviour
 
     private void Update()
     {
-        playerPosForContains = new Vector3(playerSpriteRenderer.bounds.center.x, playerSpriteRenderer.bounds.center.y, -2);
-        trainFrontSpriteRenderer.enabled = !trainFrontSpriteRenderer.bounds.Contains(playerPosForContains);
+        if (playerSpriteRenderer != null & trainFrontSpriteRenderer != null)
+        {
+            playerPosForContains = new Vector3(playerSpriteRenderer.bounds.center.x, playerSpriteRenderer.bounds.center.y, -2);
+            trainFrontSpriteRenderer.enabled = !trainFrontSpriteRenderer.bounds.Contains(playerPosForContains);
+        }
     }
 }

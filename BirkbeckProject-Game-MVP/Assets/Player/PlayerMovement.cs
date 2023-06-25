@@ -32,6 +32,9 @@ public class PlayerMovement : MonoBehaviour
 
     private bool shortGroundHop;
 
+    public GameObject train;
+    public Rigidbody2D trainRB2D;
+
     private void Awake()
     {
         playerInputs = new PlayerInputs();
@@ -45,9 +48,16 @@ public class PlayerMovement : MonoBehaviour
             if (pc2d.transform.parent != this.transform) continue;
             jumpCollider = pc2d;
         }
+
         jumpCollider.enabled = false;
         groundCollider.enabled = true;
         shortGroundHop = false;
+    }
+
+    private void Start()
+    {
+        train = GameObject.FindWithTag("Train");
+        if (train != null) trainRB2D = train.GetComponent<Rigidbody2D>();
     }
 
     private void Update()
@@ -77,7 +87,11 @@ public class PlayerMovement : MonoBehaviour
         // This method calculates whether sideways movement is being input and moves the player object in response to it
         moveInput = playerInputs.PlayerInputMap.Movement.ReadValue<Vector2>();
         float verticalMomentum = rb2D.velocity.y;
-        rb2D.velocity = new Vector2(moveInput.x * _speed, verticalMomentum);
+        Vector2 inputVelocity = new Vector2(moveInput.x * _speed, verticalMomentum);
+        Vector2 trainVelocity;
+        if (trainRB2D != null) trainVelocity = trainRB2D.velocity;
+        else trainVelocity = Vector2.zero;
+        rb2D.velocity = inputVelocity + trainVelocity;
     }
 
     private void ModifySpeed()
