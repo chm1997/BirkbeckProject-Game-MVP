@@ -1,5 +1,4 @@
 using UnityEngine;
-
 public class InteractableHealthPack : MonoBehaviour, IInteractableObject
 {
     public PlayerHealth playerHealth;
