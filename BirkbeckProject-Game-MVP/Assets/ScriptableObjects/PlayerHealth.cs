@@ -12,7 +12,7 @@ public class PlayerHealth : ScriptableObject
     {
         return playerHealth;
     }
-    public void SetPlayerHealth(int incomingHealth)
+    public void SetTrainFuel(int incomingHealth)
     {
         playerHealth = incomingHealth;
     }
