@@ -4,26 +4,30 @@ public class PlayerAnimation : MonoBehaviour
 {
     /// <summary>
     /// This class controls the animations of the player object in response to inputs handled by the input system
+    /// Required Fields:
+    /// PlayerEnergyScriptableObject playerEnergy: a Scriptable Object containing an int variable representing player energy
     /// </summary>
 
-    public bool isGrounded;
-    public bool isWalking;
-    public bool speedWalking;
-    public bool isAttacking;
-    public Vector2 moveInput;
-    public PlayerInputs playerInputs;
-    public PlayerMovement playerMovement;
-    public float currentEnergy;
+    [SerializeField]
+    internal PlayerEnergy playerEnergy;
 
-    public PlayerEnergy playerEnergy;
+    private Animator animator;
+    private SpriteRenderer spriteRenderer;
+    private PlayerInputs playerInputs;
 
-    Animator animator;
-    SpriteRenderer spriteRenderer;
+    private Vector2 moveInput;
+
+    private float currentEnergy;
+
+    internal bool isGrounded;
+    private bool isWalking;
+    private bool speedWalking;
+    private bool isAttacking;
 
     void Start()
     {
+        // Set up required variables
         playerInputs = GetComponent<PlayerMovement>().playerInputs;
-        playerMovement = GetComponent<PlayerMovement>();
         isGrounded = false;
         isWalking = false;
         speedWalking = false;

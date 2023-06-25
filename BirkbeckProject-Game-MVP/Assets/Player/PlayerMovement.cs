@@ -6,36 +6,44 @@ public class PlayerMovement : MonoBehaviour
     /// <summary>
     /// This class controls the movement of the player object in response to inputs handled by the input system
     /// Required Fields:
-    /// float _speed: a variavle representing the speed of horizontal movement
-    /// float _jumpForce: a variable representing the height of jumps
     /// PlayerHealth playerHealth: a Scriptable Object containing an int variable representing player health
     /// PlayerEnergy playerEnergy: a Scriptable Object containing an int variable representing player energy
+    /// TrainDataScriptableObject trainData: a Scriptable Object containing an float variable representing train fuel
+    /// float _speed: a variavle representing the speed of horizontal movement
+    /// float _jumpForce: a variable representing the height of jumps
     /// </summary>
 
-    public float _speed; //Recommended: 10
     [SerializeField]
-    private float _jumpForce; //Recommended: 750
+    internal PlayerHealth playerHealth;
     [SerializeField]
-    private PlayerHealth playerHealth;
-    public PlayerEnergy playerEnergy;
+    internal PlayerEnergy playerEnergy;
+    [SerializeField]
+    internal TrainDataScriptableObject trainData;
 
-    public bool isGrounded;
-    public Vector2 moveInput;
+    [SerializeField]
+    internal float _speed; //Recommended: 10
+    [SerializeField]
+    internal float _jumpForce; //Recommended: 750
+
+    private GameObject train;
+
+    private Rigidbody2D trainRB2D;
     private Rigidbody2D rb2D;
-    public PlayerInputs playerInputs;
 
-    public PolygonCollider2D jumpCollider;
-    public PolygonCollider2D groundCollider;
+    internal PlayerInputs playerInputs;
 
+    internal PolygonCollider2D jumpCollider;
+    internal PolygonCollider2D groundCollider;
+
+    private Vector2 moveInput;
+
+    internal bool isGrounded;
     private bool shortGroundHop;
 
-    public GameObject train;
-    public Rigidbody2D trainRB2D;
-
-    public TrainDataScriptableObject trainData;
 
     private void Awake()
     {
+        //Set up required variables
         playerInputs = new PlayerInputs();
         rb2D = GetComponent<Rigidbody2D>();
         isGrounded = false;
@@ -55,6 +63,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        //Set up required variables
         train = GameObject.FindWithTag("Train");
         if (train != null) trainRB2D = train.GetComponent<Rigidbody2D>();
     }
@@ -88,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
         float verticalMomentum = rb2D.velocity.y;
         Vector2 inputVelocity = new Vector2(moveInput.x * _speed, verticalMomentum);
         Vector2 trainVelocity = TrackTrainMovement();
-        rb2D.velocity = inputVelocity + trainVelocity; ;
+        rb2D.velocity = inputVelocity + trainVelocity;
     }
 
     private void ModifySpeed()
