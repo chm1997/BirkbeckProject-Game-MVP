@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
-        //Set up required variables
+        // Set up variables required for class functionality
         playerInputs = new PlayerInputs();
         rb2D = GetComponent<Rigidbody2D>();
         isGrounded = false;
@@ -63,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        //Set up required variables
+        // Set up variables required for class functionality
         train = GameObject.FindWithTag("Train");
         if (train != null) trainRB2D = train.GetComponent<Rigidbody2D>();
     }
