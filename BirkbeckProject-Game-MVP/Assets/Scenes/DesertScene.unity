@@ -1323,6 +1323,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5041957061724057346, guid: feaff5f5078d74440bedeaa29b1d2ef2, type: 3}
+      propertyPath: m_Size.x
+      value: 1.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 5041957061724057346, guid: feaff5f5078d74440bedeaa29b1d2ef2, type: 3}
+      propertyPath: m_Size.y
+      value: 2.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 5041957061724057346, guid: feaff5f5078d74440bedeaa29b1d2ef2, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1298184555, guid: 901639f1dddd7b04aa3c943786d274d5, type: 3}
+    - target: {fileID: 5041957061724057346, guid: feaff5f5078d74440bedeaa29b1d2ef2, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6427193436287411652, guid: feaff5f5078d74440bedeaa29b1d2ef2, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1368,12 +1384,24 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6427193436287411665, guid: feaff5f5078d74440bedeaa29b1d2ef2, type: 3}
+      propertyPath: _jumpForce
+      value: 900
+      objectReference: {fileID: 0}
+    - target: {fileID: 6427193436287411665, guid: feaff5f5078d74440bedeaa29b1d2ef2, type: 3}
       propertyPath: platformLayerMask.m_Bits
       value: 128
       objectReference: {fileID: 0}
     - target: {fileID: 6427193437502892599, guid: feaff5f5078d74440bedeaa29b1d2ef2, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6664250517837304441, guid: feaff5f5078d74440bedeaa29b1d2ef2, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 6664250517837304441, guid: feaff5f5078d74440bedeaa29b1d2ef2, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 2.53
       objectReference: {fileID: 0}
     - target: {fileID: 7267728745596200687, guid: feaff5f5078d74440bedeaa29b1d2ef2, type: 3}
       propertyPath: platformLayerMask.m_Bits
