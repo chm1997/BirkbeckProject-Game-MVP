@@ -34,8 +34,7 @@ public class SteeringWheelTests
     [UnityTest]
     public IEnumerator SteeringWheelTest_TrainSpeedIncreaseFromOff()
     {
-        tranSteeringWheelScript.isOn = false;
-        tranSteeringWheelScript.trainData.SetTrainSpeed(10);
+        tranSteeringWheelScript.trainData.SetTrainSpeed(0);
         trainSteeringWheel.SendMessage("RecieveMessage", "");
         yield return null;
         Assert.Greater(tranSteeringWheelScript.trainData.GetTrainSpeed(), 10);
@@ -44,7 +43,6 @@ public class SteeringWheelTests
     [UnityTest]
     public IEnumerator SteeringWheelTest_TrainSpeedDecreaseFromOn()
     {
-        tranSteeringWheelScript.isOn = true;
         tranSteeringWheelScript.trainData.SetTrainSpeed(10);
         trainSteeringWheel.SendMessage("RecieveMessage", "");
         yield return null;

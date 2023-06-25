@@ -12,11 +12,11 @@ public class HUDFuelScript : MonoBehaviour
     public TrainDataScriptableObject trainData;
     public TMP_Text textObject;
     private string textString;
-    public float currentFuel;
+    public int currentFuel;
 
     private void Update()
     {
-        currentFuel = trainData.GetTrainFuel();
+        currentFuel = (int)trainData.GetTrainFuel();
         textString = "Fuel: " + currentFuel.ToString();
         textObject.text = textString;
     }

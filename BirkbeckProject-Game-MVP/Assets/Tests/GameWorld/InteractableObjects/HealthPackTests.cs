@@ -27,7 +27,7 @@ public class HealthPackTests
     [UnityTest]
     public IEnumerator HealthPackTest_UpdatesHealthOnMessage()
     {
-        packScript.playerHealth.SetTrainFuel(2);
+        packScript.playerHealth.SetPlayerHealth(2);
         pack.SendMessage("RecieveMessage", "");
         yield return null;
         Assert.Greater(packScript.playerHealth.GetPlayerHealth(), 2);

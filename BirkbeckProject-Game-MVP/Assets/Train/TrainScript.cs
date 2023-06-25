@@ -25,6 +25,7 @@ public class TrainScript : MonoBehaviour
     private void Update()
     {
         TrackPlayerPositionInRelationToTrain();
+        TrackTrainFuelUsage();
     }
 
     private void TrackPlayerPositionInRelationToTrain()
@@ -36,6 +37,18 @@ public class TrainScript : MonoBehaviour
 
             trainData.SetPlayerInTrain(trainFrontSpriteRenderer.bounds.Contains(playerPosForContains));
             trainData.SetPlayerAboveTrain(trainFrontSpriteRenderer.bounds.Contains(playerPosForAbove));
+        }
+    }
+
+    private void TrackTrainFuelUsage()
+    {
+        if (trainData.GetTrainSpeed() > 0)
+        {
+            if (trainData.GetTrainFuel() > 0)
+            {
+                trainData.UpdateTrainFuel(-1 * Time.deltaTime);
+            }
+            else trainData.SetTrainSpeed(0);
         }
     }
 

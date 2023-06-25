@@ -9,7 +9,7 @@ public class TrainAnimationTests
     GameObject playerPrefab = Resources.Load<GameObject>("Player");
 
     [SetUp]
-    public void PlayerAnimationTest_Setup()
+    public void TrainAnimationTest_Setup()
     {
         //Loop deletes all active game objects, required because child objects of TrainMainObject can persist
         foreach (GameObject o in Object.FindObjectsOfType<GameObject>())
@@ -45,5 +45,4 @@ public class TrainAnimationTests
 
         Assert.IsFalse(train.transform.Find("TrainMainSpriteObject").transform.Find("TrainFrontSprite").GetComponent<SpriteRenderer>().enabled);
     }
-
 }

@@ -15,7 +15,7 @@ public class PlayerScript : MonoBehaviour
 
     private void Awake()
     {
-        playerHealth.SetTrainFuel(5);
+        playerHealth.SetPlayerHealth(5);
         playerEnergy.SetPlayerEnergy(100);
         energyRegenVariable = 5f;
     }

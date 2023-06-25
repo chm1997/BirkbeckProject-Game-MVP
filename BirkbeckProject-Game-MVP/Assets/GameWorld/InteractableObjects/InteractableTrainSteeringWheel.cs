@@ -2,20 +2,17 @@ using UnityEngine;
 
 public class InteractableTrainSteeringWheel : MonoBehaviour, IInteractableObject
 {
-    public bool isOn = false;
     public TrainDataScriptableObject trainData;
 
     public void RecieveMessage(string message)
     {
-        if (isOn)
+        if (trainData.GetTrainSpeed() > 0)
         {
-            trainData.SetTrainSpeed(0); 
-            isOn = false;
+            trainData.SetTrainSpeed(0);
         }
         else
         {
             trainData.SetTrainSpeed(30);
-            isOn = true;
         }
     }
 }

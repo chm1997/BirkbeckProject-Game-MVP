@@ -6,7 +6,7 @@ using TMPro;
 
 public class FuelTextTests
 {
-    GameObject fuelTextPrefab = Resources.Load<GameObject>("Fuel Text Variant");
+    GameObject fuelTextPrefab = Resources.Load<GameObject>("Fuel Text");
     GameObject fuelText;
 
     [UnitySetUp]

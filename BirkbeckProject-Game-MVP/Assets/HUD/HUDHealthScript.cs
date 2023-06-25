@@ -10,14 +10,14 @@ public class HUDHealthScript : MonoBehaviour
     /// TMP_Text textObject: A text object used to display words on screen
     /// </summary>
 
-    public PlayerHealth trainData;
+    public PlayerHealth playerHealth;
     public TMP_Text textObject;
     private string textString;
     public int currentHealth;
 
     private void Update()
     {
-        currentHealth = trainData.GetPlayerHealth();
+        currentHealth = playerHealth.GetPlayerHealth();
         textString = "Health: " + currentHealth.ToString();
         textObject.text = textString;
     }
