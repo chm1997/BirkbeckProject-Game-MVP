@@ -10,13 +10,22 @@ public class HUDHealthScript : MonoBehaviour
     /// TMP_Text textObject: A text object used to display words on screen
     /// </summary>
 
-    public PlayerHealth playerHealth;
-    public TMP_Text textObject;
+    [SerializeField]
+    internal PlayerHealth playerHealth;
+    [SerializeField]
+    internal TMP_Text textObject;
+
     private string textString;
-    public int currentHealth;
+    private int currentHealth;
 
     private void Update()
     {
+        UpdateEnergyText();
+    }
+
+    private void UpdateEnergyText()
+    {
+        // This method updates the text object to match the playerHealth object
         currentHealth = playerHealth.GetPlayerHealth();
         textString = "Health: " + currentHealth.ToString();
         textObject.text = textString;

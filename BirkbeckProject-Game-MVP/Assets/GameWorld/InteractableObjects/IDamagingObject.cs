@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public interface IDamagingObject
 {
     public bool isDamaging { get; set; }

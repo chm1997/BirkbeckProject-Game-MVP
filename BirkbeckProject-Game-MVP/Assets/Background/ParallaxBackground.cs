@@ -8,7 +8,8 @@ public class ParallaxBackground : MonoBehaviour
     /// Vector2 parallaxEffectMultiplier: changes how much the object moves relative to the camera, giving the appearance of distance</param>
     /// </summary>
 
-    public Vector2 parallaxEffectMultiplier;
+    [SerializeField]
+    internal Vector2 parallaxEffectMultiplier;
 
     private Transform cameraTransform;
     private Vector3 lastCameraPosition;
@@ -16,17 +17,25 @@ public class ParallaxBackground : MonoBehaviour
 
     private void Start()
     {
-        cameraTransform = GameObject.FindWithTag("MainCamera").transform;
+        // Set up variables required for class functionality
+        cameraTransform = Camera.main.transform;
         lastCameraPosition = cameraTransform.position;
 
-        Sprite sprite = GetComponent<SpriteRenderer>().sprite;
-        textureUnitSizeX = sprite.texture.width / sprite.pixelsPerUnit;
+        CalculateTextureSize();
     }
 
     private void LateUpdate()
     {
         CalculateCameraTransform();
         MoveObjectRelativeToCamera();
+    }
+
+    private void CalculateTextureSize()
+    {
+        // This method calculates how wide the assigned objects' sprite is wide
+        Sprite sprite = GetComponent<SpriteRenderer>().sprite;
+        Texture2D texture = sprite.texture;
+        textureUnitSizeX = texture.width / sprite.pixelsPerUnit;
     }
 
     private void CalculateCameraTransform()
@@ -41,7 +50,6 @@ public class ParallaxBackground : MonoBehaviour
     private void MoveObjectRelativeToCamera()
     {
         // This method implements the transform position on the object if it's large enough compared to the object sprite
-
         if (Mathf.Abs(cameraTransform.position.x - transform.position.x) >= textureUnitSizeX)
         {
             float offsetPositionX = (cameraTransform.position.x - transform.position.x) % textureUnitSizeX;

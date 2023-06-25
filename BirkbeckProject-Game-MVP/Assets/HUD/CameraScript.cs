@@ -9,11 +9,18 @@ public class CameraScript : MonoBehaviour
     private Transform playerTransform;
     private void Start()
     {
+        // Set up variables required for class functionality
         playerTransform = GameObject.FindWithTag("Player").transform;
     }
 
     private void Update()
-    {    
+    {
+        UpdateCameraPosition();
+    }
+
+    private void UpdateCameraPosition()
+    {
+        //This method updates the camera position to follow the player object along the x axis
         float playerXPos = playerTransform.position.x;
         float playerYPos = playerTransform.position.y + 5;
 
