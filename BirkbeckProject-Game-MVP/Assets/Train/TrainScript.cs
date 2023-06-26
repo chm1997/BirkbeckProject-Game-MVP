@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class TrainScript : MonoBehaviour
@@ -11,11 +12,15 @@ public class TrainScript : MonoBehaviour
     [SerializeField]
     internal TrainDataScriptableObject trainData;
 
+    private Rigidbody2D rb2d;
+
     private SpriteRenderer trainFrontSpriteRenderer;
     private SpriteRenderer playerSpriteRenderer;
 
     private Vector3 playerPosForContains;
     private Vector3 playerPosForAbove;
+
+    private bool freezePositionBool;
 
     private void Awake()
     {
@@ -25,14 +30,20 @@ public class TrainScript : MonoBehaviour
     private void Start()
     {
         // Set up variables required for class functionality
+        rb2d = GetComponent<Rigidbody2D>();
+
         trainFrontSpriteRenderer = this.gameObject.transform.Find("TrainMainSpriteObject").transform.Find("TrainFrontSprite").GetComponent<SpriteRenderer>();
         playerSpriteRenderer = GameObject.FindWithTag("Player").GetComponent<SpriteRenderer>();
+
+        freezePositionBool = false;
+        StartCoroutine(Wait1Second());
     }
 
     private void Update()
     {
         TrackPlayerPositionInRelationToTrain();
         TrackTrainFuelUsage();
+        SetTrainGravity();
     }
 
     private void TrackPlayerPositionInRelationToTrain()
@@ -59,6 +70,21 @@ public class TrainScript : MonoBehaviour
             }
             else trainData.SetTrainSpeed(0);
         }
+    }
+
+    private void SetTrainGravity()
+    {
+        if (freezePositionBool)
+        {
+            if (!trainData.GetPlayerAboveTrain()) rb2d.constraints = RigidbodyConstraints2D.FreezePositionY;
+            else rb2d.constraints = RigidbodyConstraints2D.None;
+        }
+    }
+
+    private IEnumerator Wait1Second()
+    {
+        yield return new WaitForSeconds(1);
+        freezePositionBool = true;
     }
 
     private void TrainDataSetUp()
