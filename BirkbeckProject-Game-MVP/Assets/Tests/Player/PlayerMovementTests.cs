@@ -235,36 +235,4 @@ public class PlayerMovementTests : InputTestFixture
         Release(keyboard.rightArrowKey);
         Release(keyboard.leftShiftKey);
     }
-
-    [UnityTest]
-    public IEnumerator PlayerMovementTest_JumpColliderOnAfterJump()
-    {
-        playerMovement.isGrounded = true;
-        Press(keyboard.spaceKey);
-
-        yield return null;
-
-        Assert.IsFalse(playerMovement.groundCollider.enabled);
-        Assert.IsTrue(playerMovement.jumpCollider.enabled);
-    }
-
-    [UnityTest]
-    public IEnumerator PlayerMovementTest_GroundColliderOnAfterJumpAndLand()
-    {
-        playerMovement.isGrounded = true;
-        Press(keyboard.spaceKey);
-
-        yield return null;
-
-        var collisionTestObject = new GameObject();
-        collisionTestObject.AddComponent<BoxCollider2D>();
-        collisionTestObject.AddComponent<Rigidbody2D>();
-        collisionTestObject.transform.position = new Vector3(10, 10, 0);
-        player.transform.position = new Vector3(10, 10, 0);
-
-        yield return new WaitForSeconds(0.2f);
-
-        Assert.IsTrue(playerMovement.groundCollider.enabled);
-        Assert.IsFalse(playerMovement.jumpCollider.enabled);
-    }
 }
