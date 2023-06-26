@@ -11,7 +11,7 @@ public class WheelScript : MonoBehaviour
     private void Update()
     {
         trainSpeed = trainData.GetTrainSpeed();
-        float rotationVar = trainSpeed * -1 * Time.deltaTime;
+        float rotationVar = trainSpeed * 20 * -1 * Time.deltaTime;
         rotateVector = new Vector3(0, 0, rotationVar);
         transform.Rotate(rotateVector);
     }

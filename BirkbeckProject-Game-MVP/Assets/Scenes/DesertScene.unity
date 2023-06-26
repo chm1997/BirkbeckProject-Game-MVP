@@ -286,6 +286,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 142947621405370248, guid: b7effd18d10bc4147bfac03a2698b31a, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 6427193437502892599, guid: feaff5f5078d74440bedeaa29b1d2ef2, type: 3}
     - target: {fileID: 771826980512153173, guid: b7effd18d10bc4147bfac03a2698b31a, type: 3}
       propertyPath: m_Name
       value: Wheel
@@ -307,8 +311,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3958872740007505673, guid: b7effd18d10bc4147bfac03a2698b31a, type: 3}
+      propertyPath: m_Mass
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3958872740007505673, guid: b7effd18d10bc4147bfac03a2698b31a, type: 3}
       propertyPath: m_Constraints
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3958872740007505675, guid: b7effd18d10bc4147bfac03a2698b31a, type: 3}
       propertyPath: m_RootOrder
@@ -359,6 +367,10 @@ PrefabInstance:
       value: TrainMainObject
       objectReference: {fileID: 0}
     - target: {fileID: 7786592656543143077, guid: b7effd18d10bc4147bfac03a2698b31a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9102140728033564186, guid: b7effd18d10bc4147bfac03a2698b31a, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -738,7 +750,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1228572673036940010, guid: ee1101e0dad94a341b628777ec7cbd17, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 13.000687
+      value: 13.000671
       objectReference: {fileID: 0}
     - target: {fileID: 1228572673036940010, guid: ee1101e0dad94a341b628777ec7cbd17, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -934,6 +946,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3442280005029720856, guid: ec6f0e6a16db5704380b9f3ad64c4ca6, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 6427193437502892599, guid: feaff5f5078d74440bedeaa29b1d2ef2, type: 3}
     - target: {fileID: 3442280005029720857, guid: ec6f0e6a16db5704380b9f3ad64c4ca6, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -1392,6 +1408,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6427193436287411665, guid: feaff5f5078d74440bedeaa29b1d2ef2, type: 3}
+      propertyPath: train
+      value: 
+      objectReference: {fileID: 3958872740007505679, guid: b7effd18d10bc4147bfac03a2698b31a, type: 3}
     - target: {fileID: 6427193436287411665, guid: feaff5f5078d74440bedeaa29b1d2ef2, type: 3}
       propertyPath: _jumpForce
       value: 900
