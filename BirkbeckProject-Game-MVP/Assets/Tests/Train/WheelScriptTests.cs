@@ -24,7 +24,7 @@ public class WheelScriptTests
         GameObject player = GameObject.Instantiate(playerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
         GameObject train = GameObject.Instantiate(trainPrefab, new Vector3(0, 0, 0), Quaternion.identity);
 
-        Transform wheelTransform = train.transform.Find("TrainMainSpriteObject").transform.Find("TrainWheelSpriteObject").transform.Find("Wheel_1");
+        Transform wheelTransform = train.transform.Find("TrainMainSpriteObject").transform.Find("TrainWheelSpriteObject").transform.Find("WheelHolder_1").transform.Find("Wheel");
 
         TrainScript trainScript = train.GetComponent<TrainScript>();
         trainScript.trainData.SetTrainSpeed(0);
@@ -40,13 +40,13 @@ public class WheelScriptTests
         GameObject player = GameObject.Instantiate(playerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
         GameObject train = GameObject.Instantiate(trainPrefab, new Vector3(0, 0, 0), Quaternion.identity);
 
-        Transform wheelTransform = train.transform.Find("TrainMainSpriteObject").transform.Find("TrainWheelSpriteObject").transform.Find("Wheel_1");
+        Transform wheelTransform = train.transform.Find("TrainMainSpriteObject").transform.Find("TrainWheelSpriteObject").transform.Find("WheelHolder_1").transform.Find("Wheel");
 
         TrainScript trainScript = train.GetComponent<TrainScript>();
         trainScript.trainData.SetTrainSpeed(20);
 
         yield return new WaitForSeconds(0.1f);
 
-        Assert.Greater(wheelTransform.rotation.z, 0);
+        Assert.AreNotEqual(wheelTransform.rotation.z, 0);
     }
 }

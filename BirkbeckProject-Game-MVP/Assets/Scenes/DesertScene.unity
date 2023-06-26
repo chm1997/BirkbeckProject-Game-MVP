@@ -286,6 +286,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 771826980512153173, guid: b7effd18d10bc4147bfac03a2698b31a, type: 3}
+      propertyPath: m_Name
+      value: Wheel
+      objectReference: {fileID: 0}
     - target: {fileID: 1965158208903126935, guid: b7effd18d10bc4147bfac03a2698b31a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.406
@@ -293,6 +297,10 @@ PrefabInstance:
     - target: {fileID: 1965158208903126935, guid: b7effd18d10bc4147bfac03a2698b31a, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 3373471223083626714, guid: b7effd18d10bc4147bfac03a2698b31a, type: 3}
+      propertyPath: m_Name
+      value: WheelHolder_1
       objectReference: {fileID: 0}
     - target: {fileID: 3388024810667219364, guid: b7effd18d10bc4147bfac03a2698b31a, type: 3}
       propertyPath: m_Enabled
@@ -358,6 +366,7 @@ PrefabInstance:
     - {fileID: 7250794543509381719, guid: b7effd18d10bc4147bfac03a2698b31a, type: 3}
     - {fileID: 720299348696010294, guid: b7effd18d10bc4147bfac03a2698b31a, type: 3}
     - {fileID: 6959826563125031727, guid: b7effd18d10bc4147bfac03a2698b31a, type: 3}
+    - {fileID: 1439382147958742645, guid: b7effd18d10bc4147bfac03a2698b31a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b7effd18d10bc4147bfac03a2698b31a, type: 3}
 --- !u!224 &590176866 stripped
 RectTransform:
@@ -729,7 +738,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1228572673036940010, guid: ee1101e0dad94a341b628777ec7cbd17, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 13.000671
+      value: 13.000687
       objectReference: {fileID: 0}
     - target: {fileID: 1228572673036940010, guid: ee1101e0dad94a341b628777ec7cbd17, type: 3}
       propertyPath: m_AnchoredPosition.y
