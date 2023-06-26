@@ -5,12 +5,14 @@ public class WheelScript : MonoBehaviour
     [SerializeField]
     internal TrainDataScriptableObject trainData;
 
-    public Vector3 rotateVector;
+    private Vector3 rotateVector;
+    private float trainSpeed;
 
     private void Update()
     {
-        float rotationVar = -20 * Time.deltaTime;
+        trainSpeed = trainData.GetTrainSpeed();
+        float rotationVar = trainSpeed * -1 * Time.deltaTime;
         rotateVector = new Vector3(0, 0, rotationVar);
-        if (trainData.GetTrainSpeed() > 0) transform.Rotate(rotateVector);
+        transform.Rotate(rotateVector);
     }
 }
