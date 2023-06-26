@@ -76,11 +76,12 @@ public class TrainScript : MonoBehaviour
     {
         if (freezePositionBool)
         {
-            if (!trainData.GetPlayerAboveTrain()) rb2d.constraints = RigidbodyConstraints2D.FreezePositionY;
+            if (!trainData.GetPlayerAboveTrain())
+
+                rb2d.constraints = RigidbodyConstraints2D.FreezePositionY;
             else rb2d.constraints = RigidbodyConstraints2D.None;
         }
     }
-
     private IEnumerator Wait1Second()
     {
         yield return new WaitForSeconds(1);
