@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour, IDamagingObject, IEnemy
+public class EnemyScript : MonoBehaviour, IDamagingObject, IEnemy
 {
+    [SerializeField]
+    private EnemyDataScriptableObject enemyData;
     public bool isDamaging { get; set; }
     public int damageValue { get; set; }
 
@@ -12,6 +11,8 @@ public class Enemy : MonoBehaviour, IDamagingObject, IEnemy
     {
         isDamaging = true;
         damageValue = 1;
+
+        enemyData.IncreaseEnemyCount();
     }
 
     private void Update()

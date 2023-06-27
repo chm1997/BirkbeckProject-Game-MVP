@@ -20,6 +20,7 @@ public class EnemySpawnerScriptTests
     public IEnumerator EnemySpawnerScriptTest_SpawnOnStartIfSetTo()
     {
         GameObject enemySpawner = GameObject.Instantiate(enemySpawnerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        enemySpawner.GetComponent<EnemySpawnerScript>().enemyData.ResetEnemyCount();
         enemySpawner.GetComponent<EnemySpawnerScript>().spawnOnStartUp = true;
 
         yield return null;
@@ -30,6 +31,7 @@ public class EnemySpawnerScriptTests
     public IEnumerator EnemySpawnerScriptTest_DoNotSpawnOnStartIfNotSetTo()
     {
         GameObject enemySpawner = GameObject.Instantiate(enemySpawnerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        enemySpawner.GetComponent<EnemySpawnerScript>().enemyData.ResetEnemyCount();
         enemySpawner.GetComponent<EnemySpawnerScript>().spawnOnStartUp = false;
 
         yield return null;
@@ -40,6 +42,7 @@ public class EnemySpawnerScriptTests
     public IEnumerator EnemySpawnerScriptTest_SpawnAfterXSeconds()
     {
         GameObject enemySpawner = GameObject.Instantiate(enemySpawnerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        enemySpawner.GetComponent<EnemySpawnerScript>().enemyData.ResetEnemyCount();
         enemySpawner.GetComponent<EnemySpawnerScript>().spawnOnStartUp = false;
         enemySpawner.GetComponent<EnemySpawnerScript>().enemySpawnRate = 1;
 
@@ -51,12 +54,46 @@ public class EnemySpawnerScriptTests
     public IEnumerator EnemySpawnerScriptTest_SpawnAfterXSecondsTwice()
     {
         GameObject enemySpawner = GameObject.Instantiate(enemySpawnerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        enemySpawner.GetComponent<EnemySpawnerScript>().enemyData.ResetEnemyCount();
         enemySpawner.GetComponent<EnemySpawnerScript>().spawnOnStartUp = false;
         enemySpawner.GetComponent<EnemySpawnerScript>().enemySpawnRate = 1;
 
         yield return new WaitForSeconds(2.5f);
 
         Assert.IsNotNull(GameObject.Find("EnemySquare(Clone)"));
-        Assert.AreEqual(GameObject.FindObjectsOfType(typeof(Enemy)).Length, 2);
+        Assert.AreEqual(GameObject.FindObjectsOfType(typeof(EnemyScript)).Length, 2);
+    }
+
+    [UnityTest]
+    public IEnumerator EnemySpawnerScriptTest_SpawnsSlowlyAboveBehaviourChangePoint()
+    {
+        GameObject enemySpawner = GameObject.Instantiate(enemySpawnerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        enemySpawner.GetComponent<EnemySpawnerScript>().enemyData.ResetEnemyCount();
+        enemySpawner.GetComponent<EnemySpawnerScript>().spawnOnStartUp = false;
+        enemySpawner.GetComponent<EnemySpawnerScript>().enemySpawnRate = 1;
+        enemySpawner.GetComponent<EnemySpawnerScript>().enemyData.SetBehaviourChangePoint(1);
+        enemySpawner.GetComponent<EnemySpawnerScript>().enemyData.SetEnemyCountMax(10);
+
+        yield return new WaitForSeconds(3.5f);
+
+        Assert.AreEqual(GameObject.FindObjectsOfType(typeof(EnemyScript)).Length, 2);
+    }
+
+    [UnityTest]
+    public IEnumerator EnemySpawnerScriptTest_StopsSpawningAtMax()
+    {
+        yield return new WaitForSeconds(1);
+
+        GameObject enemySpawner = GameObject.Instantiate(enemySpawnerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        enemySpawner.GetComponent<EnemySpawnerScript>().enemyData.ResetEnemyCount();
+        enemySpawner.GetComponent<EnemySpawnerScript>().spawnOnStartUp = false;
+        enemySpawner.GetComponent<EnemySpawnerScript>().enemySpawnRate = 1;
+        enemySpawner.GetComponent<EnemySpawnerScript>().enemyData.SetBehaviourChangePoint(10);
+        enemySpawner.GetComponent<EnemySpawnerScript>().enemyData.SetEnemyCountMax(3);
+        enemySpawner.GetComponent <EnemySpawnerScript>().enemyData.ResetEnemyCount();
+
+        yield return new WaitForSeconds(4.5f);
+
+        Assert.AreEqual(GameObject.FindObjectsOfType(typeof(EnemyScript)).Length, 3);
     }
 }
