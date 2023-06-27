@@ -24,7 +24,7 @@ public class TrainMovementScript : MonoBehaviour
         rb2D = GetComponent<Rigidbody2D>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         HandleTrainMovement();
     }
