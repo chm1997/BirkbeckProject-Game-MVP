@@ -6,6 +6,7 @@ public class EnemySpawnerScript : MonoBehaviour
     /// <summary>
     /// This class handles the creation of enemy objects based on their prefab and a variable timer
     /// Required Fields:
+    /// EnemyDataScriptableObject enemyData: a Scriptable Object containing various data about enemies in the game space
     /// GameObject enemyPrefab: a prefab of enemy that object wants to spawn
     /// int enemySpawnRate: the time (in seconds) between spawning of set prefab
     /// bool spawnOnStartUp: an option for spawning set prefab once on object start
@@ -13,23 +14,21 @@ public class EnemySpawnerScript : MonoBehaviour
 
     [SerializeField]
     internal EnemyDataScriptableObject enemyData;
-
     [SerializeField]
     private GameObject enemyPrefab;
-
     [SerializeField]
     internal int enemySpawnRate;
-
     [SerializeField]
     internal bool spawnOnStartUp = true;
 
-    public bool enemyCountAboveBoundary;
-    public bool enemyCountAtMax;
-    public int enemyCount;
+    private bool enemyCountAboveBoundary;
+    private bool enemyCountAtMax;
+    private int enemyCount;
 
     private void Start()
     {
         // Set up variables required for class functionality
+        enemyData.ResetEnemyCount();
         enemyCountAtMax = false;
 
         // Spawn an enemy straight away if conditions met
@@ -46,13 +45,15 @@ public class EnemySpawnerScript : MonoBehaviour
 
     private void KeepTrackOfEnemyDataVariables()
     {
+        // This method updates local variables to match global records of enemyData object
         enemyCount = enemyData.GetEnemyCount();
-        enemyCountAboveBoundary = (enemyData.GetEnemyCount() >= enemyData.GetBehaviourChangePoint());
-        enemyCountAtMax = (enemyData.GetEnemyCount() >= enemyData.GetEnemyCountMax());
+        enemyCountAboveBoundary = (enemyCount >= enemyData.GetBehaviourChangePoint());
+        enemyCountAtMax = (enemyCount >= enemyData.GetEnemyCountMax());
     }
 
     private IEnumerator SpawnAnEnemyEvertXSeconds()
     {
+        // This method creates a new enemy object at a time interval based on the spawn rate variable, how many enemies already exist in the game world, and what the maximum/boundary values are
         if (enemyCountAboveBoundary) yield return new WaitForSeconds(enemySpawnRate * 2);
         else yield return new WaitForSeconds(enemySpawnRate);
 

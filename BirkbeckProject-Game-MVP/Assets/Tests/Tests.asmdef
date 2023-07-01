@@ -14,7 +14,8 @@
         "ScriptableObjects",
         "InteractableObjects",
         "Train",
-        "Enemy"
+        "Enemy",
+        "BehaviourTree"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

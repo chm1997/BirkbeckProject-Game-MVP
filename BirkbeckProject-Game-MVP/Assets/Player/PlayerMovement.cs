@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     /// Required Fields:
     /// PlayerHealth playerHealth: a Scriptable Object containing an int variable representing player health
     /// PlayerEnergy playerEnergy: a Scriptable Object containing an int variable representing player energy
-    /// TrainDataScriptableObject trainData: a Scriptable Object containing an float variable representing train fuel
+    /// TrainDataScriptableObject trainData: a Scriptable Object containing an float variable representing train data
     /// float _speed: a variavle representing the speed of horizontal movement
     /// float _jumpForce: a variable representing the height of jumps
     /// </summary>

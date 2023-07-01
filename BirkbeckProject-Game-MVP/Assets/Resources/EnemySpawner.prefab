@@ -99,5 +99,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 94597ca9d33bbbd4ab331257f7c40d70, type: 2}
   enemyPrefab: {fileID: 7972989858366699386, guid: 10e21d6cbf81316448aa591fff6911f1, type: 3}
-  enemySpawnRate: 2
+  enemySpawnRate: 5
   spawnOnStartUp: 1
+  enemyCountAboveBoundary: 0
+  enemyCountAtMax: 0
+  enemyCount: 0

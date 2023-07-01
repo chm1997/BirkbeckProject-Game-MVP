@@ -11,7 +11,7 @@ public class EnemyDataScriptableObject : ScriptableObject
     {
         enemyCount = 0;
         enemyCountMax = 6;
-        enemyBehaviourChangePoint = 2;
+        enemyBehaviourChangePoint = 4;
     }
 
     public int GetEnemyCount()
