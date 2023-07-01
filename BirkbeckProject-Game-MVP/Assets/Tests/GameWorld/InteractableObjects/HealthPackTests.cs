@@ -10,7 +10,7 @@ public class HealthPackTests
     InteractableHealthPack packScript;
 
     [UnitySetUp]
-    public IEnumerator HealthPackTestTest_Setup()
+    public IEnumerator HealthPackTest_Setup()
     {
         pack = GameObject.Instantiate(packPrefab, new Vector3(0, 0, 0), Quaternion.identity);
         packScript = pack.GetComponent<InteractableHealthPack>();
