@@ -5,36 +5,34 @@ using UnityEngine.TestTools;
 
 public class RoadblockTests
 {
-    GameObject roadblockPlaceholderObject;
-    Roadblock roadblock;
+    GameObject roadblockPrefab = Resources.Load<GameObject>("Roadblock");
+    GameObject roadblock;
 
-    [SetUp]
-    public void RoadblockTest_Setup()
+    [UnitySetUp]
+    public IEnumerator RoadblockTest_Setup()
     {
-        roadblockPlaceholderObject = new GameObject();
-        roadblockPlaceholderObject.AddComponent<Roadblock>();
-        roadblock = roadblockPlaceholderObject.GetComponent<Roadblock>();
-    }
+        foreach (GameObject o in Object.FindObjectsOfType<GameObject>())
+        {
+            GameObject.Destroy(o);
+        }
 
-    [TearDown]
-    public void RoadblockTest_TearDown()
-    {
-        Object.Destroy(roadblockPlaceholderObject);
-        Object.Destroy(roadblock);
+        yield return null;
+
+        roadblock = GameObject.Instantiate(roadblockPrefab, new Vector3(0, 0, 0), Quaternion.identity);
     }
 
     [UnityTest]
     public IEnumerator RoadblockTest_DestroyedAfterInteraction()
     {
-        roadblockPlaceholderObject.SendMessage("RecieveMessage", "");
+        roadblock.SendMessage("RecieveMessage", "");
         yield return null;
-        Assert.AreEqual(roadblockPlaceholderObject.ToString(), "null");
+        Assert.AreEqual(roadblock.ToString(), "null");
     }
 
     [UnityTest]
     public IEnumerator RoadblockTest_TrainStopsNearby()
     {
-        roadblockPlaceholderObject.transform.position = new Vector2(30, 0);
+        roadblock.transform.position = new Vector2(30, 0);
 
         GameObject player = GameObject.Instantiate(Resources.Load<GameObject>("Player"), new Vector3(-50, 0, 0), Quaternion.identity);
         GameObject train = GameObject.Instantiate(Resources.Load<GameObject>("TrainMainObject"), new Vector3(0, 0, 0), Quaternion.identity);
