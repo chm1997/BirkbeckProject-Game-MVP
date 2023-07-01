@@ -12,9 +12,9 @@ public class PlayerEnergy : ScriptableObject
     {
         return playerEnergy;
     }
-    public void SetPlayerEnergy(float incomingEnergy)
+    public void SetPlayerEnergy(float incomingChange)
     {
-        playerEnergy = incomingEnergy;
+        playerEnergy = incomingChange;
     }
     public void UpdatePlayerEnergy(float incomingChange)
     {
@@ -26,9 +26,9 @@ public class PlayerEnergy : ScriptableObject
         return maxEnergy;
     }
 
-    public void SetMaxEnergy(int incomingMax)
+    public void SetMaxEnergy(int incomingChange)
     {
-        maxEnergy = incomingMax;
+        maxEnergy = incomingChange;
     }
 
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New PlayerHealth", menuName = "Player Health", order = 101)]
@@ -12,9 +10,9 @@ public class PlayerHealth : ScriptableObject
     {
         return playerHealth;
     }
-    public void SetPlayerHealth(int incomingHealth)
+    public void SetPlayerHealth(int incomingChange)
     {
-        playerHealth = incomingHealth;
+        playerHealth = incomingChange;
     }
     public void UpdatePlayerHealth(int incomingChange)
     {

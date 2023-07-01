@@ -19,9 +19,9 @@ public class TrainDataScriptableObject : ScriptableObject
     {
         return trainSpeed;
     }
-    public void SetTrainSpeed(float incomingHealth)
+    public void SetTrainSpeed(float incomingChange)
     {
-        trainSpeed = incomingHealth;
+        trainSpeed = incomingChange;
     }
     public void UpdateTrainSpeed(float incomingChange)
     {
@@ -32,18 +32,18 @@ public class TrainDataScriptableObject : ScriptableObject
     {
         return maxTrainSpeed;
     }
-    public void SetMaxTrainSpeed(float incomingHealth)
+    public void SetMaxTrainSpeed(float incomingChange)
     {
-        maxTrainSpeed = incomingHealth;
+        maxTrainSpeed = incomingChange;
     }
 
     public float GetTrainFuel()
     {
         return trainFuel;
     }
-    public void SetTrainFuel(float incomingHealth)
+    public void SetTrainFuel(float incomingChange)
     {
-        trainFuel = incomingHealth;
+        trainFuel = incomingChange;
     }
     public void UpdateTrainFuel(float incomingChange)
     {
@@ -54,18 +54,18 @@ public class TrainDataScriptableObject : ScriptableObject
     {
         return maxTrainFuel;
     }
-    public void SetMaxTrainFuel(float incomingHealth)
+    public void SetMaxTrainFuel(float incomingChange)
     {
-        maxTrainFuel = incomingHealth;
+        maxTrainFuel = incomingChange;
     }
 
     public float GetTrainHealth()
     {
         return trainHealth;
     }
-    public void SetTrainHealth(float incomingHealth)
+    public void SetTrainHealth(float incomingChange)
     {
-        trainHealth = incomingHealth;
+        trainHealth = incomingChange;
     }
     public void UpdateTrainHealth(float incomingChange)
     {
@@ -76,9 +76,9 @@ public class TrainDataScriptableObject : ScriptableObject
     {
         return maxTrainHealth;
     }
-    public void SetMaxTrainHealth(float incomingHealth)
+    public void SetMaxTrainHealth(float incomingChange)
     {
-        maxTrainHealth = incomingHealth;
+        maxTrainHealth = incomingChange;
     }
 
     public bool GetPlayerInTrain()

@@ -13,7 +13,9 @@
         "Unity.InputSystem.IntegrationTests",
         "ScriptableObjects",
         "InteractableObjects",
-        "Train"
+        "Train",
+        "Enemy",
+        "BehaviourTree"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
