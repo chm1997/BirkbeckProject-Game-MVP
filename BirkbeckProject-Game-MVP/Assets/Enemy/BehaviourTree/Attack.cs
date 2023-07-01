@@ -15,14 +15,17 @@ public class Attack : BehaviourNode
 
     private Transform targetTransform;
 
+    private Animator animator;
+
     private Vector2 direction;
 
     private bool hasAttacked;
 
-    public Attack(Transform objectTransform, Rigidbody2D objectRB2D)
+    public Attack(Transform objectTransform, Rigidbody2D objectRB2D, Animator animator)
     {
         this.objectTransform = objectTransform;
         this.objectRB2D = objectRB2D;
+        this.animator = animator;
     }
 
     public override NodeState Evaluate()
@@ -33,6 +36,7 @@ public class Attack : BehaviourNode
 
         if (!hasAttacked & target != null)
         {
+            animator.Play("EnemyAttack");
             targetTransform = (Transform)target;
             parent.parent.SetData("hasAttacked", true);
             direction = targetTransform.position - objectTransform.position;

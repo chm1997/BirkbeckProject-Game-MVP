@@ -20,12 +20,15 @@ public class EnemyBehaviourTree : BehaviourTree
     [SerializeField]
     private EnemyDataScriptableObject enemyData;
 
+    private Animator animator;
+
     private Transform playerTransform;
 
     private void Awake()
     {
         // Set up variables required for class functionality
         playerTransform = GameObject.FindWithTag("Player").GetComponent<Transform>();
+        animator = GetComponent<Animator>();
     }
 
     internal override BehaviourNode SetupBehaviourTree()
@@ -43,7 +46,7 @@ public class EnemyBehaviourTree : BehaviourTree
             {
                 new CheckAttackCooldown(enemyRB2d, 1.25f),
                 new CheckAttackRange(enemyTransform, 7f, 256),
-                new Attack(enemyTransform, enemyRB2d)
+                new Attack(enemyTransform, enemyRB2d, animator)
             }),
             new Track(playerTransform, enemyTransform, 4f)
         });
