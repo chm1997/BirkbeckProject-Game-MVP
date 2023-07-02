@@ -14,11 +14,11 @@ public class CrosshairScript : MonoBehaviour
     {
         // Set up variables required for class functionality
         playerInput = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>().playerInputs;
-        Cursor.visible = false;
     }
 
     private void LateUpdate()
     {
+        Cursor.visible = false;
         DetermineMouseWorldPosition();
         TransformCursosObject();
         HandlePlayerInteraction();
