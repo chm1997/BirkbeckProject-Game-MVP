@@ -6,15 +6,15 @@ public class SceneContolScript : MonoBehaviour
     /// <summary>
     /// This class handles the change of scene to the game over screen when player health reaches zero
     /// Required Fields:
-    /// PlayerHealth playerHealth: a Scriptable Object containing an int variable representing player health
+    /// PlayerDataScriptableObject playerData: a Scriptable Object containing an int variable representing player data
     /// </summary>
 
     [SerializeField]
-    internal PlayerHealth playerHealth;
+    internal PlayerDataScriptableObject playerData;
     
     private void Update()
     {
-        if (playerHealth.GetPlayerHealth() <= 0) LoadDeathScene();
+        if (playerData.GetPlayerHealth() <= 0) LoadDeathScene();
     }
 
     private void LoadDeathScene()

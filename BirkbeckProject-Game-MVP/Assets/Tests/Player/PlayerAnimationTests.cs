@@ -252,7 +252,7 @@ public class PlayerAnimationTests : InputTestFixture
     [UnityTest]
     public IEnumerator PlayerAnimationTest_NoAttackWhenNoEnergy()
     {
-        playerAnimation.playerEnergy.SetPlayerEnergy(0);
+        playerAnimation.playerData.SetPlayerEnergy(0);
         playerAnimation.isGrounded = true;
         PressAndRelease(mouse.leftButton);
 
@@ -263,13 +263,13 @@ public class PlayerAnimationTests : InputTestFixture
     [UnityTest]
     public IEnumerator PlayerAnimationTest_AttackUsesEnergy()
     {
-        playerAnimation.playerEnergy.SetPlayerEnergy(100);
+        playerAnimation.playerData.SetPlayerEnergy(100);
         playerAnimation.isGrounded = true;
         PressAndRelease(mouse.leftButton);
 
         yield return new WaitForSeconds(0.1f);
         Assert.IsTrue(playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("penguin_attack"));
-        Assert.Less(playerAnimation.playerEnergy.GetPlayerEnergy(), 100);
+        Assert.Less(playerAnimation.playerData.GetPlayerEnergy(), 100);
     }
 
 
@@ -294,8 +294,8 @@ public class PlayerAnimationTests : InputTestFixture
     [UnityTest]
     public IEnumerator PlayerAnimationTest_NoSpeedWalkWhenNoEnergy()
     {
-        playerAnimation.playerEnergy.SetMaxEnergy(0);
-        playerAnimation.playerEnergy.SetPlayerEnergy(0);
+        playerAnimation.playerData.SetMaxEnergy(0);
+        playerAnimation.playerData.SetPlayerEnergy(0);
         playerAnimation.isGrounded = true;
 
         Press(keyboard.rightArrowKey);

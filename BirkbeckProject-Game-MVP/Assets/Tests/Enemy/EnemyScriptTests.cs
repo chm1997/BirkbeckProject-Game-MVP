@@ -37,9 +37,9 @@ public class EnemyScriptTests
     [UnityTest]
     public IEnumerator EnemyScriptTest_PlayerLosesHealthOnPlayerCollision()
     {
-        player.GetComponent<PlayerScript>().playerHealth.SetPlayerHealth(2);
+        player.GetComponent<PlayerScript>().playerData.SetPlayerHealth(2);
         enemy.transform.position = Vector3.zero;
         yield return new WaitForSeconds(0.1f);
-        Assert.AreEqual(player.GetComponent<PlayerScript>().playerHealth.GetPlayerHealth(), 1);
+        Assert.AreEqual(player.GetComponent<PlayerScript>().playerData.GetPlayerHealth(), 1);
     }
 }

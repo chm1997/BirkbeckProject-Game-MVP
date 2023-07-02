@@ -666,7 +666,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09a729cb818b3d04d9cd233424bdd03d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealth: {fileID: 11400000, guid: ea7e99363525f6f4bb0f5af5bbb99dca, type: 2}
+  playerData: {fileID: 11400000, guid: dc608bf0c560a474aa06ceaf6b580095, type: 2}
 --- !u!114 &1216188349 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1228572673036940021, guid: ee1101e0dad94a341b628777ec7cbd17, type: 3}

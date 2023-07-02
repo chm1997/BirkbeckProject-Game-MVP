@@ -27,7 +27,6 @@ public class Roadblock : MonoBehaviour, IInteractableObject
 
     private void StopTrain()
     {
-        Debug.Log(Mathf.Abs(trainPos.x - transform.position.x));
         if (Mathf.Abs(trainPos.x - transform.position.x) <= 50) 
         {
             trainData.SetTrainSpeed(0);

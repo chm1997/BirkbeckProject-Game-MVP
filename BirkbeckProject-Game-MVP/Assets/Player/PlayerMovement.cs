@@ -6,17 +6,14 @@ public class PlayerMovement : MonoBehaviour
     /// <summary>
     /// This class controls the movement of the player object in response to inputs handled by the input system
     /// Required Fields:
-    /// PlayerHealth playerHealth: a Scriptable Object containing an int variable representing player health
-    /// PlayerEnergy playerEnergy: a Scriptable Object containing an int variable representing player energy
+    /// PlayerDataScriptableObject playerData: a Scriptable Object containing an int variable representing player data
     /// TrainDataScriptableObject trainData: a Scriptable Object containing an float variable representing train data
     /// float _speed: a variavle representing the speed of horizontal movement
     /// float _jumpForce: a variable representing the height of jumps
     /// </summary>
 
     [SerializeField]
-    internal PlayerHealth playerHealth;
-    [SerializeField]
-    internal PlayerEnergy playerEnergy;
+    internal PlayerDataScriptableObject playerData;
     [SerializeField]
     internal TrainDataScriptableObject trainData;
 
@@ -86,10 +83,12 @@ public class PlayerMovement : MonoBehaviour
     private void ModifySpeed()
     {
         // This method increases the speed of sideways movement when triggered by player input
-        if (playerInputs.PlayerInputMap.LeftShift.IsPressed() & isGrounded & playerEnergy.GetPlayerEnergy() > 0 & moveInput != new Vector2(0, 0))
+        if (playerInputs.PlayerInputMap.LeftShift.IsPressed() & isGrounded & playerData.GetPlayerEnergy() > 0 & moveInput != new Vector2(0, 0))
         {
             _speed = 20;
-            playerEnergy.UpdatePlayerEnergy(-20 * Time.deltaTime);
+            Debug.Log(playerData.GetPlayerEnergy());
+            Debug.Log(-20 * Time.deltaTime);
+            playerData.UpdatePlayerEnergy(-20 * Time.deltaTime);
         }
         else _speed = 10;
     }

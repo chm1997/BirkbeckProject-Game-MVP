@@ -148,6 +148,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c2d32dfe281b9e48a5b16e982503b57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealth: {fileID: 11400000, guid: ea7e99363525f6f4bb0f5af5bbb99dca, type: 2}
+  playerData: {fileID: 11400000, guid: dc608bf0c560a474aa06ceaf6b580095, type: 2}
   textObject: {fileID: 3769529183926810854}
-  currentHealth: 0

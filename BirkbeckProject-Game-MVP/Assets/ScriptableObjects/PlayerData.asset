@@ -9,8 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63eb0879fdb76974eac27f55e98f5a3e, type: 3}
-  m_Name: PlayerEnergyScriptableObject
+  m_Script: {fileID: 11500000, guid: 99088d15266b7534c98c12483a35497b, type: 3}
+  m_Name: PlayerData
   m_EditorClassIdentifier: 
-  playerEnergy: 100
-  maxEnergy: 100

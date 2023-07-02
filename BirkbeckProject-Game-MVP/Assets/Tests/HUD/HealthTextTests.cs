@@ -25,7 +25,7 @@ public class HealthTextTests
     [UnityTest]
     public IEnumerator HealthTextTests_SetTo5()
     {
-        healthText.GetComponent<HUDHealthScript>().playerHealth.SetPlayerHealth(5);
+        healthText.GetComponent<HUDHealthScript>().playerData.SetPlayerHealth(5);
 
         yield return null;
 
@@ -35,7 +35,7 @@ public class HealthTextTests
     [UnityTest]
     public IEnumerator HealthTextTests_SetTo2()
     {
-        healthText.GetComponent<HUDHealthScript>().playerHealth.SetPlayerHealth(2);
+        healthText.GetComponent<HUDHealthScript>().playerData.SetPlayerHealth(2);
 
         yield return null;
 
@@ -45,7 +45,7 @@ public class HealthTextTests
     [UnityTest]
     public IEnumerator HealthTextTests_SetTo100()
     {
-        healthText.GetComponent<HUDHealthScript>().playerHealth.SetPlayerHealth(100);
+        healthText.GetComponent<HUDHealthScript>().playerData.SetPlayerHealth(100);
 
         yield return null;
 

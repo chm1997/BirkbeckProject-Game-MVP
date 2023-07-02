@@ -27,10 +27,10 @@ public class HealthPackTests
     [UnityTest]
     public IEnumerator HealthPackTest_UpdatesHealthOnMessage()
     {
-        packScript.playerHealth.SetPlayerHealth(2);
+        packScript.playerData.SetPlayerHealth(2);
         pack.SendMessage("RecieveMessage", "");
         yield return null;
-        Assert.Greater(packScript.playerHealth.GetPlayerHealth(), 2);
+        Assert.Greater(packScript.playerData.GetPlayerHealth(), 2);
     }
 
     [UnityTest]
