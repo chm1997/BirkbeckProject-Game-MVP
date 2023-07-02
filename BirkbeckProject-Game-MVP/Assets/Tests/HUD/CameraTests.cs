@@ -6,15 +6,19 @@ using UnityEngine.TestTools;
 public class CameraTests
 {
     GameObject playerPrefab = Resources.Load<GameObject>("Player");
+    GameObject trainPrefab = Resources.Load<GameObject>("TrainMainObject");
     GameObject cameraPrefab = Resources.Load<GameObject>("Main Camera");
 
     GameObject player;
+    GameObject train;
     GameObject camera;
 
     [UnitySetUp]
     public IEnumerator CameraTest_Setup()
     {
         player = GameObject.Instantiate(playerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        yield return null;
+        train = GameObject.Instantiate(trainPrefab, new Vector3(50, 0, 0), Quaternion.identity);
         yield return null;
         camera = GameObject.Instantiate(cameraPrefab, new Vector3(0, 0, -10), Quaternion.identity);
         yield return null;
@@ -23,8 +27,11 @@ public class CameraTests
     [TearDown]
     public void CameraTest_TearDown()
     {
-        Object.Destroy(player);
-        Object.Destroy(camera);
+        //Loop deletes all active game objects, required because child objects of TrainMainObject can persist
+        foreach (GameObject o in Object.FindObjectsOfType<GameObject>())
+        {
+            GameObject.Destroy(o);
+        }
     }
 
 
@@ -75,5 +82,16 @@ public class CameraTests
         yield return null;
 
         Assert.That(4.5f, Is.EqualTo(camera.transform.position.y).Within(0.01));
+    }
+
+    [UnityTest]
+    public IEnumerator CameraTest_ZoomOutWhenAbovePlayerAndTrainSpeedOn()
+    {
+        player.transform.position = new Vector2(50, -1);
+        train.GetComponent<TrainMovementScript>().trainData.SetTrainSpeed(30);
+
+        yield return new WaitForSeconds(0.2f);
+        Assert.Greater(camera.transform.position.y, 4.5f);
+        Assert.Greater(camera.GetComponent<Camera>().orthographicSize, 10f);
     }
 }
