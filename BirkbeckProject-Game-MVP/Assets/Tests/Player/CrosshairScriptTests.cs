@@ -16,13 +16,11 @@ public class CrosshairScriptTests : InputTestFixture
     GameObject crosshair;
     
     Mouse mouse;
-    Keyboard keyboard;
 
     public override void Setup()
     {
         base.Setup();
         mouse = InputSystem.AddDevice<Mouse>();
-        keyboard = InputSystem.AddDevice<Keyboard>();
     }
 
     [SetUp]
@@ -87,7 +85,7 @@ public class CrosshairScriptTests : InputTestFixture
     public IEnumerator CrosshairScriptTest_SendsSignal()
     {
         GameObject healthpack = GameObject.Instantiate(Resources.Load<GameObject>("HealthPack"), crosshair.transform.position, Quaternion.identity);
-        Press(keyboard.eKey);
+        Press(mouse.leftButton);
 
         yield return new WaitForSeconds(0.5f);
 

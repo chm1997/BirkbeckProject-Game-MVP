@@ -100,7 +100,7 @@ public class PlayerAnimation : MonoBehaviour
     private void AttackAnimation()
     {
         // This method activates the attack animation when conditions are correct
-        if (playerInputs.PlayerInputMap.MouseButtonLeft.triggered & isGrounded & !isWalking & currentEnergy >= 20) {
+        if (playerInputs.PlayerInputMap.AttackButton.triggered & isGrounded & !isWalking & currentEnergy >= 20) {
             animator.Play("penguin_attack");
             playerData.UpdatePlayerEnergy(-20);
         }

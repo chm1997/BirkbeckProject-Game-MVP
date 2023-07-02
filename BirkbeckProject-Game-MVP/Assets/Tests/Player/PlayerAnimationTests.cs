@@ -15,13 +15,11 @@ public class PlayerAnimationTests : InputTestFixture
     Animator playerAnimator;
 
     Keyboard keyboard;
-    Mouse mouse;
 
     public override void Setup()
     {
         base.Setup();
         keyboard = InputSystem.AddDevice<Keyboard>();
-        mouse = InputSystem.AddDevice<Mouse>();
     }
 
     [SetUp]
@@ -213,7 +211,7 @@ public class PlayerAnimationTests : InputTestFixture
 
         Assert.IsTrue(playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("penguin_idle"));
 
-        PressAndRelease(mouse.leftButton);
+        PressAndRelease(keyboard.eKey);
 
         yield return new WaitForSeconds(0.1f);
 
@@ -228,7 +226,7 @@ public class PlayerAnimationTests : InputTestFixture
 
         yield return new WaitForSeconds(0.1f);
 
-        PressAndRelease(mouse.leftButton);
+        PressAndRelease(keyboard.eKey);
 
         yield return new WaitForSeconds(0.1f);
 
@@ -242,7 +240,7 @@ public class PlayerAnimationTests : InputTestFixture
     public IEnumerator PlayerAnimationTest_NoAttackWhenJumping()
     {
         playerAnimation.isGrounded = false;
-        PressAndRelease(mouse.leftButton);
+        PressAndRelease(keyboard.eKey);
 
         yield return new WaitForSeconds(0.1f);
 
@@ -254,7 +252,7 @@ public class PlayerAnimationTests : InputTestFixture
     {
         playerAnimation.playerData.SetPlayerEnergy(0);
         playerAnimation.isGrounded = true;
-        PressAndRelease(mouse.leftButton);
+        PressAndRelease(keyboard.eKey);
 
         yield return new WaitForSeconds(0.1f);
         Assert.IsFalse(playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("penguin_attack"));
@@ -265,7 +263,7 @@ public class PlayerAnimationTests : InputTestFixture
     {
         playerAnimation.playerData.SetPlayerEnergy(100);
         playerAnimation.isGrounded = true;
-        PressAndRelease(mouse.leftButton);
+        PressAndRelease(keyboard.eKey);
 
         yield return new WaitForSeconds(0.1f);
         Assert.IsTrue(playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("penguin_attack"));

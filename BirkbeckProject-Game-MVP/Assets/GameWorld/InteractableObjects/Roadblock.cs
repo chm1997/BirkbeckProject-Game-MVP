@@ -11,7 +11,7 @@ public class Roadblock : MonoBehaviour, IInteractableObject
 
     public void RecieveMessage(string message)
     {
-        GameObject.Destroy(gameObject);
+        if (trainData.GetPlayerAboveTrain() == false) GameObject.Destroy(gameObject);
     }
 
     private void Start()
