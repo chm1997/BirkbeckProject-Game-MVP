@@ -47,9 +47,17 @@ public class EnemyScript : MonoBehaviour, IDamagingObject, IEnemy
     {
         if (collision.collider.name == "Player")
         {
-            rb2d.velocity = Vector2.zero;
-            direction = targetVector - currentPos;
-            rb2d.AddForce(direction * -1 * 100);
+            if (collision.collider.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("penguin_attack"))
+            {
+                enemyData.DecreaseEnemyCount();
+                GameObject.Destroy(gameObject);
+            }
+            else
+            {
+                rb2d.velocity = Vector2.zero;
+                direction = targetVector - currentPos;
+                rb2d.AddForce(direction * -1 * 100);
+            }
         }
     }
 }
