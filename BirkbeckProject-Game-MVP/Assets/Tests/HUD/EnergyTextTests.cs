@@ -25,7 +25,7 @@ public class EnergyTextTests
     [UnityTest]
     public IEnumerator EnergyTextTests_SetTo4()
     {
-        energyText.GetComponent<HUDEnergyScript>().playerEnergy.SetPlayerEnergy(4);
+        energyText.GetComponent<HUDEnergyScript>().playerData.SetPlayerEnergy(4);
 
         yield return null;
 
@@ -35,7 +35,7 @@ public class EnergyTextTests
     [UnityTest]
     public IEnumerator EnergyTextTests_SetTo0()
     {
-        energyText.GetComponent<HUDEnergyScript>().playerEnergy.SetPlayerEnergy(0);
+        energyText.GetComponent<HUDEnergyScript>().playerData.SetPlayerEnergy(0);
 
         yield return null;
 
@@ -45,7 +45,7 @@ public class EnergyTextTests
     [UnityTest]
     public IEnumerator EnergyTextTests_SetTo10000()
     {
-        energyText.GetComponent<HUDEnergyScript>().playerEnergy.SetPlayerEnergy(10000);
+        energyText.GetComponent<HUDEnergyScript>().playerData.SetPlayerEnergy(10000);
 
         yield return null;
 

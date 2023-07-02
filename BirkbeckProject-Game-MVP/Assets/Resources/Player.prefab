@@ -123,8 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b59838306ab2124eb96b686f144d8ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealth: {fileID: 11400000, guid: ea7e99363525f6f4bb0f5af5bbb99dca, type: 2}
-  playerEnergy: {fileID: 11400000, guid: 80e2123d0fe3e9942aa745d34c61e1a1, type: 2}
+  playerData: {fileID: 11400000, guid: dc608bf0c560a474aa06ceaf6b580095, type: 2}
 --- !u!114 &6427193436287411665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,8 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39013cc07d06f984888da54752ce48ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealth: {fileID: 11400000, guid: ea7e99363525f6f4bb0f5af5bbb99dca, type: 2}
-  playerEnergy: {fileID: 11400000, guid: 80e2123d0fe3e9942aa745d34c61e1a1, type: 2}
+  playerData: {fileID: 11400000, guid: dc608bf0c560a474aa06ceaf6b580095, type: 2}
   trainData: {fileID: 11400000, guid: 4833de12f16e5a74db67ecde3ed066c3, type: 2}
   _speed: 10
   _jumpForce: 900
@@ -154,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 276565b9f265b5c46b3e475071959185, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerEnergy: {fileID: 11400000, guid: 80e2123d0fe3e9942aa745d34c61e1a1, type: 2}
+  playerData: {fileID: 11400000, guid: dc608bf0c560a474aa06ceaf6b580095, type: 2}
 --- !u!95 &6427193436287411674
 Animator:
   serializedVersion: 5

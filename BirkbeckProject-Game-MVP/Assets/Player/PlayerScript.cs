@@ -5,22 +5,19 @@ public class PlayerScript : MonoBehaviour
     /// <summary>
     /// This class represents the player objects' general states and behaviours
     /// Required Fields:
-    /// PlayerHealth playerHealth: a Scriptable Object containing an int variable representing player health
-    /// PlayerEnergy playerEnergy: a Scriptable Object containing an int variable representing player energy
+    /// PlayerDataScriptableObject playerData: a Scriptable Object containing an int variable representing player data
     /// </summary>
 
     [SerializeField]
-    internal PlayerHealth playerHealth;
-    [SerializeField]
-    internal PlayerEnergy playerEnergy;
+    internal PlayerDataScriptableObject playerData;
 
     private float energyRegenVariable;
 
     private void Awake()
     {
         // Set up variables required for class functionality
-        playerHealth.SetPlayerHealth(5);
-        playerEnergy.SetPlayerEnergy(100);
+        playerData.SetPlayerHealth(5);
+        playerData.SetPlayerEnergy(100);
         energyRegenVariable = 5f;
     }
 
@@ -35,7 +32,7 @@ public class PlayerScript : MonoBehaviour
         {
             if (Other.GetComponent<IDamagingObject>().isDamaging)
             {
-                playerHealth.UpdatePlayerHealth(Other.GetComponent<IDamagingObject>().damageValue * -1) ;
+                playerData.UpdatePlayerHealth(Other.GetComponent<IDamagingObject>().damageValue * -1) ;
             }
         }
     }
@@ -43,9 +40,9 @@ public class PlayerScript : MonoBehaviour
     private void UpdatePlayerEnergyIfNotAtMax()
     {
         // This method works slowly gets the player energy variable held in the associated scriptable object up to its set max
-        if (playerEnergy.GetPlayerEnergy() < playerEnergy.GetMaxEnergy())
+        if (playerData.GetPlayerEnergy() < playerData.GetMaxEnergy())
         {
-            playerEnergy.UpdatePlayerEnergy(energyRegenVariable * Time.deltaTime);
+            playerData.UpdatePlayerEnergy(energyRegenVariable * Time.deltaTime);
         }
     }
 }

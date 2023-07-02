@@ -5,7 +5,7 @@ public class TrainAnimationScript : MonoBehaviour
     /// <summary>
     /// This class handles updates and changes to animations for the train object
     /// Required fields:
-    /// TrainDataScriptableObject trainData: a Scriptable Object containing an float variable representing train fuel
+    /// TrainDataScriptableObject trainData: a Scriptable Object containing an float variable representing train data
     /// </summary>
 
     [SerializeField]

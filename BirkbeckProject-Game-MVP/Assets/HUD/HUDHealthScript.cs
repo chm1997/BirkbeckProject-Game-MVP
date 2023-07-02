@@ -6,12 +6,12 @@ public class HUDHealthScript : MonoBehaviour
     /// <summary>
     /// This class displays a text based on a variable representing a health ScriptableObject
     /// Required fields:
-    /// PlayerHealthScriptableObject playerHealth: a Scriptable Object containing an int variable representing player health
+    /// PlayerDataScriptableObject playerData: a Scriptable Object containing an int variable representing player data
     /// TMP_Text textObject: A text object used to display words on screen
     /// </summary>
 
     [SerializeField]
-    internal PlayerHealth playerHealth;
+    internal PlayerDataScriptableObject playerData;
     [SerializeField]
     internal TMP_Text textObject;
 
@@ -25,8 +25,8 @@ public class HUDHealthScript : MonoBehaviour
 
     private void UpdateEnergyText()
     {
-        // This method updates the text object to match the playerHealth object
-        currentHealth = playerHealth.GetPlayerHealth();
+        // This method updates the text object to match the playerData object
+        currentHealth = playerData.GetPlayerHealth();
         textString = "Health: " + currentHealth.ToString();
         textObject.text = textString;
     }

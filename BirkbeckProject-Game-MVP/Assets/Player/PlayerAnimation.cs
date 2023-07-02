@@ -5,11 +5,11 @@ public class PlayerAnimation : MonoBehaviour
     /// <summary>
     /// This class controls the animations of the player object in response to inputs handled by the input system
     /// Required Fields:
-    /// PlayerEnergyScriptableObject playerEnergy: a Scriptable Object containing an int variable representing player energy
+    /// PlayerDataScriptableObject playerData: a Scriptable Object containing an int variable representing player data
     /// </summary>
 
     [SerializeField]
-    internal PlayerEnergy playerEnergy;
+    internal PlayerDataScriptableObject playerData;
 
     private Animator animator;
     private SpriteRenderer spriteRenderer;
@@ -39,7 +39,7 @@ public class PlayerAnimation : MonoBehaviour
 
     void Update()
     {
-        currentEnergy = playerEnergy.GetPlayerEnergy();
+        currentEnergy = playerData.GetPlayerEnergy();
         SidewaysAnimation();
         JumpAnimation();
         AttackAnimation();
@@ -100,9 +100,9 @@ public class PlayerAnimation : MonoBehaviour
     private void AttackAnimation()
     {
         // This method activates the attack animation when conditions are correct
-        if (playerInputs.PlayerInputMap.MouseButtonLeft.triggered & isGrounded & !isWalking & currentEnergy >= 20) {
+        if (playerInputs.PlayerInputMap.AttackButton.triggered & isGrounded & !isWalking & currentEnergy >= 20) {
             animator.Play("penguin_attack");
-            playerEnergy.UpdatePlayerEnergy(-20);
+            playerData.UpdatePlayerEnergy(-20);
         }
     }
 

@@ -52,4 +52,16 @@ public class EnemyScript : MonoBehaviour, IDamagingObject, IEnemy
             rb2d.AddForce(direction * -1 * 100);
         }
     }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.collider.name == "Player")
+        {
+            if (collision.collider.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("penguin_attack"))
+            {
+                enemyData.DecreaseEnemyCount();
+                GameObject.Destroy(gameObject);
+            }
+        }
+    }
 }

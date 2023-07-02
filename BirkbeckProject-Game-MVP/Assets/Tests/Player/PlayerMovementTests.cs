@@ -204,7 +204,7 @@ public class PlayerMovementTests : InputTestFixture
     {
         playerMovement.isGrounded = true;
 
-        playerMovement.playerEnergy.SetPlayerEnergy(100);
+        playerMovement.playerData.SetPlayerEnergy(100);
         Press(keyboard.rightArrowKey);
         Press(keyboard.leftShiftKey);
 
@@ -213,7 +213,7 @@ public class PlayerMovementTests : InputTestFixture
         Assert.GreaterOrEqual(player.transform.position.x, 1);
         Assert.AreEqual(0, player.transform.position.y);
         Assert.Greater(playerMovement._speed, 10);
-        Assert.Less(playerMovement.playerEnergy.GetPlayerEnergy(), 100);
+        Assert.Less(playerMovement.playerData.GetPlayerEnergy(), 100);
 
         Release(keyboard.rightArrowKey);
         Release(keyboard.leftShiftKey);
@@ -223,8 +223,8 @@ public class PlayerMovementTests : InputTestFixture
     public IEnumerator PlayerMovementTest_NoSpeedWalkWhenNoEnergy()
     {
         playerMovement.isGrounded = true;
-        playerMovement.playerEnergy.SetMaxEnergy(0);
-        playerMovement.playerEnergy.SetPlayerEnergy(0);
+        playerMovement.playerData.SetMaxEnergy(0);
+        playerMovement.playerData.SetPlayerEnergy(0);
         Press(keyboard.rightArrowKey);
         Press(keyboard.leftShiftKey);
 

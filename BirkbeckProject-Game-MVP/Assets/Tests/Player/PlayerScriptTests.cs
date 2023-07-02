@@ -31,28 +31,28 @@ public class PlayerScriptTests
 
         yield return new WaitForSeconds(0.2f);
 
-        Assert.AreEqual(4, player.playerHealth.GetPlayerHealth());
+        Assert.AreEqual(4, player.playerData.GetPlayerHealth());
     }
 
     [UnityTest]
     public IEnumerator PlayerScriptTest_EnergyIncreasesOverTime()
     {
-        player.playerEnergy.SetMaxEnergy(100);
-        player.playerEnergy.SetPlayerEnergy(50);
+        player.playerData.SetMaxEnergy(100);
+        player.playerData.SetPlayerEnergy(50);
 
         yield return new WaitForSeconds(1f);
 
-        Assert.Greater(player.playerEnergy.GetPlayerEnergy(), 50);
+        Assert.Greater(player.playerData.GetPlayerEnergy(), 50);
     }
 
     [UnityTest]
     public IEnumerator PlayerScriptTest_EnergyIncreasesOverTimeStopsAtMax()
     {
-        player.playerEnergy.SetMaxEnergy(100);
-        player.playerEnergy.SetPlayerEnergy(100);
+        player.playerData.SetMaxEnergy(100);
+        player.playerData.SetPlayerEnergy(100);
 
         yield return new WaitForSeconds(1f);
 
-        Assert.AreEqual(player.playerEnergy.GetPlayerEnergy(), 100);
+        Assert.AreEqual(player.playerData.GetPlayerEnergy(), 100);
     }
 }

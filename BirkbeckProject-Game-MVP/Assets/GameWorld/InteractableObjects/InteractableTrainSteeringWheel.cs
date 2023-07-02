@@ -13,13 +13,16 @@ public class InteractableTrainSteeringWheel : MonoBehaviour, IInteractableObject
 
     public void RecieveMessage(string message)
     {
-        if (trainData.GetTrainSpeed() > 0)
+        if (trainData.GetPlayerInTrain() == true)
         {
-            trainData.SetTrainSpeed(0);
-        }
-        else
-        {
-            trainData.SetTrainSpeed(30);
+            if (trainData.GetTrainSpeed() > 0)
+            {
+                trainData.SetTrainSpeed(0);
+            }
+            else
+            {
+                trainData.SetTrainSpeed(30);
+            }
         }
     }
 }
