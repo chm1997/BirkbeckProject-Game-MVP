@@ -11,10 +11,18 @@ public class SceneContolScript : MonoBehaviour
 
     [SerializeField]
     internal PlayerDataScriptableObject playerData;
-    
+
+    private PlayerInputs playerInputs;
+
+    private void Start()
+    {
+        playerInputs = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>().playerInputs;
+    }
+
     private void Update()
     {
         if (playerData.GetPlayerHealth() <= 0) LoadDeathScene();
+        if (playerInputs.PlayerInputMap.EscapeButton.triggered) Application.Quit();
     }
 
     private void LoadDeathScene()

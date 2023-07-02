@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D trainRB2D;
     private Rigidbody2D rb2D;
 
-    internal PlayerInputs playerInputs;
+    public PlayerInputs playerInputs;
 
     private Vector2 moveInput;
 
@@ -86,8 +86,6 @@ public class PlayerMovement : MonoBehaviour
         if (playerInputs.PlayerInputMap.LeftShift.IsPressed() & isGrounded & playerData.GetPlayerEnergy() > 0 & moveInput != new Vector2(0, 0))
         {
             _speed = 20;
-            Debug.Log(playerData.GetPlayerEnergy());
-            Debug.Log(-20 * Time.deltaTime);
             playerData.UpdatePlayerEnergy(-20 * Time.deltaTime);
         }
         else _speed = 10;

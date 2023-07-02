@@ -98,6 +98,15 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""EscapeButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""8f3bb06e-17af-4e32-8390-98a0c6c99839"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -287,6 +296,17 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                     ""action"": ""AttackButton"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ba42f903-6a6c-4fd9-a05f-e536ab64f704"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EscapeButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -303,6 +323,7 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
         m_PlayerInputMap_LeftShift = m_PlayerInputMap.FindAction("LeftShift", throwIfNotFound: true);
         m_PlayerInputMap_InteractButton = m_PlayerInputMap.FindAction("InteractButton", throwIfNotFound: true);
         m_PlayerInputMap_AttackButton = m_PlayerInputMap.FindAction("AttackButton", throwIfNotFound: true);
+        m_PlayerInputMap_EscapeButton = m_PlayerInputMap.FindAction("EscapeButton", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -370,6 +391,7 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerInputMap_LeftShift;
     private readonly InputAction m_PlayerInputMap_InteractButton;
     private readonly InputAction m_PlayerInputMap_AttackButton;
+    private readonly InputAction m_PlayerInputMap_EscapeButton;
     public struct PlayerInputMapActions
     {
         private @PlayerInputs m_Wrapper;
@@ -382,6 +404,7 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
         public InputAction @LeftShift => m_Wrapper.m_PlayerInputMap_LeftShift;
         public InputAction @InteractButton => m_Wrapper.m_PlayerInputMap_InteractButton;
         public InputAction @AttackButton => m_Wrapper.m_PlayerInputMap_AttackButton;
+        public InputAction @EscapeButton => m_Wrapper.m_PlayerInputMap_EscapeButton;
         public InputActionMap Get() { return m_Wrapper.m_PlayerInputMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -415,6 +438,9 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                 @AttackButton.started -= m_Wrapper.m_PlayerInputMapActionsCallbackInterface.OnAttackButton;
                 @AttackButton.performed -= m_Wrapper.m_PlayerInputMapActionsCallbackInterface.OnAttackButton;
                 @AttackButton.canceled -= m_Wrapper.m_PlayerInputMapActionsCallbackInterface.OnAttackButton;
+                @EscapeButton.started -= m_Wrapper.m_PlayerInputMapActionsCallbackInterface.OnEscapeButton;
+                @EscapeButton.performed -= m_Wrapper.m_PlayerInputMapActionsCallbackInterface.OnEscapeButton;
+                @EscapeButton.canceled -= m_Wrapper.m_PlayerInputMapActionsCallbackInterface.OnEscapeButton;
             }
             m_Wrapper.m_PlayerInputMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -443,6 +469,9 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                 @AttackButton.started += instance.OnAttackButton;
                 @AttackButton.performed += instance.OnAttackButton;
                 @AttackButton.canceled += instance.OnAttackButton;
+                @EscapeButton.started += instance.OnEscapeButton;
+                @EscapeButton.performed += instance.OnEscapeButton;
+                @EscapeButton.canceled += instance.OnEscapeButton;
             }
         }
     }
@@ -457,5 +486,6 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
         void OnLeftShift(InputAction.CallbackContext context);
         void OnInteractButton(InputAction.CallbackContext context);
         void OnAttackButton(InputAction.CallbackContext context);
+        void OnEscapeButton(InputAction.CallbackContext context);
     }
 }
