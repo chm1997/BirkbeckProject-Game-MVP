@@ -5,7 +5,7 @@ public class TrainMovementScript : MonoBehaviour
     /// <summary>
     /// This class controls the movement of the train object based on values in the train data scriptable object
     /// Required fields:
-    /// TrainDataScriptableObject trainData: a Scriptable Object containing an float variable representing train fuel
+    /// TrainDataScriptableObject trainData: a Scriptable Object containing an float variable representing train data
     /// </summary>
     
     [SerializeField]

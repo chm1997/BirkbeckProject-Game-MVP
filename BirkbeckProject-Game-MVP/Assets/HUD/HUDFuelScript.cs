@@ -5,7 +5,7 @@ public class HUDFuelScript : MonoBehaviour
     /// <summary>
     /// This class displays a text based on a variable representing a health ScriptableObject
     /// Required fields:
-    /// TrainDataScriptableObject trainData: a Scriptable Object containing an float variable representing train fuel
+    /// TrainDataScriptableObject trainData: a Scriptable Object containing an float variable representing train data
     /// TMP_Text textObject: A text object used to display words on screen
     /// </summary>
 

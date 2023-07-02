@@ -2,6 +2,11 @@ using UnityEngine;
 
 public class WheelScript : MonoBehaviour
 {
+    /// <summary>
+    /// This class rotates attached wheel object to give a sense of motion
+    /// TrainDataScriptableObject trainData: a Scriptable Object containing an float variable representing train data
+    /// </summary>
+
     [SerializeField]
     internal TrainDataScriptableObject trainData;
 

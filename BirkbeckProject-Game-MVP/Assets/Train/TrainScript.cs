@@ -6,7 +6,7 @@ public class TrainScript : MonoBehaviour
     /// <summary>
     /// This class represents the train objects' general states and behaviours
     /// Required fields:
-    /// TrainDataScriptableObject trainData: a Scriptable Object containing an float variable representing train fuel
+    /// TrainDataScriptableObject trainData: a Scriptable Object containing an float variable representing train data
     /// </summary>
 
     [SerializeField]
