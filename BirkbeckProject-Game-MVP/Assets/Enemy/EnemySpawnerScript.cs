@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class EnemySpawnerScript : MonoBehaviour
+public class EnemySpawnerScript : MonoBehaviour, IInteractableObject
 {
     /// <summary>
     /// This class handles the creation of enemy objects based on their prefab and a variable timer
@@ -19,7 +19,7 @@ public class EnemySpawnerScript : MonoBehaviour
     [SerializeField]
     internal int enemySpawnRate;
     [SerializeField]
-    internal bool spawnOnStartUp = true;
+    internal bool spawnOnStartUp;
 
     private bool enemyCountAboveBoundary;
     private bool enemyCountAtMax;
@@ -59,5 +59,10 @@ public class EnemySpawnerScript : MonoBehaviour
 
         if (!enemyCountAtMax) GameObject.Instantiate(enemyPrefab, transform.localPosition, Quaternion.identity);
         StartCoroutine(SpawnAnEnemyEvertXSeconds());
-    } 
+    }
+
+    public void RecieveMessage(string message)
+    {
+        GameObject.Destroy(gameObject);
+    }
 }
