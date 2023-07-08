@@ -7,13 +7,11 @@ using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using System.IO;
 using System;
-using System.Threading;
 
 public class TestPlayerActionsAndInteractions : InputTestFixture
 {
     Vector3 tempPosition;
-    bool tempBool;
-    LogType tempLogType;
+    Logger logger;
 
     [UnityTest]
     public IEnumerator TestPlayerActionsAndInteractions_Main()
@@ -23,8 +21,8 @@ public class TestPlayerActionsAndInteractions : InputTestFixture
         Keyboard keyboard = InputSystem.AddDevice<Keyboard>();
         Mouse mouse = InputSystem.AddDevice<Mouse>();
 
-        string filepath = Application.persistentDataPath + "/Logs/PlayerActionsAndInteractionsLog_" + rightNow.ToString("yyyymddhh") + ".txt";
-        Logger logger = new Logger(new TestLogHandler(filepath));
+        string filepath = Application.persistentDataPath + "/Logs/PlayerActionsAndInteractionsLog_" + rightNow.ToString("yyyy-MM-dd-hh-mm") + ".txt";
+        logger = new Logger(new TestLogHandler(filepath));
 
         SceneManager.LoadScene("Assets/Scenes/DesertScene.unity");
 
@@ -33,44 +31,81 @@ public class TestPlayerActionsAndInteractions : InputTestFixture
         GameObject healthPack = GameObject.Find("HealthPack");
         yield return new WaitForSeconds(1f);
 
+        // Test Player Movement and Animations
 
-        // Test basic movement
+        tempPosition = player.transform.position;
+        HelperCheckMethod(
+            player.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("penguin_idle"),
+            "Idle animation working: {0}"
+        );
+
         tempPosition = player.transform.position;
         Press(keyboard.rightArrowKey);
         yield return new WaitForSeconds(1f);
+
+        HelperCheckMethod(
+            player.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("penguin_walk"),
+            "Right movement animation working: {0}"
+        );
+
         Release(keyboard.rightArrowKey);
 
-        tempBool = (player.transform.position.x > tempPosition.x) & (player.transform.position.y == tempPosition.y);
-        tempLogType = helperLogMethod(tempBool);
-        logger.LogFormat(tempLogType, "Right Movement working: {0}", tempBool);
+        HelperCheckMethod(
+            (player.transform.position.x > tempPosition.x) & (player.transform.position.y == tempPosition.y),
+            "Right Movement working: {0}"
+        );
 
         yield return null;
 
         tempPosition = player.transform.position;
         Press(keyboard.leftArrowKey);
         yield return new WaitForSeconds(1f);
+
+        HelperCheckMethod(
+            player.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("penguin_walk"),
+            "Left movement animation working: {0}"
+        );
+
         Release(keyboard.leftArrowKey);
 
-        tempBool = (player.transform.position.x < tempPosition.x) & (player.transform.position.y == tempPosition.y);
-        tempLogType = helperLogMethod(tempBool);
-        logger.LogFormat(LogType.Log, "Left Movement working: {0}", tempBool);
+        HelperCheckMethod(
+            (player.transform.position.x < tempPosition.x) & (player.transform.position.y == tempPosition.y),
+            "Left movement working: {0}"
+        );
 
         yield return null;
 
         tempPosition = player.transform.position;
-        Press(keyboard.spaceKey);
-        yield return new WaitForSeconds(1f);
-        Release(keyboard.spaceKey);
-
-        tempBool = (player.transform.position.x == tempPosition.x) & (player.transform.position.y > tempPosition.y);
-        tempLogType = helperLogMethod(tempBool);
-        logger.LogFormat(LogType.Log, "Jump working: {0}", tempBool);
-
+        PressAndRelease(keyboard.spaceKey);
         yield return new WaitForSeconds(1f);
 
-        PlayerDataScriptableObject playerData = player.GetComponent<PlayerScript>().playerData;
+        HelperCheckMethod(
+            player.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("penguin_jump"),
+            "Jump animation working: {0}"
+        );
 
+        HelperCheckMethod(
+            (player.transform.position.x == tempPosition.x) & (player.transform.position.y > tempPosition.y),
+            "Jump working: {0}"
+        );
 
+        yield return new WaitForSeconds(2f);
+
+        Press(keyboard.eKey);
+
+        yield return null;
+        yield return null;
+
+        HelperCheckMethod(
+            player.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("penguin_attack"),
+            "Attack animation working: {0}"
+        );
+
+        // Test Mouse movement and object interaction
+
+        // Test Train interactions
+
+        // Test Enemy interactions, death, and game over screen
 
         // Read log file and check for failures
         logger.LogFormat(LogType.Log, "Close");
@@ -91,7 +126,12 @@ public class TestPlayerActionsAndInteractions : InputTestFixture
         Assert.AreEqual(failures.Count, 0, failures.ToString());
     }
 
-    private LogType helperLogMethod(bool isWorkingBool)
+    private void HelperCheckMethod(bool isWorkingBool, string formatString)
+    {
+        logger.LogFormat(HelperLogMethod(isWorkingBool), formatString, isWorkingBool);
+    }
+
+    private LogType HelperLogMethod(bool isWorkingBool)
     {
         LogType returnLogType;
         if (!isWorkingBool) returnLogType = LogType.Error;
