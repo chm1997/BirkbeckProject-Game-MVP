@@ -92,7 +92,7 @@ public class TrainScript : MonoBehaviour
     {
         // Set up values for the train data object
         trainData.SetMaxTrainFuel(1000);
-        trainData.SetTrainFuel(1000);
+        trainData.SetTrainFuel(25);
 
         trainData.SetMaxTrainHealth(1000);
         trainData.SetTrainHealth(1000);
