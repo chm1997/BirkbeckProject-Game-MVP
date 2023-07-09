@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/DesertScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
@@ -14,10 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DesertSceneWithoutEnemies.unity
     guid: f56be557fe4b82949992c93f64cccd87
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/FunctionalTestScene.unity
     guid: bc7934afb3918fe4c9ae1d1a0a3b061d
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/EmptyUnitTestScene.unity
     guid: ad293d021ce26b84283015165b71c20d
   m_configObjects:
