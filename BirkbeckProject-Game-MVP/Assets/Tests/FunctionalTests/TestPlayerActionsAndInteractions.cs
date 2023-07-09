@@ -8,12 +8,11 @@ using UnityEngine.InputSystem;
 using System.IO;
 using System;
 using TMPro;
-using UnityEngine.InputSystem.LowLevel;
-using UnityEngine.InputSystem.UI;
 
 public class TestPlayerActionsAndInteractions : InputTestFixture
 {
     Vector3 tempPosition;
+    bool tempBool;
     float tempNum;
     string tempString;
     Logger logger;
@@ -26,10 +25,10 @@ public class TestPlayerActionsAndInteractions : InputTestFixture
         Keyboard keyboard = InputSystem.AddDevice<Keyboard>();
         Mouse mouse = InputSystem.AddDevice<Mouse>();
 
-        string filepath = Application.persistentDataPath + "/Logs/PlayerActionsAndInteractionsLog_" + rightNow.ToString("yyyy-MM-dd-hh-mm") + ".txt";
+        string filepath = Application.persistentDataPath + "PlayerActionsAndInteractionsLog_" + rightNow.ToString("yyyy-MM-dd-hh-mm") + ".txt";
         logger = new Logger(new TestLogHandler(filepath));
 
-        SceneManager.LoadScene("Assets/Scenes/TestScene.unity");
+        SceneManager.LoadScene("Assets/Scenes/FunctionalTestScene.unity");
 
         yield return null;
 
@@ -44,8 +43,6 @@ public class TestPlayerActionsAndInteractions : InputTestFixture
 
         PlayerDataScriptableObject playerData = player.GetComponent<PlayerScript>().playerData;
         TrainDataScriptableObject trainData = train.GetComponent<TrainScript>().trainData;
-
-        
 
         yield return new WaitForSeconds(1f);
 
@@ -257,9 +254,137 @@ public class TestPlayerActionsAndInteractions : InputTestFixture
             "Restart button working: {0}"
         );
 
+        player = GameObject.Find("Player");
+        playerData = player.GetComponent<PlayerScript>().playerData;
+        playerData.SetPlayerHealth(1000);
+
+        enemySpawner = GameObject.Find("EnemySpawner");
+        enemyData = enemySpawner.GetComponent<EnemySpawnerScript>().enemyData;
+        enemyData.SetEnemyCountMax(1);
+        Renderer enemySpawnerRenderer = enemySpawner.GetComponent<Renderer>();
+
+        Press(keyboard.rightArrowKey);
+        Press(keyboard.leftShiftKey);
+
+        tempBool = true;
+
+        for (int i = 0; i < 200; i++)
+        {
+            yield return new WaitForSeconds(0.05f);
+            if (enemySpawnerRenderer.isVisible) break;
+            if (i == 199) tempBool = false;
+        }
+
+        yield return new WaitForSeconds(0.1f);
+
+        Release(keyboard.rightArrowKey);
+        Release(keyboard.leftShiftKey);
+
+        HelperCheckMethod(
+            (tempBool),
+            "Run through gauntlet working: {0}"
+        );
+
+        yield return new WaitForSeconds(0.1f);
+
+        Move(mouse.position, (Camera.main.WorldToScreenPoint(enemySpawner.transform.position)));
+
+        yield return null;
+
+        PressAndRelease(mouse.leftButton);
+        PressAndRelease(mouse.leftButton); // Second press needed as unity unloads cursor when going to new scene
+
+        yield return new WaitForSeconds(0.1f);
+
+        HelperCheckMethod(
+            (enemySpawner == null),
+            "Enemy spawner object interaction behaviour working: {0}"
+        );
+
+        GameObject enemy = GameObject.Find("Enemy(Clone)");
+        if (enemy != null) GameObject.Destroy(enemy);
+
         // Test Train interactions
 
-        // Read log file and check for failures
+        train = GameObject.Find("TrainMainObject");
+        trainData = train.GetComponent<TrainScript>().trainData;
+
+        Press(keyboard.rightArrowKey);
+        Press(keyboard.leftShiftKey);
+
+        tempBool = true;
+
+        for (int i = 0; i < 100; i++)
+        {
+            yield return new WaitForSeconds(0.05f);
+            if (player.transform.position.x >= (train.transform.position.x - 30)) break;
+            if (i == 99) tempBool = false;
+        }
+
+        HelperCheckMethod(
+            (tempBool),
+            "Run towards train working: {0}"
+        );
+
+        Release(keyboard.leftShiftKey);
+        PressAndRelease(keyboard.spaceKey);
+
+        yield return new WaitForSeconds(3f);
+
+        Release(keyboard.rightArrowKey);
+
+        HelperCheckMethod(
+            (trainData.GetPlayerInTrain()),
+            "Jump into train working: {0}"
+        );
+
+        HelperCheckMethod(
+            (!train.transform.Find("TrainMainSpriteObject").transform.Find("TrainFrontSprite").GetComponent<SpriteRenderer>().enabled),
+            "Train front sprite hide working: {0}"
+        );
+
+        tempNum = Camera.main.orthographicSize;
+        tempPosition = train.transform.position;
+
+        GameObject steeringWheel = GameObject.Find("SteeringWheel");
+
+        Move(mouse.position, (Camera.main.WorldToScreenPoint(steeringWheel.transform.position)));
+
+        yield return null;
+
+        PressAndRelease(mouse.leftButton);
+
+        yield return new WaitForSeconds(0.1f);
+
+        HelperCheckMethod(
+            (trainData.GetTrainSpeed() > 0),
+            "Train activate working: {0}"
+        );
+
+        yield return new WaitForSeconds(5f);
+
+        HelperCheckMethod(
+            (train.transform.position.x > tempPosition.x),
+            "Train movement working: {0}"
+        );
+
+        HelperCheckMethod(
+            (Camera.main.orthographicSize > tempNum),
+            "Camera change when train moving working: {0}"
+        );
+
+        trainData.SetTrainFuel(0);
+
+        yield return new WaitForSeconds(0.5f);
+
+        HelperCheckMethod(
+            (trainData.GetTrainSpeed() == 0),
+            "Train stop with zero fuel working: {0}"
+        );
+
+        // Close scene and check for failures
+
+        SceneManager.LoadScene("EmptyUnitTestScene");
         logger.LogFormat(LogType.Log, "Close");
         ReadLogs(filepath);
     }
