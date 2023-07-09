@@ -9,11 +9,11 @@ EditorBuildSettings:
     path: Assets/Scenes/DesertScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/Game Over Scene.unity
-    guid: 19d9457edc18b88498e10fb8d9132d2a
-  - enabled: 1
     path: Assets/Scenes/DesertSceneWithoutEnemies.unity
     guid: f56be557fe4b82949992c93f64cccd87
+  - enabled: 1
+    path: Assets/Scenes/Game Over Scene.unity
+    guid: 19d9457edc18b88498e10fb8d9132d2a
   - enabled: 0
     path: Assets/Scenes/FunctionalTestScene.unity
     guid: bc7934afb3918fe4c9ae1d1a0a3b061d
