@@ -8,7 +8,11 @@
         "Unity.InputSystem.TestFramework",
         "Unity.InputSystem.IntegrationTests",
         "PlayerScripts",
-        "ScriptableObjects"
+        "ScriptableObjects",
+        "Train",
+        "HUDScripts",
+        "Unity.TextMeshPro",
+        "Enemy"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

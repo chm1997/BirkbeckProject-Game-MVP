@@ -20,7 +20,7 @@ public class CrosshairScript : MonoBehaviour
     {
         Cursor.visible = false;
         DetermineMouseWorldPosition();
-        TransformCursosObject();
+        TransformCursorObject();
         HandlePlayerInteraction();
     }
 
@@ -28,10 +28,13 @@ public class CrosshairScript : MonoBehaviour
     {
         //This method works out the correct place to put an object in the game world so that it appears in the cursor position
         mousePosition = playerInput.PlayerInputMap.MousePosition.ReadValue<Vector2>();
+        //Debug.Log(mousePosition);
         mouseWorldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+        //Debug.Log(mouseWorldPosition);
+        //Debug.Log(transform.position);
     }
 
-    private void TransformCursosObject()
+    private void TransformCursorObject()
     {
         //This method transforms the attached object to the mouse world position
         transform.position = new Vector3(mouseWorldPosition.x, mouseWorldPosition.y, -8);
